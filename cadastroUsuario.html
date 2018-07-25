@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cadastro Usuário</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+	
+	<script>
+	
+		function check_pass() {
+			if (document.getElementById('senha').value ==
+				document.getElementById('senhaNovamente').value) {
+				document.getElementById('submit').disabled = false;
+			} else {
+				document.getElementById('submit').disabled = true;
+			}
+		}
+	
+	</script>
+
+  </head>
+  <body class="bg-dark">
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="input-group mb-3 pt-3">
+				<div class="input-group-prepend">
+					<button class="btn btn-primary" type="button">Pesquisar</button>
+				</div>
+				
+				<input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9">
+		
+		
+			<form role="form" class="mx-auto" style="width: 500px;">
+			
+				<h3 class="text-info">
+					Cadastro de Usuário
+				</h3>
+			
+				<div class="form-group">
+					 
+					<label for="email" class="text-white">
+						Endereço de Email
+					</label>
+					<input type="email" class="form-control" id="email">
+				</div>
+				
+				<div class="form-group">
+					 
+					<label for="nomeUsuario" class="text-white">
+						Nome de Usuário
+					</label>
+					<input type="email" class="form-control" id="nomeUsuario">
+				</div>
+
+				<div class="form-group">
+					 
+					<label for="senha" class="text-white">
+						Senha
+					</label>
+					<input type="password" class="form-control" id="senha" onkeyup="check_pass();">
+				</div>
+				
+				<div class="form-group">
+					 
+					<label for="senhaNovamente" class="text-white">
+						Digite a senha novamente
+					</label>
+					<input type="password" class="form-control" id="senhaNovamente" onkeyup="check_pass();">
+				</div>
+			
+				<div class="btn-group btn-group-vertical btn-block" role="group">
+				 
+					<button class="btn btn-primary" type="submit" id="submit" disabled>
+						Cadastro
+					</button> 
+				
+				</div>
+			
+			</form>
+			
+			
+		</div>
+		
+		<div class="col-md-3">
+			<form role="form">
+			
+				<div class="form-group">
+					 
+					<label for="nomeUsuario" class="text-white">
+						Nome de Usuário
+					</label>
+					<input type="text" class="form-control" id="nomeUsuario" placeholder="Nome de usuário">
+				</div>
+				
+				<div class="form-group">
+					 
+					<label for="senha" class="text-white">
+						Senha
+					</label>
+					<input type="password" class="form-control" id="senha" placeholder="Senha">
+				</div>
+				
+				<div class="btn-group btn-group-vertical btn-block" role="group">
+				 
+					<button class="btn btn-primary mb-1" type="submit">
+						Entrar
+					</button> 
+				 
+					<button class="btn btn-warning mb-5" type="button">
+						Esqueci Minha Senha
+					</button> 
+					
+					<button class="btn btn-primary" type="button">
+						Cadastro
+					</button> 
+				
+				</div>
+				
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-12 pt-4 text-white" align="center">
+			 
+				<address>
+					<strong>Desenvolvedores</strong><br>Pedro Ivo Soares Barbosa<br>Wellyson Vieira Dias<br>
+				</address>
+			
+			</div>
+		</div>
+	</div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
