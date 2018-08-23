@@ -1,0 +1,23 @@
+
+-diminuir campo de pesquisa
+
+-melhorar rodape
+
+-colocar dois pontos nas labels dos formularios
+
+-separar codigo tela login e usar include (lembrar de converter a pag pra .php)
+
+	<?php include './tela_login.php'; ?>
+	
+-colocar atribuito name="" nos campos do form cadastro peça ou substituir os ids
+	
+-tirar campos cadastro peça:
+
+	'observaçoes' duplicado na ficha catalografica
+	'destacado' e 'publica documento' no english fields
+	
+-colocar campos como multiline no cadastro peça
+
+-prototipo pagina usuario
+
+-habilitar botao login quando preencher campos
