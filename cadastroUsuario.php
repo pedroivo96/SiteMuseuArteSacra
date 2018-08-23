@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Cadastro Usuário</title>
 
     <meta name="description" content="Source code generated using layoutit.com">
@@ -41,6 +40,10 @@
   </head>
   <body class="bg-dark">
 
+		<?php
+			include './cadastroUser.php';
+		?>
+
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -57,7 +60,7 @@
 		<div class="col-md-9">
 		
 		
-			<form role="form" class="mx-auto" style="width: 500px;">
+			<form role="form" class="mx-auto" style="width: 500px;" action="cadastroUsuario.php" method="POST">
 			
 				<h3 class="text-info">
 					Cadastro de Usuário
@@ -68,7 +71,7 @@
 					<label for="email" class="text-white">
 						Endereço de Email
 					</label>
-					<input type="email" class="form-control" id="email">
+					<input type="email" class="form-control" id="email" name="email">
 				</div>
 				
 				<div class="form-group">
@@ -76,7 +79,7 @@
 					<label for="nomeUsuario" class="text-white">
 						Nome de Usuário
 					</label>
-					<input type="email" class="form-control" id="nomeUsuario">
+					<input type="text" class="form-control" id="nomeUsuario" name="username">
 				</div>
 
 				<div class="form-group">
@@ -84,7 +87,7 @@
 					<label for="senha" class="text-white">
 						Senha
 					</label>
-					<input type="password" class="form-control" id="senha" onkeyup="check_pass();" >
+					<input type="password" class="form-control" id="senha" name="senha" onkeyup="check_pass();" >
 				</div>
 				
 				<label for="senhaNovamente" class="text-danger" id="senhaNaoIguais">
@@ -123,7 +126,6 @@
 				</div>
 				
 				<div class="form-group">
-				
 					 
 					<label for="resposta" class="text-white">
 						Digite a resposta da pergunta escolhida

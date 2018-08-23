@@ -17,6 +17,10 @@
   </head>
   <body class="bg-dark">
 
+  <?php
+		include './login.php';
+  ?>
+
     <div class="container-fluid">
 	
 	<div class="row">
@@ -89,14 +93,14 @@
 		
 		<div class="col-md-3">
 		
-			<form role="form">
+			<form role="form" action="index.php" method="POST">
 			
 				<div class="form-group">
 					 
 					<label for="exampleInputEmail1" class="text-white">
 						Nome de Usuário
 					</label>
-					<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nome de usuário">
+					<input type="text" class="form-control" id="exampleInputEmail1" name="username" placeholder="Nome de usuário">
 				</div>
 				
 				<div class="form-group">
@@ -104,12 +108,12 @@
 					<label for="exampleInputPassword1" class="text-white">
 						Senha
 					</label>
-					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+					<input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="Senha">
 				</div>
 				
 				<div class="btn-group btn-group-vertical btn-block" role="group">
 				 
-					<button class="btn btn-primary mb-1" type="button">
+					<button class="btn btn-primary mb-1" type="submit">
 						Entrar
 					</button> 
 				 
