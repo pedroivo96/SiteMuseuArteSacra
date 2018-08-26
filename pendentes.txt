@@ -1,17 +1,17 @@
+﻿
+-diminuir campo de pesquisa (OK Adicionado um Include pra facilitar possíveis e futuras alterações )
 
--diminuir campo de pesquisa
+-melhorar rodape (OK Adicionada uma divisor superior)
 
--melhorar rodape
-
--colocar dois pontos nas labels dos formularios
+-colocar dois pontos nas labels dos formularios(OK)
 
 -separar codigo tela login e usar include (lembrar de converter a pag pra .php)
 
 	<?php include './tela_login.php'; ?>
 	
--colocar atribuito name="" nos campos do form cadastro peça ou substituir os ids
+-colocar atribuito name="" nos campos do form cadastro peça ou substituir os ids (OK)
 	
--tirar campos cadastro peça:
+-tirar campos cadastro peça: (OK)
 
 	'observaçoes' duplicado na ficha catalografica
 	'destacado' e 'publica documento' no english fields

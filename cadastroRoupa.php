@@ -110,7 +110,21 @@
 			barraProgresso.style.width = "100%";
 			barraProgresso.textContent = "100%";
 		}
-	
+		
+		function aumentaTextArea(){
+			
+			var textArea = document.getElementById('textArea');
+			var alturaConteudo = textArea.get(0).scrollHeight;
+			
+			textArea.style.height = alturaConteudo+"px";
+		}
+		
+		$("#nomePeca").on('input', function() {
+			var scroll_height = $("#message-box").get(0).scrollHeight;
+
+			$("#nomePeca").css('height', scroll_height + 'px');
+		});
+		
 	</script>
 
   </head>
@@ -119,17 +133,7 @@
     <div class="container-fluid">
 	
 	<div class="row">
-		<div class="col-md-12">
-			<div class="input-group mb-3 pt-2">
-		
-				<div class="input-group-prepend mr-1">
-					<button class="btn btn-primary" type="button">Pesquisar</button>
-				</div>
-				
-				<input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-			
-			</div>
-		</div>
+		<?php include './campoPesquisa.html'; ?>
 	</div>
 	
 	<div class="row">
@@ -156,137 +160,137 @@
 				<div class="form-group">
 					 
 					<label for="nomePeca">
-						Nome da Peça
+						Nome da peça:
 					</label>
-					<input type="text" class="form-control" id="nomePeca">
+					<textarea rows="1" type="text" class="form-control" id="nomePeca" name="nomePeca"></textarea>
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="numeroInventarioMuseu">
-						Número de Inventário ( Museu )
+						Número de inventário ( Museu ):
 					</label>
-					<input type="number" class="form-control" id="numeroInventarioMuseu">
+					<input type="number" class="form-control" id="numeroInventarioMuseu" name="numeroInventarioMuseu">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="numeroInventarioProjeto">
-						Número de Inventário ( Projeto )
+						Número de inventário ( Projeto ):
 					</label>
-					<input type="number" class="form-control" id="numeroInventarioProjeto">
+					<input type="number" class="form-control" id="numeroInventarioProjeto" name="numeroInventarioProjeto">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="localizacao">
-						Localização
+						Localização:
 					</label>
-					<input type="text" class="form-control" id="localizacao">
+					<input type="text" class="form-control" id="localizacao" name="localizacao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="termoDoacao">
-						Termo de Doação
+						Termo de doação:
 					</label>
-					<input type="text" class="form-control" id="termoDoacao">
+					<input type="text" class="form-control" id="termoDoacao" name="termoDoacao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="fabricanteAutor">
-						Fabricante / Autor
+						Fabricante / Autor:
 					</label>
-					<input type="text" class="form-control" id="fabricanteAutor">
+					<input type="text" class="form-control" id="fabricanteAutor" name="fabricanteAutor">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="data">
-						Data
+						Data:
 					</label>
-					<input type="date" class="form-control" id="data">
+					<input type="date" class="form-control" id="data" name="data">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="localAquisicao">
-						Local de Aquisição
+						Local de aquisição:
 					</label>
-					<input type="text" class="form-control" id="localAquisicao">
+					<input type="text" class="form-control" id="localAquisicao" name="localAquisicao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="tecido">
-						Tecido
+						Tecido:
 					</label>
-					<input type="text" class="form-control" id="tecido">
+					<input type="text" class="form-control" id="tecido" name="tecido">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="composicao">
-						Composição
+						Composição:
 					</label>
-					<input type="text" class="form-control" id="composicao">
+					<input type="text" class="form-control" id="composicao" name="composicao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="bordado">
-						Bordado
+						Bordado:
 					</label>
-					<input type="text" class="form-control" id="bordado">
+					<input type="text" class="form-control" id="bordado" name="bordado">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="tipologia">
-						Tipologia
+						Tipologia:
 					</label>
-					<input type="text" class="form-control" id="tipologia">
+					<input type="text" class="form-control" id="tipologia" name="tipologia">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="pintura">
-						Pintura
+						Pintura:
 					</label>
-					<input type="text" class="form-control" id="pintura">
+					<input type="text" class="form-control" id="pintura" name="pintura">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="tecnica">
-						Técnica
+						Técnica:
 					</label>
-					<input type="text" class="form-control" id="tecnica">
+					<input type="text" class="form-control" id="tecnica" name="tecnica">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="dimensoes">
-						Dimensões
+						Dimensões:
 					</label>
-					<input type="text" class="form-control" id="dimensoes">
+					<input type="text" class="form-control" id="dimensoes" name="dimensoes">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="desenhoTecnico">
-						Desenho Técnico (Frente e Costas)
+						Desenho técnico (Frente e Costas):
 					</label>
-					<input type="file" class="form-control" id="desenhoTecnico" multiple>
+					<input type="file" class="form-control" id="desenhoTecnico" name="desenhoTecnico" multiple>
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="fotografia">
-						Fotografia (Frente e Costas)
+						Fotografia (Frente e Costas):
 					</label>
-					<input type="file" class="form-control" id="fotografia" multiple>
+					<input type="file" class="form-control" id="fotografia" name="fotografia" multiple>
 				</div>
 				
 				<div class="d-flex bd-highlight">
@@ -309,121 +313,113 @@
 				<div class="form-group">
 					 
 					<label for="classe">
-						Classe
+						Classe:
 					</label>
-					<input type="text" class="form-control" id="classe">
+					<input type="text" class="form-control" id="classe" name="classe">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="subClasse">
-						Subclasse
+						Subclasse:
 					</label>
-					<input type="text" class="form-control" id="subClasse">
+					<input type="text" class="form-control" id="subClasse" name="subClasse">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="tipo">
-						Tipo
+						Tipo:
 					</label>
-					<input type="text" class="form-control" id="tipo">
+					<input type="text" class="form-control" id="tipo" name="tipo">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="historicoUso">
-						Histórico de Uso
+						Histórico de uso:
 					</label>
-					<input type="date" class="form-control" id="historicoUso">
+					<input type="date" class="form-control" id="historicoUso" name="historicoUso">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="possiveisUsos">
-						Possíveis usos da peça
+						Possíveis usos da peça:
 					</label>
-					<input type="text" class="form-control" id="possiveisUsos">
+					<input type="text" class="form-control" id="possiveisUsos" name="possiveisUsos">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="dataAquisicao">
-						Data de Aquisição
+						Data de aquisição:
 					</label>
-					<input type="date" class="form-control" id="dataAquisicao">
+					<input type="date" class="form-control" id="dataAquisicao" name="dataAquisicao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="tecnicaMaterial">
-						Técnica / Material
+						Técnica / Material:
 					</label>
-					<input type="text" class="form-control" id="tecnicaMaterial">
+					<input type="text" class="form-control" id="tecnicaMaterial" name="tecnicaMaterial">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="forma">
-						Forma
+						Forma:
 					</label>
-					<input type="text" class="form-control" id="forma">
+					<input type="text" class="form-control" id="forma" name="forma">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="descricaoPeca">
-						Descrição da Peça
+						Descrição da peça:
 					</label>
-					<input type="text" class="form-control" id="descricaoPeca">
+					<input type="text" class="form-control" id="descricaoPeca" name="descricaoPeca">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="dimensoes1">
-						Dimensões
+						Dimensões:
 					</label>
-					<input type="text" class="form-control" id="dimensoes1">
+					<input type="text" class="form-control" id="dimensoes1" name="dimensoes1">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="descricaoPecasComplementares">
-						Descrição de Peças Complementares
+						Descrição de peças complementares:
 					</label>
-					<input type="text" class="form-control" id="descricaoPecasComplementares">
-				</div>
-				
-				<div class="form-group">
-					 
-					<label for="observacoes">
-						Observações
-					</label>
-					<input type="text" class="form-control" id="observacoes">
+					<input type="text" class="form-control" id="descricaoPecasComplementares" name="descricaoPecasComplementares">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="fotosDetalhes">
-						Fotos de Detalhes
+						Fotos de detalhes:
 					</label>
-					<input type="file" class="form-control" id="fotosDetalhes" multiple>
+					<input type="file" class="form-control" id="fotosDetalhes" name="fotosDetalhes" multiple>
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="descricaoDetalhes">
-						Descrição dos Detalhes
+						Descrição dos detalhes:
 					</label>
-					<input type="text" class="form-control" id="descricaoDetalhes">
+					<input type="text" class="form-control" id="descricaoDetalhes" name="descricaoDetalhes">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="observacoes1">
-						Observações
+						Observações:
 					</label>
-					<input type="text" class="form-control" id="observacoes1">
+					<input type="text" class="form-control" id="observacoes1" name="observacoes1">
 				</div>
 				
 				<div class="d-flex bd-highlight">
@@ -447,97 +443,97 @@
 				<div class="form-group">
 					 
 					<label for="numeroRegistro">
-						Número de Registro
+						Número de registro:
 					</label>
-					<input type="text" class="form-control" id="numeroRegistro">
+					<input type="text" class="form-control" id="numeroRegistro" name="numeroRegistro">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="titulo">
-						Título
+						Título:
 					</label>
-					<input type="text" class="form-control" id="titulo">
+					<input type="text" class="form-control" id="titulo" name="titulo">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="classe1">
-						Classe
+						Classe:
 					</label>
-					<input type="text" class="form-control" id="classe1">
+					<input type="text" class="form-control" id="classe1" name="classe1">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="denominacao">
-						Denominação
+						Denominação:
 					</label>
-					<input type="text" class="form-control" id="denominacao">
+					<input type="text" class="form-control" id="denominacao" name="denominacao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="estadoGeralConservacao">
-						Estado Geral de Conservação
+						Estado geral de conservação:
 					</label>
-					<input type="text" class="form-control" id="estadoGeralConservacao">
+					<input type="text" class="form-control" id="estadoGeralConservacao" name="estadoGeralConservacao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="dadosVerificados">
-						Danos Verificados
+						Danos verificados:
 					</label>
-					<input type="text" class="form-control" id="dadosVerificados">
+					<input type="text" class="form-control" id="dadosVerificados" name="dadosVerificados">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="procedimentosHigiene">
-						Procedimentos de Higienização
+						Procedimentos de higienização:
 					</label>
-					<input type="text" class="form-control" id="procedimentosHigiene">
+					<input type="text" class="form-control" id="procedimentosHigiene" name="procedimentosHigiene">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="reparosRealizados">
-						Reparos Realizados
+						Reparos realizados:
 					</label>
-					<input type="text" class="form-control" id="reparosRealizados">
+					<input type="text" class="form-control" id="reparosRealizados" name="reparosRealizados">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="acondicionamento">
-						Acondicionamento
+						Acondicionamento:
 					</label>
-					<input type="text" class="form-control" id="acondicionamento">
+					<input type="text" class="form-control" id="acondicionamento" name="acondicionamento">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="restauracaoConservacao">
-						Restauração ou Conservação Preventiva
+						Restauração ou conservação preventiva:
 					</label>
-					<input type="text" class="form-control" id="restauracaoConservacao">
+					<input type="text" class="form-control" id="restauracaoConservacao" name="restauracaoConservacao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="procedimentosConservacao">
-						Procedimentos de Conservação Preventiva
+						Procedimentos de conservação preventiva:
 					</label>
-					<input type="text" class="form-control" id="procedimentosConservacao">
+					<input type="text" class="form-control" id="procedimentosConservacao" name="procedimentosConservacao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="observacoes2">
-						Observações
+						Observações:
 					</label>
-					<input type="text" class="form-control" id="observacoes2">
+					<input type="text" class="form-control" id="observacoes2" name="observacoes2">
 				</div>
 				
 				<div class="form-group">
@@ -545,15 +541,15 @@
 					<label for="data1">
 						Data
 					</label>
-					<input type="date" class="form-control" id="data1">
+					<input type="date" class="form-control" id="data1" name="data1">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="responsavelPreenchimento">
-						Responsável pelo preenchimento
+						Responsável pelo preenchimento:
 					</label>
-					<input type="text" class="form-control" id="responsavelPreenchimento">
+					<input type="text" class="form-control" id="responsavelPreenchimento" name="responsavelPreenchimento">
 				</div>
 				
 				<div class="d-flex bd-highlight">
@@ -577,417 +573,417 @@
 				<div class="form-group">
 					 
 					<label for="tipoAcervo">
-						Tipo de Acervo
+						Tipo de acervo:
 					</label>
-					<input type="text" class="form-control" id="tipoAcervo">
+					<input type="text" class="form-control" id="tipoAcervo" name="tipoAcervo">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="numeroRegistro">
-						Número de Registro
+						Número de registro:
 					</label>
-					<input type="text" class="form-control" id="numeroRegistro">
+					<input type="text" class="form-control" id="numeroRegistro" name="numeroRegistro">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="numeroRegistrosAntigos">
-						Números de Registro Antigos
+						Números de registro antigos:
 					</label>
-					<input type="text" class="form-control" id="numeroRegistrosAntigos">
+					<input type="text" class="form-control" id="numeroRegistrosAntigos" name="numeroRegistrosAntigos">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="sala">
-						Sala
+						Sala:
 					</label>
-					<input type="text" class="form-control" id="sala">
+					<input type="text" class="form-control" id="sala" name="sala">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="estante">
-						Estante
+						Estante:
 					</label>
-					<input type="text" class="form-control" id="estante">
+					<input type="text" class="form-control" id="estante" name="estante">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="prateleira">
-						Prateleira
+						Prateleira:
 					</label>
-					<input type="text" class="form-control" id="prateleira">
+					<input type="text" class="form-control" id="prateleira" name="prateleira">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="embalagem">
-						Embalagem
+						Embalagem:
 					</label>
-					<input type="text" class="form-control" id="embalagem">
+					<input type="text" class="form-control" id="embalagem" name="embalagem">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="classe">
-						Classe
+						Classe:
 					</label>
-					<input type="text" class="form-control" id="classe">
+					<input type="text" class="form-control" id="classe" name="classe">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="denominacao1">
-						Denominação
+						Denominação:
 					</label>
-					<input type="text" class="form-control" id="denominacao1">
+					<input type="text" class="form-control" id="denominacao1" name="denominacao1">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="tipo1">
-						Tipo
+						Tipo:
 					</label>
-					<input type="text" class="form-control" id="tipo1">
+					<input type="text" class="form-control" id="tipo1" name="tipo1">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="titulo1">
-						Título
+						Título:
 					</label>
-					<input type="text" class="form-control" id="titulo1">
+					<input type="text" class="form-control" id="titulo1" name="titulo1">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="autoria">
-						Autoria
+						Autoria:
 					</label>
-					<input type="text" class="form-control" id="autoria">
+					<input type="text" class="form-control" id="autoria" name="autoria">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="colecao">
-						Coleção
+						Coleção:
 					</label>
-					<input type="text" class="form-control" id="colecao">
+					<input type="text" class="form-control" id="colecao" name="colecao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="tipoDataProducao">
-						Tipo de Data de Produção
+						Tipo de data de produção:
 					</label>
-					<input type="text" class="form-control" id="tipoDataProducao">
+					<input type="text" class="form-control" id="tipoDataProducao" name="tipoDataProducao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="dataProducao">
-						Data de Produção
+						Data de produção:
 					</label>
-					<input type="text" class="form-control" id="dataProducao">
+					<input type="text" class="form-control" id="dataProducao" name="dataProducao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="localProducao">
-						Local de Produção
+						Local de produção:
 					</label>
-					<input type="text" class="form-control" id="localProducao">
+					<input type="text" class="form-control" id="localProducao" name="localProducao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="historicoPeca">
-						Histórico da Peça
+						Histórico da peça:
 					</label>
-					<input type="text" class="form-control" id="historicoPeca">
+					<input type="text" class="form-control" id="historicoPeca" name="historicoPeca">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="eventosAssociados">
-						Eventos associados
+						Eventos associados:
 					</label>
-					<input type="text" class="form-control" id="eventosAssociados">
+					<input type="text" class="form-control" id="eventosAssociados" name="eventosAssociados">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="largura">
-						Largura
+						Largura:
 					</label>
-					<input type="text" class="form-control" id="largura">
+					<input type="text" class="form-control" id="largura" name="largura">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="altura">
-						Altura
+						Altura:
 					</label>
-					<input type="text" class="form-control" id="altura">
+					<input type="text" class="form-control" id="altura" name="altura">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="profundidade">
-						Profundidade
+						Profundidade:
 					</label>
-					<input type="text" class="form-control" id="profundidade">
+					<input type="text" class="form-control" id="profundidade" name="profundidade">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="circunferencia">
-						Circunferência
+						Circunferência:
 					</label>
-					<input type="text" class="form-control" id="circunferencia">
+					<input type="text" class="form-control" id="circunferencia" name="circunferencia">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="tecnica1">
-						Técnica
+						Técnica:
 					</label>
-					<input type="text" class="form-control" id="tecnica1">
+					<input type="text" class="form-control" id="tecnica1" name="tecnica1">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="material">
-						Material
+						Material:
 					</label>
-					<input type="text" class="form-control" id="material">
+					<input type="text" class="form-control" id="material" name="material">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="etiquetaComposicao">
-						Etiqueta de Composição
+						Etiqueta de composição:
 					</label>
-					<input type="text" class="form-control" id="etiquetaComposicao">
+					<input type="text" class="form-control" id="etiquetaComposicao" name="etiquetaComposicao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="descricaoConteudo">
-						Descrição / Conteúdo
+						Descrição / Conteúdo:
 					</label>
-					<input type="text" class="form-control" id="descricaoConteudo">
+					<input type="text" class="form-control" id="descricaoConteudo" name="descricaoConteudo">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="pecasComplementares">
-						Peças Complementares
+						Peças complementares:
 					</label>
-					<input type="text" class="form-control" id="pecasComplementares">
+					<input type="text" class="form-control" id="pecasComplementares" name="pecasComplementares">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="descricaoPecasComp">
-						Descrição das Peças Complementares
+						Descrição das peças complementares:
 					</label>
-					<input type="text" class="form-control" id="descricaoPecasComp">
+					<input type="text" class="form-control" id="descricaoPecasComp" name="descricaoPecasComp">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="pecasRelacionadas">
-						Peças Relacionadas
+						Peças relacionadas:
 					</label>
-					<input type="text" class="form-control" id="pecasRelacionadas">
+					<input type="text" class="form-control" id="pecasRelacionadas" name="pecasRelacionadas">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="descritores">
-						Descritores
+						Descritores:
 					</label>
-					<input type="text" class="form-control" id="descritores">
+					<input type="text" class="form-control" id="descritores" name="descritores">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="descritoresGeograficos">
-						Descritores Geográficos
+						Descritores geográficos:
 					</label>
-					<input type="text" class="form-control" id="descritoresGeograficos">
+					<input type="text" class="form-control" id="descritoresGeograficos" name="descritoresGeograficos">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="documentosRelacionados">
-						Documentos Relacionados
+						Documentos relacionados:
 					</label>
-					<input type="text" class="form-control" id="documentosRelacionados">
+					<input type="text" class="form-control" id="documentosRelacionados" name="documentosRelacionados">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="notasObservacoes">
-						Notas e Observações
+						Notas e observações:
 					</label>
-					<input type="text" class="form-control" id="notasObservacoes">
+					<input type="text" class="form-control" id="notasObservacoes" name="notasObservacoes">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="valorPeca">
-						Valor da Peça
+						Valor da peça:
 					</label>
-					<input type="text" class="form-control" id="valorPeca">
+					<input type="text" class="form-control" id="valorPeca" name="valorPeca">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="seguradora">
-						Seguradora
+						Seguradora:
 					</label>
-					<input type="text" class="form-control" id="seguradora">
+					<input type="text" class="form-control" id="seguradora" name="seguradora">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="valorSeguro">
-						Valor do Seguro
+						Valor do seguro:
 					</label>
-					<input type="text" class="form-control" id="valorSeguro">
+					<input type="text" class="form-control" id="valorSeguro" name="valorSeguro">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="formasIncorporacao">
-						Formas de Incorporação
+						Formas de incorporação:
 					</label>
-					<input type="text" class="form-control" id="formasIncorporacao">
+					<input type="text" class="form-control" id="formasIncorporacao" name="formasIncorporacao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="tipoDataIncorporacao">
-						Tipo de Data de Incorporação
+						Tipo de data de incorporação:
 					</label>
-					<input type="text" class="form-control" id="tipoDataIncorporacao">
+					<input type="text" class="form-control" id="tipoDataIncorporacao" name="tipoDataIncorporacao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="frequencias">
-						Frequências
+						Frequências:
 					</label>
-					<input type="text" class="form-control" id="frequencias">
+					<input type="text" class="form-control" id="frequencias" name="frequencias">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="procedencias">
-						Procedências
+						Procedências:
 					</label>
-					<input type="text" class="form-control" id="procedencias">
+					<input type="text" class="form-control" id="procedencias" name="procedencias">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="usoAcessoPecaFisica">
-						Uso e Acesso Peça Física
+						Uso e acesso peça física:
 					</label>
-					<input type="text" class="form-control" id="usoAcessoPecaFisica">
+					<input type="text" class="form-control" id="usoAcessoPecaFisica" name="usoAcessoPecaFisica">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="usoAcessoRepresentante">
-						Uso e Acesso Representante Digital
+						Uso e acesso representante digital:
 					</label>
-					<input type="text" class="form-control" id="usoAcessoRepresentante">
+					<input type="text" class="form-control" id="usoAcessoRepresentante" name="usoAcessoRepresentante">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="historicoCirculacao">
-						Histórico de Circulação
+						Histórico de circulação:
 					</label>
-					<input type="text" class="form-control" id="historicoCirculacao">
+					<input type="text" class="form-control" id="historicoCirculacao" name="historicoCirculacao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="direitos">
-						Direitos
+						Direitos:
 					</label>
-					<input type="text" class="form-control" id="direitos">
+					<input type="text" class="form-control" id="direitos" name="direitos">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="catalogador">
-						Catalogador
+						Catalogador:
 					</label>
-					<input type="text" class="form-control" id="catalogador">
+					<input type="text" class="form-control" id="catalogador" name="catalogador">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="dataInicialCatalogacao">
-						Data Inicial de Catalogação
+						Data inicial de catalogação:
 					</label>
-					<input type="text" class="form-control" id="dataInicialCatalogacao">
+					<input type="text" class="form-control" id="dataInicialCatalogacao" name="dataInicialCatalogacao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="dataFinalCatalogacao">
-						Data Final de Catalogação
+						Data final de catalogação:
 					</label>
-					<input type="text" class="form-control" id="dataFinalCatalogacao">
+					<input type="text" class="form-control" id="dataFinalCatalogacao" name="dataFinalCatalogacao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="fontesPesquisaReferencias">
-						Fontes de Pesquisa e Referências
+						Fontes de pesquisa e referências:
 					</label>
-					<input type="text" class="form-control" id="fontesPesquisaReferencias">
+					<input type="text" class="form-control" id="fontesPesquisaReferencias" name="fontesPesquisaReferencias">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="linkVisao">
-						Link Visão 360°
+						Link visão 360°:
 					</label>
-					<input type="text" class="form-control" id="linkVisao">
+					<input type="text" class="form-control" id="linkVisao" name="linkVisao">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="metaKeywords">
-						Meta Keywords
+						Meta keywords:
 					</label>
-					<input type="text" class="form-control" id="metaKeywords">
+					<input type="text" class="form-control" id="metaKeywords" name="metaKeywords">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="metaDescription">
-						Meta Description
+						Meta description:
 					</label>
-					<input type="text" class="form-control" id="metaDescription">
+					<input type="text" class="form-control" id="metaDescription" name="metaDescription">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="metaTitle">
-						Meta Title
+						Meta title:
 					</label>
-					<input type="text" class="form-control" id="metaTitle">
+					<input type="text" class="form-control" id="metaTitle" name="metaTitle">
 				</div>
 				
 				<div class="d-flex bd-highlight">
@@ -1010,121 +1006,105 @@
 				<div class="form-group">
 					 
 					<label for="tituloIngles">
-						Título em Inglês
+						Título em inglês:
 					</label>
-					<input type="text" class="form-control" id="tituloIngles">
+					<input type="text" class="form-control" id="tituloIngles" name="tituloIngles">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="autoriaIngles">
-						Autoria em Inglês
+						Autoria em inglês:
 					</label>
-					<input type="text" class="form-control" id="autoriaIngles">
+					<input type="text" class="form-control" id="autoriaIngles" name="autoriaIngles">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="colecaoIngles">
-						Coleção em Inglês
+						Coleção em inglês:
 					</label>
-					<input type="text" class="form-control" id="colecaoIngles">
+					<input type="text" class="form-control" id="colecaoIngles" name="colecaoIngles">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="historiaIngles">
-						História em Inglês
+						História em inglês:
 					</label>
-					<input type="text" class="form-control" id="historiaIngles">
+					<input type="text" class="form-control" id="historiaIngles" name="historiaIngles">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="eventosIngles">
-						Eventos Associados em Inglês
+						Eventos associados em inglês:
 					</label>
-					<input type="text" class="form-control" id="eventosIngles">
+					<input type="text" class="form-control" id="eventosIngles" name="eventosIngles">
 				</div>
 
 				<div class="form-group">
 					 
 					<label for="conteudoIngles">
-						Conteúdos em Inglês
+						Conteúdos em inglês:
 					</label>
-					<input type="text" class="form-control" id="conteudoIngles">
+					<input type="text" class="form-control" id="conteudoIngles" name="conteudoIngles">
 				</div>
 
 				<div class="form-group">
 					 
 					<label for="pecasCompIngles">
-						Peças Complementares em Inglês
+						Peças complementares em inglês:
 					</label>
-					<input type="text" class="form-control" id="pecasCompIngles">
+					<input type="text" class="form-control" id="pecasCompIngles" name="pecasCompIngles">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="descricaoPecasIngles">
-						Descrição das Peças Complementares em Inglês
+						Descrição das peças complementares em inglês:
 					</label>
-					<input type="text" class="form-control" id="descricaoPecasIngles">
+					<input type="text" class="form-control" id="descricaoPecasIngles" name="descricaoPecasIngles">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="metaKeywordsIngles">
-						Meta Keywords em Inglês
+						Meta keywords em inglês:
 					</label>
-					<input type="text" class="form-control" id="metaKeywordsIngles">
+					<input type="text" class="form-control" id="metaKeywordsIngles" name="metaKeywordsIngles">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="metaDescriptionIngles">
-						Meta Description em Inglês
+						Meta description em inglês:
 					</label>
-					<input type="text" class="form-control" id="metaDescriptionIngles">
+					<input type="text" class="form-control" id="metaDescriptionIngles" name="metaDescriptionIngles">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="metaTitleIngles">
-						Meta Title em Inglês
+						Meta title em inglês:
 					</label>
-					<input type="text" class="form-control" id="metaTitleIngles">
+					<input type="text" class="form-control" id="metaTitleIngles" name="metaTitleIngles">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="disponibilidadePeca">
-						Disponibilidade da Peça
+						Disponibilidade da peça:
 					</label>
-					<input type="text" class="form-control" id="disponibilidadePeca">
-				</div>
-				
-				<div class="form-group">
-					 
-					<label for="destacado">
-						Destacado ?
-					</label>
-					<input type="text" class="form-control" id="destacado">
-				</div>
-				
-				<div class="form-group">
-					 
-					<label for="publicaDocumento">
-						Publica Documento ?
-					</label>
-					<input type="text" class="form-control" id="publicaDocumento">
+					<input type="text" class="form-control" id="disponibilidadePeca" name="disponibilidadePeca">
 				</div>
 				
 				<div class="form-group">
 					 
 					<label for="fichaConservacao">
-						Ficha de Conservação
+						Ficha de conservação:
 					</label>
-					<input type="text" class="form-control" id="fichaConservacao">
+					<input type="text" class="form-control" id="fichaConservacao" name="fichaConservacao">
 				</div>
 				
 				<div class="d-flex bd-highlight">
@@ -1168,18 +1148,13 @@
 	
 	
 	<div class="row">
-		<div class="col-md-12 pt-4" align="center">
-			 
-			<address>
-				 <strong>Desenvolvedores</strong><br>Pedro Ivo Soares Barbosa<br>Wellyson Vieira Dias<br>
-			</address>
-			
-		</div>
+		<?php include './rodape.html'; ?>
 	</div>
 </div>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+
   </body>
 </html>

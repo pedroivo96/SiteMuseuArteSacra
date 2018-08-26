@@ -1,0 +1,51 @@
+<script>
+	function checar(){
+	
+		var campoUser = document.getElementById('username');
+		var campoSenha = document.getElementById('senha');
+		var botaoEntrar = document.getElementById('entrar');
+	
+		if(campoUser.value != "" && campoSenha.value != ""){
+			document.getElementById('entrar').disabled = false;
+		}
+		else{
+			document.getElementById('entrar').disabled = true;
+		}
+	}
+</script>
+
+<form role="form" action="index.php" method="POST">
+			
+	<div class="form-group">
+					 
+		<label for="exampleInputEmail1" class="text-white">
+			Nome de Usuário
+		</label>
+		<input type="text" class="form-control" id="username" name="username" placeholder="Nome de usuário" onkeyup="checar()">
+	</div>
+				
+	<div class="form-group">
+					 
+		<label for="exampleInputPassword1" class="text-white">
+			Senha
+		</label>
+		<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" onkeyup="checar()">
+	</div>
+				
+	<div class="btn-group btn-group-vertical btn-block" role="group">
+				 
+		<button class="btn btn-primary mb-1" type="submit" id="entrar" disabled>
+			Entrar
+		</button> 
+				 
+		<button class="btn btn-warning mb-3" type="button">
+			Esqueci Minha Senha
+		</button> 
+					
+		<button class="btn btn-primary" type="button">
+			Cadastro
+		</button> 
+				
+	</div>
+				
+</form>

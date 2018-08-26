@@ -13,26 +13,20 @@
 	<link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
+	
   </head>
   <body class="bg-dark">
 
-  <?php
+	<?php
 		include './login.php';
-  ?>
+	?>
 
     <div class="container-fluid">
 	
 	<div class="row">
-		<div class="col-md-12">
-			<div class="input-group mb-3 pt-3">
-				<div class="input-group-prepend">
-					<button class="btn btn-primary" type="button">Pesquisar</button>
-				</div>
-				
-				<input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-			</div>
-		</div>
+	
+		<?php include './campoPesquisa.html'; ?>
+		
 	</div>
 	
 	<div class="row">
@@ -93,41 +87,7 @@
 		
 		<div class="col-md-3">
 		
-			<form role="form" action="index.php" method="POST">
-			
-				<div class="form-group">
-					 
-					<label for="exampleInputEmail1" class="text-white">
-						Nome de Usuário
-					</label>
-					<input type="text" class="form-control" id="exampleInputEmail1" name="username" placeholder="Nome de usuário">
-				</div>
-				
-				<div class="form-group">
-					 
-					<label for="exampleInputPassword1" class="text-white">
-						Senha
-					</label>
-					<input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="Senha">
-				</div>
-				
-				<div class="btn-group btn-group-vertical btn-block" role="group">
-				 
-					<button class="btn btn-primary mb-1" type="submit">
-						Entrar
-					</button> 
-				 
-					<button class="btn btn-warning mb-3" type="button">
-						Esqueci Minha Senha
-					</button> 
-					
-					<button class="btn btn-primary" type="button">
-						Cadastro
-					</button> 
-				
-				</div>
-				
-			</form>
+			<?php include './telaLogin.html'; ?>
 			
 		</div>
 		
@@ -135,13 +95,7 @@
 	
 	<div class="row">
 	
-		<div class="col-md-12 pt-4 text-white" align="center">
-			 
-			<address>
-				 <strong>Desenvolvedores</strong><br>Pedro Ivo Soares Barbosa<br>Wellyson Vieira Dias<br>
-			</address>
-			
-		</div>
+		<?php include './rodape.html'; ?>
 		
 	</div>
 	
