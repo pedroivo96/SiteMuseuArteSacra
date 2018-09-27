@@ -276,6 +276,14 @@
 					</label>
 					<input type="text" class="form-control" id="dimensoes" name="dimensoes">
 				</div>
+
+				<div class="form-group">
+					 
+					 <label for="dimensoes">
+						 Método de Produção:
+					 </label>
+					 <input type="text" class="form-control" id="dimensoes" name="dimensoes">
+				 </div>
 				
 				<div class="form-group">
 					 
@@ -628,10 +636,10 @@
 				
 				<div class="form-group">
 					 
-					<label for="classe">
+					<label for="classe2">
 						Classe:
 					</label>
-					<input type="text" class="form-control" id="classe" name="classe">
+					<input type="text" class="form-control" id="classe2" name="classe2">
 				</div>
 				
 				<div class="form-group">

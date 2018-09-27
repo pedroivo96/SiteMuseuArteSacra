@@ -10,15 +10,16 @@
 
         $conn = getConnection();
 
-        $sql = 'SELECT * FROM Usuarios WHERE email = :email';
+        $sql = 'SELECT * FROM Usuarios WHERE email = :email OR username = :username';
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':email', $email);
+        $stmt->bindValue(':username', $username);
         $stmt->execute();
         $count = $stmt->rowCount();
 
         if($count > 0){
             echo '<div class="alert alert-danger">
-                <strong>Erro no cadastro!</strong> Email de usuário já cadastrado.
+                <strong>Erro no cadastro!</strong> Email ou Username já cadastrado.
                 </div>';
         }else{
             $sql2 = 'INSERT INTO Usuarios (email, username, senha) VALUES(:email, :username, :senha)';
@@ -29,7 +30,7 @@
 
             if($stmt2->execute()){
                 echo '<div class="alert alert-success">
-                    <strong>Castrado realizado!</strong> Usuário cadastrado com sucesso.
+                    <strong>Cadastrado realizado!</strong> Usuário cadastrado com sucesso.
                     </div>';
             }else{
                 echo '<div class="alert alert-danger">
