@@ -451,23 +451,188 @@
 		}
 
 		function buscarFichaTecnica(){
+			var idPeca = document.getElementById("idpeca").value;
+			var ficha  = "fichaTecnica";
 			
+			ajax = iniciaAjax();
+			
+			if(ajax){
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState == 4){
+						if(ajax.status == 200){
+							retorno = ajax.responseText;
+							
+							if(retorno == ""){
+								//Deu erro
+								alert("Erro!");
+								
+							}else if(retorno != ""){
+								//Deu certo, então retorno possui o ID da peça
+								//Pegar o ID da peça e setar nos HIDDEN
+							}
+						}
+						else{
+							alert(ajax.statusText);
+						}
+					}
+				}
+				
+				//Monta a QueryString
+				dados = 'idPeca='+idPeca;
+				
+				//Faz a requisição e envio pelo método POST
+				ajax.open('POST', 'inserirPecaBD.php', true);
+				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				ajax.send(dados);
+			}
 		}
 		
 		function buscarFichaCatalografica(){
+			var idPeca = document.getElementById("idpeca").value;
+			var ficha  = "fichaCatalografica";
 			
+			ajax = iniciaAjax();
+			
+			if(ajax){
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState == 4){
+						if(ajax.status == 200){
+							retorno = ajax.responseText;
+							
+							if(retorno == ""){
+								//Deu erro
+								alert("Erro!");
+								
+							}else if(retorno != ""){
+								//Deu certo, então retorno possui o ID da peça
+								//Pegar o ID da peça e setar nos HIDDEN
+							}
+						}
+						else{
+							alert(ajax.statusText);
+						}
+					}
+				}
+				
+				//Monta a QueryString
+				dados = 'idPeca='+idPeca;
+				
+				//Faz a requisição e envio pelo método POST
+				ajax.open('POST', 'inserirPecaBD.php', true);
+				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				ajax.send(dados);
+			}
 		}
 		
 		function buscarFichaConservacao(){
+			var idPeca = document.getElementById("idpeca").value;
+			var ficha  = "fichaConservacao";
 			
+			ajax = iniciaAjax();
+			
+			if(ajax){
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState == 4){
+						if(ajax.status == 200){
+							retorno = ajax.responseText;
+							
+							if(retorno == ""){
+								//Deu erro
+								alert("Erro!");
+								
+							}else if(retorno != ""){
+								//Deu certo, então retorno possui o ID da peça
+								//Pegar o ID da peça e setar nos HIDDEN
+							}
+						}
+						else{
+							alert(ajax.statusText);
+						}
+					}
+				}
+				
+				//Monta a QueryString
+				dados = 'idPeca='+idPeca;
+				
+				//Faz a requisição e envio pelo método POST
+				ajax.open('POST', 'inserirPecaBD.php', true);
+				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				ajax.send(dados);
+			}
 		}
 		
 		function buscarFichaVisualizacao(){
+			var idPeca = document.getElementById("idpeca").value;
+			var ficha  = "fichaVisualizacao";
 			
+			ajax = iniciaAjax();
+			
+			if(ajax){
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState == 4){
+						if(ajax.status == 200){
+							retorno = ajax.responseText;
+							
+							if(retorno == ""){
+								//Deu erro
+								alert("Erro!");
+								
+							}else if(retorno != ""){
+								//Deu certo, então retorno possui o ID da peça
+								//Pegar o ID da peça e setar nos HIDDEN
+							}
+						}
+						else{
+							alert(ajax.statusText);
+						}
+					}
+				}
+				
+				//Monta a QueryString
+				dados = 'idPeca='+idPeca;
+				
+				//Faz a requisição e envio pelo método POST
+				ajax.open('POST', 'inserirPecaBD.php', true);
+				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				ajax.send(dados);
+			}
 		}
 		
 		function buscarFichaEnglishFields(){
-
+			var idPeca = document.getElementById("idpeca").value;
+			var ficha  = "fichaEnglish";
+			
+			ajax = iniciaAjax();
+			
+			if(ajax){
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState == 4){
+						if(ajax.status == 200){
+							retorno = ajax.responseText;
+							
+							if(retorno == ""){
+								//Deu erro
+								alert("Erro!");
+								
+							}else if(retorno != ""){
+								//Deu certo, então retorno possui o ID da peça
+								//Pegar o ID da peça e setar nos HIDDEN
+							}
+						}
+						else{
+							alert(ajax.statusText);
+						}
+					}
+				}
+				
+				//Monta a QueryString
+				dados = 'idPeca='+idPeca;
+				
+				//Faz a requisição e envio pelo método POST
+				ajax.open('POST', 'inserirPecaBD.php', true);
+				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				ajax.send(dados);
+			}
 		}
 		
 		function chamaForm2(){
