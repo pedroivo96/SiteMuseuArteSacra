@@ -66,6 +66,7 @@
                 pintura,
                 tecnica,
                 dimensoes,
+				metodo_producao,
                 count_imgs_desenho_tecnico,
                 count_imgs_fotografia
             ) VALUES(
@@ -82,15 +83,16 @@
                 '.$_POST['pintura'].',
                 '.$_POST['tecnica'].',
                 '.$_POST['dimensoes'].',
+				'.$_POST['metodoProducao'].',
                 '.$_POST['count_imgs_desenho_tecnico'].',
                 '.$_POST['count_imgs_fotografia'].'
             )';
 
         if($conn->exec($sql) > 0){
-            return true;
+            echo $id_peca;
         }
         
-        return false;
+        echo "";
     }
 
     function inserirFichaCatalografica($conn){
@@ -130,9 +132,9 @@
         )';
 
         if($conn->exec($sql) > 0)
-            return true;
+            echo "OK";
         
-        return false;
+        echo "ERRO";
     }
 
     function inserirFichaConservacao($conn){
@@ -172,9 +174,9 @@
         )';
 
         if($conn->exec($sql) > 0)
-            return true;
+            echo "OK";
         
-        return false;
+        echo "";
     }
 
     function inserirVisualizacao($conn){

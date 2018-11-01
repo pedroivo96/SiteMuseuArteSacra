@@ -15,7 +15,461 @@
 	
 	<script>
 	
+		function iniciaAjax(){
+			var ajax;
+			
+			if(window.XMLHttpRequest){       //Mozilla, Safari ...
+				ajax = new XMLHttpRequest();
+			} else if(windows.ActiveXObject){ //Internet Explorer
+				ajax = new ActiveXObject("Msxml2.XMLHTTP");
+				
+				if(!ajax){
+					ajax = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+			}
+			else{
+				alert("Seu navegador não possui suporte a essa aplicação.");
+			}
+			
+			return ajax;
+		}
 	
+		function salvarFichaTecnica(){
+			
+			var nomePeca                = document.getElementById("nomePeca").value;
+			var numeroInventarioMuseu   = document.getElementById("numeroInventarioMuseu").value;
+			var numeroInventarioProjeto = document.getElementById("numeroInventarioProjeto").value;
+			var localizacao             = document.getElementById("localizacao").value;
+			var termoDoacao             = document.getElementById("termoDoacao").value;
+			var fabricanteAutor         = document.getElementById("fabricanteAutor").value;
+			var data                    = document.getElementById("data").value;
+			var localAquisicao          = document.getElementById("localAquisicao").value;
+			var tecido                  = document.getElementById("tecido").value;
+			var composicao              = document.getElementById("composicao").value;
+			var bordado                 = document.getElementById("bordado").value;
+			var tipologia               = document.getElementById("tipologia").value;
+			var pintura                 = document.getElementById("pintura").value;
+			var tecnica                 = document.getElementById("tecnica").value;
+			var dimensoes               = document.getElementById("dimensoes").value;
+			var metodoProducao          = document.getElementById("metodoProducao").value;
+			var desenhoTecnico          = document.getElementById("desenhoTecnico");
+			var fotografia              = document.getElementById("fotografia");
+			var operacao                = "ficha_tecnica";
+			
+			ajax = iniciaAjax();
+			
+			if(ajax){
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState == 4){
+						if(ajax.status == 200){
+							retorno = ajax.responseText;
+							
+							if(retorno == ""){
+								//Deu erro
+								alert("Erro!");
+								
+							}else if(retorno != ""){
+								//Deu certo, então retorno possui o ID da peça
+								//Pegar o ID da peça e setar nos HIDDEN
+								
+								idPeca = document.getElementById("idpeca");
+								idPeca.value = retorno;
+							}
+						}
+						else{
+							alert(ajax.statusText);
+						}
+					}
+				}
+				
+				//Monta a QueryString
+				dados = 'nomePeca='+nomePeca+
+				       "&numeroInventarioMuseu="+numeroInventarioMuseu+
+					   "&numeroInventarioProjeto="+numeroInventarioProjeto+
+					   "&localizacao="+localizacao+
+					   "&termoDoacao="+termoDoacao+
+					   "&fabricanteAutor="+fabricanteAutor+
+					   "&data="+data+
+					   "&localAquisicao="+localAquisicao+
+					   "&tecido="+tecido+
+					   "&composicao="+composicao+
+					   "&bordado="+bordado+
+					   "&tipologia="+tipologia+
+					   "&pintura="+pintura+
+					   "&tecnica="+tecnica+
+					   "&dimensoes="+dimensoes+
+					   "&metodoProducao="+metodoProducao+
+					   "&desenhoTecnico="+desenhoTecnico+
+					   "&fotografia="+fotografia+
+					   "&operacao="+operacao+;
+				
+				//Faz a requisição e envio pelo método POST
+				ajax.open('POST', 'inserirPecaBD.php', true);
+				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				ajax.send(dados);
+			}
+		}
+		
+		function salvarFichaCatalografica(){
+			
+			var idPeca                       = document.getElementById("idpeca").value;
+			var classe                       = document.getElementById("classe").value;
+			var subClasse                    = document.getElementById("subClasse").value;
+			var tipo                         = document.getElementById("tipo").value;
+			var historicoUso                 = document.getElementById("historicoUso").value;
+			var possiveisUsos                = document.getElementById("possiveisUsos").value;
+			var dataAquisicao                = document.getElementById("dataAquisicao").value;
+			var tecnicaMaterial              = document.getElementById("tecnicaMaterial").value;
+			var forma                        = document.getElementById("forma").value;
+			var descricaoPeca                = document.getElementById("descricaoPeca").value;
+			var dimensoes1                   = document.getElementById("dimensoes1").value;
+			var descricaoPecasComplementares = document.getElementById("descricaoPecasComplementares").value;
+			var fotosDetalhes                = document.getElementById("fotosDetalhes");
+			var descricaoDetalhes            = document.getElementById("descricaoDetalhes").value;
+			var observacoes1                 = document.getElementById("observacoes1").value;
+			var operacao                     = "ficha_catalografica";
+			
+			ajax = iniciaAjax();
+			
+			if(ajax){
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState == 4){
+						if(ajax.status == 200){
+							retorno = ajax.responseText;
+							
+							if(retorno == "ERRO"){
+								//Deu erro
+								alert("Erro!");
+								
+							}else if(retorno == "OK"){
+								
+							}
+						}
+						else{
+							alert(ajax.statusText);
+						}
+					}
+				}
+				
+				//Monta a QueryString
+				dados = 'idPeca='+idPeca+
+				       "&classe="+classe+
+					   "&subClasse="+subClasse+
+					   "&tipo="+tipo+
+					   "&historicoUso="+historicoUso+
+					   "&possiveisUsos="+possiveisUsos+
+					   "&dataAquisicao="+dataAquisicao+
+					   "&tecnicaMaterial="+tecnicaMaterial+
+					   "&forma="+forma+
+					   "&descricaoPeca="+descricaoPeca+
+					   "&dimensoes1="+dimensoes1+
+					   "&descricaoPecasComplementares="+descricaoPecasComplementares+
+					   "&fotosDetalhes="+fotosDetalhes+
+					   "&descricaoDetalhes="+descricaoDetalhes+
+					   "&observacoes1="+observacoes1+
+					   "&operacao="+operacao;
+				
+				//Faz a requisição e envio pelo método POST
+				ajax.open('POST', 'inserirPecaBD.php', true);
+				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				ajax.send(dados);
+			}
+		}
+		
+		function salvarFichaConservacao(){
+			
+			var idPeca                   = document.getElementById("idpeca").value;
+			var numeroRegistro           = document.getElementById("numeroRegistro").value;
+			var titulo                   = document.getElementById("titulo").value;
+			var classe1                  = document.getElementById("classe1").value;
+			var denominacao              = document.getElementById("denominacao").value;
+			var estadoGeralConservacao   = document.getElementById("estadoGeralConservacao").value;
+			var dadosVerificados         = document.getElementById("dadosVerificados").value;
+			var procedimentosHigiene     = document.getElementById("procedimentosHigiene").value;
+			var reparosRealizados        = document.getElementById("reparosRealizados").value;
+			var acondicionamento         = document.getElementById("acondicionamento").value;
+			var restauracaoConservacao   = document.getElementById("restauracaoConservacao").value;
+			var procedimentosConservacao = document.getElementById("procedimentosConservacao").value;
+			var observacoes2             = document.getElementById("observacoes2").value;
+			var data1                    = document.getElementById("data1").value;
+			var responsavelPreenchimento = document.getElementById("responsavelPreenchimento").value;
+			var operacao                 = "ficha_conservacao";
+			
+			ajax = iniciaAjax();
+			
+			if(ajax){
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState == 4){
+						if(ajax.status == 200){
+							retorno = ajax.responseText;
+							
+							if(retorno == "ERRO"){
+								//Deu erro
+								alert("Erro!");
+								
+							}else if(retorno == "OK"){
+								
+							}
+						}
+						else{
+							alert(ajax.statusText);
+						}
+					}
+				}
+				
+				//Monta a QueryString
+				dados = 'idPeca='+idPeca+
+				       "&numeroRegistro="+numeroRegistro+
+					   "&titulo="+titulo+
+					   "&classe1="+classe1+
+					   "&denominacao="+denominacao+
+					   "&estadoGeralConservacao="+estadoGeralConservacao+
+					   "&dadosVerificados="+dadosVerificados+
+					   "&procedimentosHigiene="+procedimentosHigiene+
+					   "&reparosRealizados="+reparosRealizados+
+					   "&acondicionamento="+acondicionamento+
+					   "&restauracaoConservacao="+restauracaoConservacao+
+					   "&procedimentosConservacao="+procedimentosConservacao+
+					   "&observacoes2="+observacoes2+
+					   "&data1="+data1+
+					   "&responsavelPreenchimento="+responsavelPreenchimento+
+					   "&operacao="+operacao;
+				
+				//Faz a requisição e envio pelo método POST
+				ajax.open('POST', 'inserirPecaBD.php', true);
+				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				ajax.send(dados);
+			}
+		}
+		
+		function salvarFichaVisualizacao(){
+			
+			var idPeca                    = document.getElementById("idpeca").value;
+			var tipoAcervo                = document.getElementById("tipoAcervo");
+			var numeroRegistro            = document.getElementById("numeroRegistro").value;
+			var numeroRegistrosAntigos    = document.getElementById("numeroRegistrosAntigos").value;
+			var sala                      = document.getElementById("sala").value;
+			var estante                   = document.getElementById("estante").value;
+			var prateleira                = document.getElementById("prateleira").value;
+			var embalagem                 = document.getElementById("embalagem").value;
+			var classe2                   = document.getElementById("classe2").value;
+			var denominacao1              = document.getElementById("denominacao1").value;
+			var tipo1                     = document.getElementById("tipo1").value;
+			var titulo1                   = document.getElementById("titulo1").value;
+			var autoria                   = document.getElementById("autoria").value;
+			var colecao                   = document.getElementById("colecao").value;
+			var tipoDataProducao          = document.getElementById("tipoDataProducao").value;
+			var dataProducao              = document.getElementById("dataProducao").value;
+			var localProducao             = document.getElementById("localProducao").value;
+			var historicoPeca             = document.getElementById("historicoPeca").value;
+			var eventosAssociados         = document.getElementById("eventosAssociados").value;
+			var largura                   = document.getElementById("largura").value;
+			var altura                    = document.getElementById("altura").value;
+			var profundidade              = document.getElementById("profundidade").value;
+			var circunferencia            = document.getElementById("circunferencia").value;
+			var tecnica1                  = document.getElementById("tecnica1").value;
+			var material                  = document.getElementById("material").value;
+			var etiquetaComposicao        = document.getElementById("etiquetaComposicao").value;
+			var descricaoConteudo         = document.getElementById("descricaoConteudo").value;
+			var pecasComplementares       = document.getElementById("pecasComplementares").value;
+			var descricaoPecasComp        = document.getElementById("descricaoPecasComp").value;
+			var pecasRelacionadas         = document.getElementById("pecasRelacionadas").value;
+			var descritores               = document.getElementById("descritores").value;
+			var descritoresGeograficos    = document.getElementById("descritoresGeograficos").value;
+			var documentosRelacionados    = document.getElementById("documentosRelacionados").value;
+			var notasObservacoes          = document.getElementById("notasObservacoes").value;
+			var valorPeca                 = document.getElementById("valorPeca").value;
+			var seguradora                = document.getElementById("seguradora").value;
+			var formasIncorporacao        = document.getElementById("formasIncorporacao").value;
+			var tipoDataIncorporacao      = document.getElementById("tipoDataIncorporacao").value;
+			var frequencias               = document.getElementById("frequencias");
+			var procedencias              = document.getElementById("procedencias").value;
+			var usoAcessoPecaFisica       = document.getElementById("usoAcessoPecaFisica").value;
+			var usoAcessoRepresentante    = document.getElementById("usoAcessoRepresentante").value;
+			var historicoCirculacao       = document.getElementById("historicoCirculacao").value;
+			var direitos                  = document.getElementById("direitos").value;
+			var catalogador               = document.getElementById("catalogador").value;
+			var dataInicialCatalogacao    = document.getElementById("dataInicialCatalogacao").value;
+			var dataFinalCatalogacao      = document.getElementById("dataFinalCatalogacao").value;
+			var fontesPesquisaReferencias = document.getElementById("fontesPesquisaReferencias").value;
+			var linkVisao                 = document.getElementById("linkVisao").value;
+			var metaKeywords              = document.getElementById("metaKeywords").value;
+			var metaDescription           = document.getElementById("metaDescription").value;
+			var metaTitle                 = document.getElementById("metaTitle").value;
+			var operacao                  = "visualizacao";
+			
+			ajax = iniciaAjax();
+			
+			if(ajax){
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState == 4){
+						if(ajax.status == 200){
+							retorno = ajax.responseText;
+							
+							if(retorno == "ERRO"){
+								//Deu erro
+								alert("Erro!");
+								
+							}else if(retorno == "OK"){
+								
+							}
+						}
+						else{
+							alert(ajax.statusText);
+						}
+					}
+				}
+				
+				//Monta a QueryString
+				dados = 'idPeca='+idPeca+
+				       "&tipoAcervo="+tipoAcervo+
+					   "&numeroRegistro="+numeroRegistro+
+					   "&numeroRegistrosAntigos="+numeroRegistrosAntigos+
+					   "&sala="+sala+
+					   "&estante="+estante+
+					   "&prateleira="+prateleira+
+					   "&embalagem="+embalagem+
+					   "&classe2="+classe2+
+					   "&denominacao1="+denominacao1+
+					   "&tipo1="+tipo1+
+					   "&titulo1="+titulo1+
+					   "&autoria="+autoria+
+					   "&colecao="+colecao+
+					   "&tipoDataProducao="+tipoDataProducao+
+					   "&dataProducao="+dataProducao+
+					   "&localProducao="+localProducao+
+					   "&historicoPeca="+historicoPeca+
+					   "&eventosAssociados="+eventosAssociados+
+					   "&largura="+largura+
+					   "&altura="+altura+
+					   "&profundidade="+profundidade+
+					   "&circunferencia="+circunferencia+
+					   "&tecnica1="+tecnica1+
+					   "&material="+material+
+					   "&etiquetaComposicao="+etiquetaComposicao+
+					   "&descricaoConteudo="+descricaoConteudo+
+					   "&pecasComplementares="+pecasComplementares+
+					   "&descricaoPecasComp="+descricaoPecasComp+
+					   "&pecasRelacionadas="+pecasRelacionadas+
+					   "&descritores="+descritores+
+					   "&descritoresGeograficos="+descritoresGeograficos+
+					   "&documentosRelacionados="+documentosRelacionados+
+					   "&notasObservacoes="+notasObservacoes+
+					   "&valorPeca="+valorPeca+
+					   "&seguradora="+seguradora+
+					   "&formasIncorporacao="+formasIncorporacao+
+					   "&tipoDataIncorporacao="+tipoDataIncorporacao+
+					   "&frequencias="+frequencias+
+					   "&procedencias="+procedencias+
+					   "&usoAcessoPecaFisica="+usoAcessoPecaFisica+
+					   "&usoAcessoRepresentante="+usoAcessoRepresentante+
+					   "&historicoCirculacao="+historicoCirculacao+
+					   "&direitos="+direitos+
+					   "&catalogador="+catalogador+
+					   "&dataInicialCatalogacao="+dataInicialCatalogacao+
+					   "&dataFinalCatalogacao="+dataFinalCatalogacao+
+					   "&fontesPesquisaReferencias="+fontesPesquisaReferencias+
+					   "&linkVisao="+linkVisao+
+					   "&metaKeywords="+metaKeywords+
+					   "&metaDescription="+metaDescription+
+					   "&metaTitle="+metaTitle+
+					   "&operacao="+operacao;
+				
+				//Faz a requisição e envio pelo método POST
+				ajax.open('POST', 'inserirPecaBD.php', true);
+				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				ajax.send(dados);
+			}
+		}
+		
+		function salvarFichaEnglishFields(){
+			
+			var idPeca                = document.getElementById("idpeca").value;
+			var tituloIngles          = document.getElementById("tituloIngles").value;
+			var autoriaIngles         = document.getElementById("autoriaIngles").value;
+			var colecaoIngles         = document.getElementById("colecaoIngles").value;
+			var historiaIngles        = document.getElementById("historiaIngles").value;
+			var eventosIngles         = document.getElementById("eventosIngles").value;
+			var conteudoIngles        = document.getElementById("conteudoIngles").value;
+			var pecasCompIngles       = document.getElementById("pecasCompIngles").value;
+			var descricaoPecasIngles  = document.getElementById("descricaoPecasIngles").value;
+			var metaKeywordsIngles    = document.getElementById("metaKeywordsIngles").value;
+			var metaDescriptionIngles = document.getElementById("metaDescriptionIngles").value;
+			var metaTitleIngles       = document.getElementById("metaTitleIngles").value;
+			var disponibilidadePeca   = document.getElementById("disponibilidadePeca").value;
+			var fichaConservacao      = document.getElementById("fichaConservacao").value;
+			var operacao              = "english_fields";
+			
+			ajax = iniciaAjax();
+			
+			if(ajax){
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState == 4){
+						if(ajax.status == 200){
+							retorno = ajax.responseText;
+							
+							if(retorno == ""){
+								//Deu erro
+								alert("Erro!");
+								
+							}else if(retorno != ""){
+								//Deu certo, então retorno possui o ID da peça
+								//Pegar o ID da peça e setar nos HIDDEN
+								
+								idPeca = document.getElementById("idpeca");
+								idPeca.value = retorno;
+							}
+						}
+						else{
+							alert(ajax.statusText);
+						}
+					}
+				}
+				
+				//Monta a QueryString
+				dados = 'idPeca='+idPeca+
+				       "&tituloIngles="+tituloIngles+
+					   "&autoriaIngles="+autoriaIngles+
+					   "&colecaoIngles="+colecaoIngles+
+					   "&historiaIngles="+historiaIngles+
+					   "&eventosIngles="+eventosIngles+
+					   "&conteudoIngles="+conteudoIngles+
+					   "&pecasCompIngles="+pecasCompIngles+
+					   "&descricaoPecasIngles="+descricaoPecasIngles+
+					   "&metaKeywordsIngles="+metaKeywordsIngles+
+					   "&metaDescriptionIngles="+metaDescriptionIngles+
+					   "&metaTitleIngles="+metaTitleIngles+
+					   "&disponibilidadePeca="+disponibilidadePeca+
+					   "&fichaConservacao="+fichaConservacao+
+					   "&operacao="+operacao+;
+				
+				//Faz a requisição e envio pelo método POST
+				ajax.open('POST', 'inserirPecaBD.php', true);
+				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				ajax.send(dados);
+			}
+		}
+
+		function buscarFichaTecnica(){
+			
+		}
+		
+		function buscarFichaCatalografica(){
+			
+		}
+		
+		function buscarFichaConservacao(){
+			
+		}
+		
+		function buscarFichaVisualizacao(){
+			
+		}
+		
+		function buscarFichaEnglishFields(){
+
+		}
+		
 		function chamaForm2(){
 		
 			var form1 = document.getElementById('formulario1');
@@ -156,6 +610,8 @@
 			<form role="form" id="formulario1" style = "display : block">
 			
 				<p class="h4 text-center">Ficha Técnica</p>
+				
+				<hidden id="idpeca" name="idpeca"/>
 			
 				<div class="form-group">
 					 
@@ -210,7 +666,7 @@
 					<label for="data">
 						Data:
 					</label>
-					<input type="date" class="form-control" id="data" name="data">
+					<input type="text" class="form-control" id="data" name="data">
 				</div>
 				
 				<div class="form-group">
@@ -282,7 +738,7 @@
 					 <label for="dimensoes">
 						 Método de Produção:
 					 </label>
-					 <input type="text" class="form-control" id="dimensoes" name="dimensoes">
+					 <input type="text" class="form-control" id="metodoProducao" name="metodoProducao">
 				 </div>
 				
 				<div class="form-group">
@@ -317,6 +773,8 @@
 			<form role="form" id="formulario2" style = "display : none">
 			
 				<p class="h4 text-center">Ficha Catalográfica</p>
+				
+				<hidden id="idpeca" name="idpeca"/>
 			
 				<div class="form-group">
 					 
@@ -347,7 +805,7 @@
 					<label for="historicoUso">
 						Histórico de uso:
 					</label>
-					<input type="date" class="form-control" id="historicoUso" name="historicoUso">
+					<input type="text" class="form-control" id="historicoUso" name="historicoUso">
 				</div>
 				
 				<div class="form-group">
@@ -447,6 +905,8 @@
 			<form role="form" id="formulario3" style = "display : none">
 			
 				<p class="h4 text-center">Ficha de Conservação</p>
+				
+				<hidden id="idpeca" name="idpeca"/>
 			
 				<div class="form-group">
 					 
@@ -577,6 +1037,8 @@
 			<form role="form" id="formulario4" style = "display : none">
 			
 				<p class="h4 text-center">Visualização Vestuário / Têxtil</p>
+				
+				<hidden id="idpeca" name="idpeca"/>
 			
 				<div class="form-group">
 					 
@@ -1010,6 +1472,7 @@
 			<form role="form" id="formulario5" style = "display : none">
 			
 				<p class="h4 text-center">English Fields</p>
+
 			
 				<div class="form-group">
 					 
