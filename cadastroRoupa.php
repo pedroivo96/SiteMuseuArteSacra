@@ -15,6 +15,58 @@
 	
 	<script>
 	
+		function formulario1(){
+			
+			var formulario1 = document.getElementById("formulario1");
+			if (formulario1.style.display === "none") {
+				formulario1.style.display = "block";
+				
+				buscarFichaTecnica();
+			} else {
+				formulario1.style.display = "none";
+			}		
+		}
+		
+		function formulario2(){
+			
+			var formulario2 = document.getElementById("formulario2");
+			if (formulario2.style.display === "none") {
+				formulario2.style.display = "block";
+			} else {
+				formulario2.style.display = "none";
+			}		
+		}
+		
+		function formulario3(){
+			
+			var formulario3 = document.getElementById("formulario3");
+			if (formulario3.style.display === "none") {
+				formulario3.style.display = "block";
+			} else {
+				formulario3.style.display = "none";
+			}		
+		}
+		
+		function formulario4(){
+			
+			var formulario4 = document.getElementById("formulario4");
+			if (formulario4.style.display === "none") {
+				formulario4.style.display = "block";
+			} else {
+				formulario4.style.display = "none";
+			}		
+		}
+		
+		function formulario5(){
+			
+			var formulario5 = document.getElementById("formulario5");
+			if (formulario5.style.display === "none") {
+				formulario5.style.display = "block";
+			} else {
+				formulario5.style.display = "none";
+			}		
+		}
+	
 		function chamaForm1(){
 		
 			var form1 = document.getElementById('formulario1');
@@ -174,8 +226,8 @@
 			var metodoProducao             = document.getElementById("metodoProducao").value;
 			//var count_imgs_desenho_tecnico = document.getElementById("desenhoTecnico");
 			//var count_imgs_fotografia      = document.getElementById("fotografia");
-			var count_imgs_desenho_tecnico = 0;
-			var count_imgs_fotografia      = 0;
+			var countImgsDesenhoTecnico    = 0;
+			var countImgsFotografia        = 0;
 			var operacao                   = "ficha_tecnica";
 			
 			ajax = iniciaAjax();
@@ -186,16 +238,16 @@
 						if(ajax.status == 200){
 							retorno = ajax.responseText;
 							
-							if(retorno == ""){
+							if(retorno == "ERRO"){
 								//Deu erro
 								alert("Erro!");
 								
-							}else if(retorno != ""){
+							}else{
 								//Deu certo, então retorno possui o ID da peça
 								//Pegar o ID da peça e setar nos HIDDEN
 								
 								idPeca = document.getElementById("idpeca");
-								alert(retorno);
+								alert("DEU CERTO");
 								idPeca.value = retorno;
 							}
 						}
@@ -212,7 +264,7 @@
 					   "&localizacao="+localizacao+
 					   "&termoDoacao="+termoDoacao+
 					   "&fabricanteAutor="+fabricanteAutor+
-					   "&data="+data+
+					   "&dataPeca="+data+
 					   "&localAquisicao="+localAquisicao+
 					   "&tecido="+tecido+
 					   "&composicao="+composicao+
@@ -222,8 +274,8 @@
 					   "&tecnica="+tecnica+
 					   "&dimensoes="+dimensoes+
 					   "&metodoProducao="+metodoProducao+
-					   "&count_imgs_desenho_tecnico="+count_imgs_desenho_tecnico+
-					   "&count_imgs_fotografia="+count_imgs_fotografia+
+					   "&countImgsDesenhoTecnico="+countImgsDesenhoTecnico+
+					   "&countImgsFotografia="+countImgsFotografia+
 					   "&usuario="+"PEDRO"+
 					   "&operacao="+operacao;
 				
@@ -840,9 +892,15 @@
 					</div>
 				</div>
 			</div>
+			
 			</br>
-		
-			<form role="form" id="formulario1" style = "display:block" action="">
+			
+			<hidden id="idpeca" name="idpeca"/>
+			
+			<button type="button" class="btn btn-info btn-block mb-2" onclick="formulario1();">Ficha técnica</button>
+			
+			<div class="border mb-5 mt-2 p-3" id="formulario1" style="display:block">
+			<form role="form" action="">
 			
 				<p class="h4 text-center">Ficha Técnica</p>
 				
@@ -992,15 +1050,19 @@
 					<input type="file" class="form-control" id="fotografia" name="fotografia" multiple>
 				</div>
 				
-				<div class="d-flex bd-highlight">
-					<button type="button" onclick="chamaForm2();" class="btn btn-primary flex-fill">
-						Próximo 2
+				<div class="d-flex bd-highlight mx-5">
+					<button type="button" class="btn btn-primary flex-fill" onclick="salvarFichaTecnica();">
+						Submeter
 					</button>
 				</div>
 				
 			</form>
+			</div>
 			
-			<form role="form" id="formulario2" style = "display:none">
+			<button type="button" class="btn btn-info btn-block mb-2" onclick="formulario2();">Ficha catalográfica</button>
+			
+			<div class="border mb-5 mt-2 p-3" id="formulario2">
+			<form role="form" style = "display:block">
 			
 				<p class="h4 text-center">Ficha Catalográfica</p>
 				
@@ -1119,20 +1181,18 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-				
-					<button type="button" onclick="buscarFichaTecnica();" class="btn btn-primary flex-fill mr-5">
-						Voltar
-					</button>
-				
-					<button type="button" class="btn btn-primary flex-fill" onclick="chamaForm3();">
-						Próxima
+					<button type="button" class="btn btn-primary flex-fill">
+						Submeter
 					</button>
 				</div>
 				
 			</form>
+			</div>
 			
+			<button type="button" class="btn btn-info btn-block mb-2" onclick="formulario3();">Ficha conservação</button>
 			
-			<form role="form" id="formulario3" style = "display:none">
+			<div class="border mb-5 mt-2 p-3" id="formulario3" style = "display:block">
+			<form role="form">
 			
 				<p class="h4 text-center">Ficha de Conservação</p>
 				
@@ -1251,20 +1311,18 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-				
-					<button type="button" class="btn btn-primary flex-fill mr-5">
-						Voltar
-					</button>
-				
-					<button type="button" class="btn btn-primary flex-fill" onclick="chamaForm4();">
-						Próxima
+					<button type="button" class="btn btn-primary flex-fill">
+						Submeter
 					</button>
 				</div>
 				
 			</form>
+			</div>
 			
-
-			<form role="form" id="formulario4" style = "display:none">
+			<button type="button" class="btn btn-info btn-block mb-2" onclick="formulario4();">Ficha visualização</button>
+			
+			<div class="border mb-5 mt-2 p-3"  id="formulario4" style = "display:block">
+			<form role="form">
 			
 				<p class="h4 text-center">Visualização Vestuário / Têxtil</p>
 				
@@ -1687,19 +1745,18 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-				
-					<button type="button" class="btn btn-primary flex-fill mr-5">
-						Voltar
-					</button>
-				
-					<button type="button" class="btn btn-primary flex-fill" onclick="chamaForm5();">
-						Próxima
+					<button type="button" class="btn btn-primary flex-fill">
+						Submeter
 					</button>
 				</div>
 				
 			</form>
+			</div>
 			
-			<form role="form" id="formulario5" style = "display:none">
+			<button type="button" class="btn btn-info btn-block mb-2" onclick="formulario5();">Ficha english fields</button>
+		
+			<div class="border mb-5 mt-2 p-3" id="formulario5" style = "display:block">
+			<form role="form">
 			
 				<p class="h4 text-center">English Fields</p>
 
@@ -1809,17 +1866,13 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-				
-					<button type="button" class="btn btn-primary flex-fill mr-5">
-						Voltar
-					</button>
-				
-					<button type="button" class="btn btn-primary flex-fill" onclick="someForms();">
-						Próxima
+					<button type="button" class="btn btn-primary flex-fill">
+						Submeter
 					</button>
 				</div>
 				
 			</form>
+			</div>
 			
 		</div>
 		

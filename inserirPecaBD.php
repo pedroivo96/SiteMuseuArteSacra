@@ -29,26 +29,26 @@
 
     function inserirPeca($conn){
 
-        $id_peca = $_POST['numeroInventarioMuseu'].'/'.$_POST['numeroInventarioProjeto'];
+        $idPeca = $_POST['numeroInventarioMuseu'].'/'.$_POST['numeroInventarioProjeto'];
 
         $sql = 'INSERT INTO pecas (numeroInventarioMuseu,
                                    numeroInventarioProjeto,
                                    nomePeca,
-                                   id_peca,
+                                   idPeca,
                                    usuario) VALUES (:numeroInventarioMuseu,
 								                    :numeroInventarioProjeto,
 													:nomePeca,
-													:id_peca,
+													:idPeca,
 													:usuario)';
 		$stmt = $conn->prepare($sql);
         $stmt->bindParam(':numeroInventarioMuseu'   , $_POST['numeroInventarioMuseu']);
 		$stmt->bindParam(':numeroInventarioProjeto' , $_POST['numeroInventarioProjeto']);
 		$stmt->bindParam(':nomePeca'                , $_POST['nomePeca']);
-		$stmt->bindParam(':id_peca'                 , $id_peca);
+		$stmt->bindParam(':idPeca'                  , $idPeca);
 		$stmt->bindParam(':usuario'                 , $_POST['usuario']);
 			
 		if($stmt->execute()){
-            return $id_peca;
+            return $idPeca;
         }else{
             return "";
         }
@@ -56,13 +56,13 @@
 
     function inserirFichaTecnica($conn){
 
-        $id_peca = inserirPeca($conn);
+        $idPeca = inserirPeca($conn);
 
-        $sql = 'INSERT INTO ficha_tecnica (id_peca,
+        $sql = 'INSERT INTO ficha_tecnica (idPeca,
                                            localizacao,
                                            termoDoacao,
                                            fabricanteAutor,
-                                           data_peca,
+                                           dataPeca,
                                            localAquisicao,
                                            tecido,
                                            composicao,
@@ -71,31 +71,31 @@
                                            pintura,
                                            tecnica,
                                            dimensoes,
-				                           metodo_producao,
-                                           count_imgs_desenho_tecnico,
-                                           count_imgs_fotografia) VALUES(:id_peca,
-                                                                         :localizacao,
-                                                                         :termoDoacao,
-                                                                         :fabricanteAutor,
-                                                                         :data,
-                                                                         :localAquisicao:,
-                                                                         :tecido,
-                                                                         :composicao,
-                                                                         :bordado,
-                                                                         :tipologia,
-                                                                         :pintura,
-                                                                         :tecnica,
-                                                                         :dimensoes,
-				                                                         :metodoProducao,
-                                                                         :count_imgs_desenho_tecnico,
-                                                                         :count_imgs_fotografia)';
+				                           metodoProducao,
+                                           countImgsDesenhoTecnico,
+                                           countImgsFotografia) VALUES(:idPeca,
+                                                                       :localizacao,
+                                                                       :termoDoacao,
+                                                                       :fabricanteAutor,
+                                                                       :dataPeca,
+                                                                       :localAquisicao,
+                                                                       :tecido,
+                                                                       :composicao,
+                                                                       :bordado,
+                                                                       :tipologia,
+                                                                       :pintura,
+                                                                       :tecnica,
+                                                                       :dimensoes,
+				                                                       :metodoProducao,
+                                                                       :countImgsDesenhoTecnico,
+                                                                       :countImgsFotografia)';
 			
 		$stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id_peca'                   , $id_peca);
+        $stmt->bindParam(':idPeca'                    , $idPeca);
 		$stmt->bindParam(':localizacao'               , $_POST['localizacao']);
 		$stmt->bindParam(':termoDoacao'               , $_POST['termoDoacao']);
 		$stmt->bindParam(':fabricanteAutor'           , $_POST['fabricanteAutor']);
-		$stmt->bindParam(':data_peca'                 , $_POST['data_peca']);
+		$stmt->bindParam(':dataPeca'                  , $_POST['dataPeca']);
 		$stmt->bindParam(':localAquisicao'            , $_POST['localAquisicao']);
 		$stmt->bindParam(':tecido'                    , $_POST['tecido']);
 		$stmt->bindParam(':composicao'                , $_POST['composicao']);
@@ -104,21 +104,21 @@
 		$stmt->bindParam(':pintura'                   , $_POST['pintura']);
 		$stmt->bindParam(':tecnica'                   , $_POST['tecnica']);
 		$stmt->bindParam(':dimensoes'                 , $_POST['dimensoes']);
-		$stmt->bindParam(':metodo_producao'           , $_POST['metodo_producao']);
-		$stmt->bindParam(':count_imgs_desenho_tecnico', $_POST['count_imgs_desenho_tecnico']);
-		$stmt->bindParam(':count_imgs_fotografia'     , $_POST['count_imgs_fotografia']);
+		$stmt->bindParam(':metodoProducao'            , $_POST['metodoProducao']);
+		$stmt->bindParam(':countImgsDesenhoTecnico'   , $_POST['countImgsDesenhoTecnico']);
+		$stmt->bindParam(':countImgsFotografia'       , $_POST['countImgsFotografia']);
 		
 		if($stmt->execute()){
-            return $id_peca;
+            return $idPeca;
         }else{
-            return "";
+            return "ERRO";
         }
     }
 
     function inserirFichaCatalografica($conn){
        
         $sql = 'INSERT INTO ficha_catalografica (
-            id_peca,
+            idPeca,
             classe,
             subClasse,
             tipo,
@@ -132,7 +132,7 @@
             descricaoPecasComplementares,
             observacoes,
             descricaoDetalhes,
-            count_imgs_detalhes) VALUES(:id_peca,
+            countImgsDetalhes) VALUES(:idPeca,
                                         :classe,
                                         :subClasse,
                                         :tipo,
@@ -146,10 +146,10 @@
                                         :descricaoPecasComplementares,
                                         :observacoes,
                                         :descricaoDetalhes,
-                                        :count_imgs_detalhes)';
+                                        :countImgsDetalhes)';
 
 		$stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id_peca'                     , $_POST['id_peca']);
+        $stmt->bindParam(':idPeca'                     , $_POST['idPeca']);
 		$stmt->bindParam(':classe'                      , $_POST['classe']);
 		$stmt->bindParam(':subClasse'                   , $_POST['subClasse']);
 		$stmt->bindParam(':tipo'                        , $_POST['tipo']);
@@ -163,7 +163,7 @@
 		$stmt->bindParam(':descricaoPecasComplementares', $_POST['descricaoPecasComplementares']);
 		$stmt->bindParam(':observacoes'                 , $_POST['observacoes']);
 		$stmt->bindParam(':descricaoDetalhes'           , $_POST['descricaoDetalhes']);
-		$stmt->bindParam(':count_imgs_detalhes'         , $_POST['count_imgs_detalhes']);
+		$stmt->bindParam(':countImgsDetalhes'         , $_POST['countImgsdetalhes']);
 		
 		if($stmt->execute()){
             echo "OK";
@@ -175,7 +175,7 @@
     function inserirFichaConservacao($conn){
        
         $sql = 'INSERT INTO ficha_conservacao (
-            id_peca,
+            idPeca,
             numeroRegistro,
             titulo,
             classe,
@@ -188,10 +188,10 @@
             restauracaoConservacao,
             procedimentosConservacao,
             observacoes,
-            data_peca,
+            dataPeca,
             responsavelPreenchimento
         ) VALUES(
-            :id_peca,
+            :idPeca,
             :numeroRegistro,
             :titulo,
             :classe1,
@@ -208,7 +208,7 @@
             :responsavelPreenchimento)';
 		
 		$stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id_peca'                 , $_POST['id_peca']);
+        $stmt->bindParam(':idPeca'                 , $_POST['idPeca']);
 		$stmt->bindParam(':numeroRegistro'          , $_POST['numeroRegistro']);
 		$stmt->bindParam(':titulo'                  , $_POST['titulo']);
 		$stmt->bindParam(':classe1'                 , $_POST['classe1']);
@@ -234,7 +234,7 @@
     function inserirVisualizacao($conn){
         
         $sql = 'INSERT INTO visualizacao (
-            id_peca                  , tipoAcervo            , numeroRegistro,
+            idPeca                   , tipoAcervo            , numeroRegistro,
             numeroRegistrosAntigos   , sala                  , estante,
             prateleira               , embalagem             , classe,
             denominacao              , tipo                  , titulo,
@@ -253,7 +253,7 @@
             fontesPesquisaReferencias, linkVisao             , metaKeywords,
             metaDescription          , metaTitle
         ) VALUES(
-            :id_peca                  , :tipoAcervo           , :numeroRegistro,
+            :idPeca                   ,:tipoAcervo           ,:numeroRegistro,
 			:numeroRegistrosAntigos   ,:sala                  ,:estante,
             :prateleira               ,:embalagem             ,:classe,
             :denominacao1             ,:tipo1                 ,:titulo1,
@@ -273,7 +273,7 @@
             :metaDescription          ,:metaTitle)';
 		
 		$stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id_peca'                  , $_POST['id_peca']);
+        $stmt->bindParam(':idPeca'                   , $_POST['idPeca']);
 		$stmt->bindParam(':tipoAcervo'               , $_POST['tipoAcervo']);
 		$stmt->bindParam(':numeroRegistro'           , $_POST['numeroRegistro']);
 		$stmt->bindParam(':numeroRegistrosAntigos'   , $_POST['numeroRegistrosAntigos']);
@@ -337,7 +337,7 @@
     function inserirEnglishFields($conn){
         
         $sql = 'INSERT INTO english_fields (
-            id_peca,
+            idPeca,
             tituloIngles,
             autoriaIngles,
             colecaoIngles,
@@ -353,7 +353,7 @@
             destacado,
             fichaConservacao
         ) VALUES(
-            '.$_POST['id_peca'].',
+            '.$_POST['idPeca'].',
             '.$_POST['tituloIngles'].',
             '.$_POST['autoriaIngles'].',
             '.$_POST['colecaoIngles'].',
@@ -371,7 +371,7 @@
         )';
 		
 		$stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id_peca'              , $_POST['id_peca']);
+        $stmt->bindParam(':idPeca'               , $_POST['idPeca']);
 		$stmt->bindParam(':tituloIngles'         , $_POST['tituloIngles']);
 		$stmt->bindParam(':autoriaIngles'        , $_POST['autoriaIngles']);
 		$stmt->bindParam(':colecaoIngles'        , $_POST['colecaoIngles']);
