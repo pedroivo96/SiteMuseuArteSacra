@@ -50,28 +50,44 @@
 				$xml->appendChild($nodoRaiz);
 				
 				//Define os filhos do nodo raiz
-				$nodoRaiz->appendChild('id_peca'                   , $row['id_peca']);
-				$nodoRaiz->appendChild('localizacao'               , $row['localizacao']);
-				$nodoRaiz->appendChild('termoDoacao'               , $row['termoDoacao']);
-				$nodoRaiz->appendChild('fabricanteAutor'           , $row['fabricanteAutor']);
-				$nodoRaiz->appendChild('data_peca'                 , $row['data_peca']);
-				$nodoRaiz->appendChild('localAquisicao'            , $row['localAquisicao']);
-				$nodoRaiz->appendChild('tecido'                    , $row['tecido']);
-				$nodoRaiz->appendChild('composicao'                , $row['composicao']);
-				$nodoRaiz->appendChild('bordado'                   , $row['bordado']);
-				$nodoRaiz->appendChild('tipologia'                 , $row['tipologia']);
-				$nodoRaiz->appendChild('pintura'                   , $row['pintura']);
-				$nodoRaiz->appendChild('tecnica'                   , $row['tecnica']);
-				$nodoRaiz->appendChild('dimensoes'                 , $row['dimensoes']);
-				$nodoRaiz->appendChild('metodo_producao'           , $row['metodo_producao']);
-				$nodoRaiz->appendChild('count_imgs_desenho_tecnico', $row['count_imgs_desenho_tecnico']);
-				$nodoRaiz->appendChild('count_imgs_fotografia'     , $row['count_imgs_fotografia']);
+				$nodoRaiz->appendChild('status'         , "OK");
+				$nodoRaiz->appendChild('id_peca'        , $row['id_peca']);
+				$nodoRaiz->appendChild('localizacao'    , $row['localizacao']);
+				$nodoRaiz->appendChild('termoDoacao'    , $row['termoDoacao']);
+				$nodoRaiz->appendChild('fabricanteAutor', $row['fabricanteAutor']);
+				$nodoRaiz->appendChild('data_peca'      , $row['data_peca']);
+				$nodoRaiz->appendChild('localAquisicao' , $row['localAquisicao']);
+				$nodoRaiz->appendChild('tecido'         , $row['tecido']);
+				$nodoRaiz->appendChild('composicao'     , $row['composicao']);
+				$nodoRaiz->appendChild('bordado'        , $row['bordado']);
+				$nodoRaiz->appendChild('tipologia'      , $row['tipologia']);
+				$nodoRaiz->appendChild('pintura'        , $row['pintura']);
+				$nodoRaiz->appendChild('tecnica'        , $row['tecnica']);
+				$nodoRaiz->appendChild('dimensoes'      , $row['dimensoes']);
+				$nodoRaiz->appendChild('metodo_producao', $row['metodo_producao']);
+				$nodoRaiz->appendChild('desenhoTecnico' , $row['count_imgs_desenho_tecnico']);
+				$nodoRaiz->appendChild('fotografia'     , $row['count_imgs_fotografia']);
 				
 				//Retorna o resultado ao navegador
 				header("Content-type: application/xml");
 				echo $xml->saveXML();
 				
 			}
+		}
+		else{
+			//Cria o documento XML e seus respectivos elementos
+			$xml = new DOMDocument('1.0');
+			$nodoRaiz = $xml->createElement('dados');
+				
+			//Define o nodo raiz
+			$xml->appendChild($nodoRaiz);
+				
+			//Define os filhos do nodo raiz
+			$nodoRaiz->appendChild('status', "EMPTY");
+				
+			//Retorna o resultado ao navegador
+			header("Content-type: application/xml");
+			echo $xml->saveXML();
 		}
 	}
 	
@@ -97,6 +113,7 @@
 				$xml->appendChild($nodoRaiz);
 				
 				//Define os filhos do nodo raiz
+				$nodoRaiz->appendChild('status'                      , "OK");
 				$nodoRaiz->appendChild('id_peca'                     , $row['id_peca']);
 				$nodoRaiz->appendChild('classe'                      , $row['classe']);
 				$nodoRaiz->appendChild('subClasse'                   , $row['subClasse']);
@@ -116,8 +133,22 @@
 				//Retorna o resultado ao navegador
 				header("Content-type: application/xml");
 				echo $xml->saveXML();
-				
 			}
+		}
+		else{
+			//Cria o documento XML e seus respectivos elementos
+			$xml = new DOMDocument('1.0');
+			$nodoRaiz = $xml->createElement('dados');
+				
+			//Define o nodo raiz
+			$xml->appendChild($nodoRaiz);
+				
+			//Define os filhos do nodo raiz
+			$nodoRaiz->appendChild('status', "EMPTY");
+				
+			//Retorna o resultado ao navegador
+			header("Content-type: application/xml");
+			echo $xml->saveXML();
 		}
 	}
 	
@@ -143,6 +174,7 @@
 				$xml->appendChild($nodoRaiz);
 				
 				//Define os filhos do nodo raiz
+				$nodoRaiz->appendChild('status'                  , "OK");
 				$nodoRaiz->appendChild('id_peca'                 , $row['id_peca']);
 				$nodoRaiz->appendChild('numeroRegistro'          , $row['numeroRegistro']);
 				$nodoRaiz->appendChild('titulo'                  , $row['titulo']);
@@ -163,6 +195,21 @@
 				header("Content-type: application/xml");
 				echo $xml->saveXML();
 			}
+		}
+		else{
+			//Cria o documento XML e seus respectivos elementos
+			$xml = new DOMDocument('1.0');
+			$nodoRaiz = $xml->createElement('dados');
+				
+			//Define o nodo raiz
+			$xml->appendChild($nodoRaiz);
+				
+			//Define os filhos do nodo raiz
+			$nodoRaiz->appendChild('status', "EMPTY");
+				
+			//Retorna o resultado ao navegador
+			header("Content-type: application/xml");
+			echo $xml->saveXML();
 		}
 	}
 	
@@ -188,6 +235,7 @@
 				$xml->appendChild($nodoRaiz);
 				
 				//Define os filhos do nodo raiz
+				$nodoRaiz->appendChild('status'                     , "OK");
 				$nodoRaiz->appendChild('id_peca'                 	, $row['id_peca']);
 				$nodoRaiz->appendChild('tipoAcervo'          		, $row['tipoAcervo']);
 				$nodoRaiz->appendChild('numeroRegistro'             , $row['numeroRegistro']);
@@ -247,6 +295,21 @@
 				echo $xml->saveXML();
 			}
 		}
+		else{
+			//Cria o documento XML e seus respectivos elementos
+			$xml = new DOMDocument('1.0');
+			$nodoRaiz = $xml->createElement('dados');
+				
+			//Define o nodo raiz
+			$xml->appendChild($nodoRaiz);
+				
+			//Define os filhos do nodo raiz
+			$nodoRaiz->appendChild('status', "EMPTY");
+				
+			//Retorna o resultado ao navegador
+			header("Content-type: application/xml");
+			echo $xml->saveXML();
+		}
 	}
 	
 	function buscarFichaEnglish($conn, $idpeca){
@@ -271,6 +334,7 @@
 				$xml->appendChild($nodoRaiz);
 				
 				//Define os filhos do nodo raiz
+				$nodoRaiz->appendChild('status'               , "OK");
 				$nodoRaiz->appendChild('id_peca'              , $row['id_peca']);
 				$nodoRaiz->appendChild('tituloIngles'         , $row['tituloIngles']);
 				$nodoRaiz->appendChild('autoriaIngles'        , $row['autoriaIngles']);
@@ -291,6 +355,21 @@
 				header("Content-type: application/xml");
 				echo $xml->saveXML();
 			}
+		}
+		else{
+			//Cria o documento XML e seus respectivos elementos
+			$xml = new DOMDocument('1.0');
+			$nodoRaiz = $xml->createElement('dados');
+				
+			//Define o nodo raiz
+			$xml->appendChild($nodoRaiz);
+				
+			//Define os filhos do nodo raiz
+			$nodoRaiz->appendChild('status', "EMPTY");
+				
+			//Retorna o resultado ao navegador
+			header("Content-type: application/xml");
+			echo $xml->saveXML();
 		}
 	}
 ?>

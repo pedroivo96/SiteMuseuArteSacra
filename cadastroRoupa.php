@@ -15,6 +15,124 @@
 	
 	<script>
 	
+		function chamaForm1(){
+		
+			var form1 = document.getElementById('formulario1');
+			var form2 = document.getElementById('formulario2');
+			var form3 = document.getElementById('formulario3');
+			var form4 = document.getElementById('formulario4');
+			var form5 = document.getElementById('formulario5');
+			var barraProgresso = document.getElementById('barraProgresso');
+			
+			form1.style.display = "block";
+			form2.style.display = "none";
+			form3.style.display = "none";
+			form4.style.display = "none";
+			form5.style.display = "none";
+			
+			barraProgresso.style.width = "20%";
+			barraProgresso.textContent = "20%";
+		}
+		
+		function chamaForm2(){
+		
+			salvarFichaTecnica();
+		
+			/*
+			var form1 = document.getElementById('formulario1');
+			var form2 = document.getElementById('formulario2');
+			var form3 = document.getElementById('formulario3');
+			var form4 = document.getElementById('formulario4');
+			var form5 = document.getElementById('formulario5');
+			var barraProgresso = document.getElementById('barraProgresso');
+			
+			form2.style.display = "block";
+			form1.style.display = "none";
+			form3.style.display = "none";
+			form4.style.display = "none";
+			form5.style.display = "none";
+			
+			barraProgresso.style.width = "20%";
+			barraProgresso.textContent = "20%";
+			*/
+		}
+		
+		function chamaForm3(){
+		
+			var form1 = document.getElementById('formulario1');
+			var form2 = document.getElementById('formulario2');
+			var form3 = document.getElementById('formulario3');
+			var form4 = document.getElementById('formulario4');
+			var form5 = document.getElementById('formulario5');
+			var barraProgresso = document.getElementById('barraProgresso');
+		
+			form3.style.display = "block";
+			form1.style.display = "none";
+			form2.style.display = "none";
+			form4.style.display = "none";
+			form5.style.display = "none";
+			
+			barraProgresso.style.width = "40%";
+			barraProgresso.textContent = "40%";
+		}
+		
+		function chamaForm4(){
+		
+			var form1 = document.getElementById('formulario1');
+			var form2 = document.getElementById('formulario2');
+			var form3 = document.getElementById('formulario3');
+			var form4 = document.getElementById('formulario4');
+			var form5 = document.getElementById('formulario5');
+			var barraProgresso = document.getElementById('barraProgresso');
+			
+			form4.style.display = "block";
+			form1.style.display = "none";
+			form2.style.display = "none";
+			form3.style.display = "none";
+			form5.style.display = "none";
+			
+			barraProgresso.style.width = "60%";
+			barraProgresso.textContent = "60%";
+		}
+		
+		function chamaForm5(){
+			
+			var form1 = document.getElementById('formulario1');
+			var form2 = document.getElementById('formulario2');
+			var form3 = document.getElementById('formulario3');
+			var form4 = document.getElementById('formulario4');
+			var form5 = document.getElementById('formulario5');
+			var barraProgresso = document.getElementById('barraProgresso');
+			
+			form5.style.display = "block";
+			form1.style.display = "none";
+			form2.style.display = "none";
+			form3.style.display = "none";
+			form4.style.display = "none";
+			
+			barraProgresso.style.width = "80%";
+			barraProgresso.textContent = "80%";
+		}
+		
+		function someForms(){
+		
+			var form1 = document.getElementById('formulario1');
+			var form2 = document.getElementById('formulario2');
+			var form3 = document.getElementById('formulario3');
+			var form4 = document.getElementById('formulario4');
+			var form5 = document.getElementById('formulario5');
+			var barraProgresso = document.getElementById('barraProgresso');
+			
+			form1.style.display = "none";
+			form2.style.display = "none";
+			form3.style.display = "none";
+			form4.style.display = "none";
+			form5.style.display = "none";
+			
+			barraProgresso.style.width = "100%";
+			barraProgresso.textContent = "100%";
+		}
+		
 		function iniciaAjax(){
 			var ajax;
 			
@@ -36,25 +154,29 @@
 	
 		function salvarFichaTecnica(){
 			
-			var nomePeca                = document.getElementById("nomePeca").value;
-			var numeroInventarioMuseu   = document.getElementById("numeroInventarioMuseu").value;
-			var numeroInventarioProjeto = document.getElementById("numeroInventarioProjeto").value;
-			var localizacao             = document.getElementById("localizacao").value;
-			var termoDoacao             = document.getElementById("termoDoacao").value;
-			var fabricanteAutor         = document.getElementById("fabricanteAutor").value;
-			var data                    = document.getElementById("data").value;
-			var localAquisicao          = document.getElementById("localAquisicao").value;
-			var tecido                  = document.getElementById("tecido").value;
-			var composicao              = document.getElementById("composicao").value;
-			var bordado                 = document.getElementById("bordado").value;
-			var tipologia               = document.getElementById("tipologia").value;
-			var pintura                 = document.getElementById("pintura").value;
-			var tecnica                 = document.getElementById("tecnica").value;
-			var dimensoes               = document.getElementById("dimensoes").value;
-			var metodoProducao          = document.getElementById("metodoProducao").value;
-			var desenhoTecnico          = document.getElementById("desenhoTecnico");
-			var fotografia              = document.getElementById("fotografia");
-			var operacao                = "ficha_tecnica";
+			alert("entrou");
+			
+			var nomePeca                   = document.getElementById("nomePeca").value;
+			var numeroInventarioMuseu      = document.getElementById("numeroInventarioMuseu").value;
+			var numeroInventarioProjeto    = document.getElementById("numeroInventarioProjeto").value;
+			var localizacao                = document.getElementById("localizacao").value;
+			var termoDoacao                = document.getElementById("termoDoacao").value;
+			var fabricanteAutor            = document.getElementById("fabricanteAutor").value;
+			var data                       = document.getElementById("data").value;
+			var localAquisicao             = document.getElementById("localAquisicao").value;
+			var tecido                     = document.getElementById("tecido").value;
+			var composicao                 = document.getElementById("composicao").value;
+			var bordado                    = document.getElementById("bordado").value;
+			var tipologia                  = document.getElementById("tipologia").value;
+			var pintura                    = document.getElementById("pintura").value;
+			var tecnica                    = document.getElementById("tecnica").value;
+			var dimensoes                  = document.getElementById("dimensoes").value;
+			var metodoProducao             = document.getElementById("metodoProducao").value;
+			//var count_imgs_desenho_tecnico = document.getElementById("desenhoTecnico");
+			//var count_imgs_fotografia      = document.getElementById("fotografia");
+			var count_imgs_desenho_tecnico = 0;
+			var count_imgs_fotografia      = 0;
+			var operacao                   = "ficha_tecnica";
 			
 			ajax = iniciaAjax();
 			
@@ -73,6 +195,7 @@
 								//Pegar o ID da peça e setar nos HIDDEN
 								
 								idPeca = document.getElementById("idpeca");
+								alert(retorno);
 								idPeca.value = retorno;
 							}
 						}
@@ -99,9 +222,10 @@
 					   "&tecnica="+tecnica+
 					   "&dimensoes="+dimensoes+
 					   "&metodoProducao="+metodoProducao+
-					   "&desenhoTecnico="+desenhoTecnico+
-					   "&fotografia="+fotografia+
-					   "&operacao="+operacao+;
+					   "&count_imgs_desenho_tecnico="+count_imgs_desenho_tecnico+
+					   "&count_imgs_fotografia="+count_imgs_fotografia+
+					   "&usuario="+"PEDRO"+
+					   "&operacao="+operacao;
 				
 				//Faz a requisição e envio pelo método POST
 				ajax.open('POST', 'inserirPecaBD.php', true);
@@ -441,7 +565,7 @@
 					   "&metaTitleIngles="+metaTitleIngles+
 					   "&disponibilidadePeca="+disponibilidadePeca+
 					   "&fichaConservacao="+fichaConservacao+
-					   "&operacao="+operacao+;
+					   "&operacao="+operacao;
 				
 				//Faz a requisição e envio pelo método POST
 				ajax.open('POST', 'inserirPecaBD.php', true);
@@ -460,15 +584,56 @@
 				ajax.onreadystatechange = function(){
 					if(ajax.readyState == 4){
 						if(ajax.status == 200){
-							retorno = ajax.responseText;
+							retorno = ajax.responseXML;
 							
-							if(retorno == ""){
-								//Deu erro
-								alert("Erro!");
+							status = retorno.getElementsByTagName('status').item(0).firstChild.data;
+							
+							if(status == "OK"){
 								
-							}else if(retorno != ""){
-								//Deu certo, então retorno possui o ID da peça
-								//Pegar o ID da peça e setar nos HIDDEN
+								var nomePeca                = retorno.getElementsByTagName('nomePeca').item(0).firstChild.data;
+								var numeroInventarioMuseu   = retorno.getElementsByTagName('numeroInventarioMuseu').item(0).firstChild.data;
+								var numeroInventarioProjeto = retorno.getElementsByTagName('numeroInventarioProjeto').item(0).firstChild.data;
+								var localizacao             = retorno.getElementsByTagName('localizacao').item(0).firstChild.data;
+								var termoDoacao             = retorno.getElementsByTagName('termoDoacao').item(0).firstChild.data;
+								var fabricanteAutor         = retorno.getElementsByTagName('fabricanteAutor').item(0).firstChild.data;
+								var data                    = retorno.getElementsByTagName('data').item(0).firstChild.data;
+								var localAquisicao          = retorno.getElementsByTagName('localAquisicao').item(0).firstChild.data;
+								var tecido                  = retorno.getElementsByTagName('tecido').item(0).firstChild.data;
+								var composicao              = retorno.getElementsByTagName('composicao').item(0).firstChild.data;
+								var bordado                 = retorno.getElementsByTagName('bordado').item(0).firstChild.data;
+								var tipologia               = retorno.getElementsByTagName('tipologia').item(0).firstChild.data;
+								var pintura                 = retorno.getElementsByTagName('pintura').item(0).firstChild.data;
+								var tecnica                 = retorno.getElementsByTagName('tecnica').item(0).firstChild.data;
+								var dimensoes               = retorno.getElementsByTagName('dimensoes').item(0).firstChild.data;
+								var metodoProducao          = retorno.getElementsByTagName('metodoProducao').item(0).firstChild.data;
+								var desenhoTecnico          = retorno.getElementsByTagName('desenhoTecnico').item(0).firstChild.data;
+								var fotografia              = retorno.getElementsByTagName('fotografia').item(0).firstChild.data;
+								
+								chamaForm1();
+								
+								document.getElementById("nomePeca").value                = nomePeca;
+								document.getElementById("numeroInventarioMuseu").value   = numeroInventarioMuseu;
+								document.getElementById("numeroInventarioProjeto").value = numeroInventarioProjeto;
+								document.getElementById("localizacao").value             = localizacao;
+								document.getElementById("termoDoacao").value             = termoDoacao;
+								document.getElementById("fabricanteAutor").value         = fabricanteAutor;
+								document.getElementById("data").value                    = data;
+								document.getElementById("localAquisicao").value          = localAquisicao;
+								document.getElementById("tecido").value                  = tecido;
+								document.getElementById("composicao").value 			 = composicao;
+								document.getElementById("bordado").value                 = bordado;
+								document.getElementById("tipologia").value               = tipologia;
+								document.getElementById("pintura").value                 = pintura;
+								document.getElementById("tecnica").value                 = tecnica;
+								document.getElementById("dimensoes").value               = dimensoes;
+								document.getElementById("metodoProducao").value          = metodoProducao;
+								document.getElementById("desenhoTecnico").value          = desenhoTecnico;
+								document.getElementById("fotografia").value              = fotografia;
+								
+							}else if(status != "EMPTY"){
+								
+								//Sem peça vinculada a tal Ficha
+								alert("Vazio!");
 							}
 						}
 						else{
@@ -635,101 +800,6 @@
 			}
 		}
 		
-		function chamaForm2(){
-		
-			var form1 = document.getElementById('formulario1');
-			var form2 = document.getElementById('formulario2');
-			var form3 = document.getElementById('formulario3');
-			var form4 = document.getElementById('formulario4');
-			var form5 = document.getElementById('formulario5');
-			var barraProgresso = document.getElementById('barraProgresso');
-			
-			form2.style.display = "block";
-			form1.style.display = "none";
-			form3.style.display = "none";
-			form4.style.display = "none";
-			form5.style.display = "none";
-			
-			barraProgresso.style.width = "20%";
-			barraProgresso.textContent = "20%";
-		}
-		
-		function chamaForm3(){
-		
-			var form1 = document.getElementById('formulario1');
-			var form2 = document.getElementById('formulario2');
-			var form3 = document.getElementById('formulario3');
-			var form4 = document.getElementById('formulario4');
-			var form5 = document.getElementById('formulario5');
-			var barraProgresso = document.getElementById('barraProgresso');
-		
-			form3.style.display = "block";
-			form1.style.display = "none";
-			form2.style.display = "none";
-			form4.style.display = "none";
-			form5.style.display = "none";
-			
-			barraProgresso.style.width = "40%";
-			barraProgresso.textContent = "40%";
-		}
-		
-		function chamaForm4(){
-		
-			var form1 = document.getElementById('formulario1');
-			var form2 = document.getElementById('formulario2');
-			var form3 = document.getElementById('formulario3');
-			var form4 = document.getElementById('formulario4');
-			var form5 = document.getElementById('formulario5');
-			var barraProgresso = document.getElementById('barraProgresso');
-			
-			form4.style.display = "block";
-			form1.style.display = "none";
-			form2.style.display = "none";
-			form3.style.display = "none";
-			form5.style.display = "none";
-			
-			barraProgresso.style.width = "60%";
-			barraProgresso.textContent = "60%";
-		}
-		
-		function chamaForm5(){
-			
-			var form1 = document.getElementById('formulario1');
-			var form2 = document.getElementById('formulario2');
-			var form3 = document.getElementById('formulario3');
-			var form4 = document.getElementById('formulario4');
-			var form5 = document.getElementById('formulario5');
-			var barraProgresso = document.getElementById('barraProgresso');
-			
-			form5.style.display = "block";
-			form1.style.display = "none";
-			form2.style.display = "none";
-			form3.style.display = "none";
-			form4.style.display = "none";
-			
-			barraProgresso.style.width = "80%";
-			barraProgresso.textContent = "80%";
-		}
-		
-		function someForms(){
-		
-			var form1 = document.getElementById('formulario1');
-			var form2 = document.getElementById('formulario2');
-			var form3 = document.getElementById('formulario3');
-			var form4 = document.getElementById('formulario4');
-			var form5 = document.getElementById('formulario5');
-			var barraProgresso = document.getElementById('barraProgresso');
-			
-			form1.style.display = "none";
-			form2.style.display = "none";
-			form3.style.display = "none";
-			form4.style.display = "none";
-			form5.style.display = "none";
-			
-			barraProgresso.style.width = "100%";
-			barraProgresso.textContent = "100%";
-		}
-		
 		function aumentaTextArea(){
 			
 			var textArea = document.getElementById('textArea');
@@ -772,7 +842,7 @@
 			</div>
 			</br>
 		
-			<form role="form" id="formulario1" style = "display : block">
+			<form role="form" id="formulario1" style = "display:block" action="">
 			
 				<p class="h4 text-center">Ficha Técnica</p>
 				
@@ -923,19 +993,14 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-				
-					<button type="button" class="btn btn-primary flex-fill mr-5">
-						Voltar
-					</button>
-				
-					<button type="button" class="btn btn-primary flex-fill" onclick="chamaForm2();">
-						Próxima
+					<button type="button" onclick="chamaForm2();" class="btn btn-primary flex-fill">
+						Próximo 2
 					</button>
 				</div>
 				
 			</form>
 			
-			<form role="form" id="formulario2" style = "display : none">
+			<form role="form" id="formulario2" style = "display:none">
 			
 				<p class="h4 text-center">Ficha Catalográfica</p>
 				
@@ -1055,7 +1120,7 @@
 				
 				<div class="d-flex bd-highlight">
 				
-					<button type="button" class="btn btn-primary flex-fill mr-5">
+					<button type="button" onclick="buscarFichaTecnica();" class="btn btn-primary flex-fill mr-5">
 						Voltar
 					</button>
 				
@@ -1067,7 +1132,7 @@
 			</form>
 			
 			
-			<form role="form" id="formulario3" style = "display : none">
+			<form role="form" id="formulario3" style = "display:none">
 			
 				<p class="h4 text-center">Ficha de Conservação</p>
 				
@@ -1199,7 +1264,7 @@
 			</form>
 			
 
-			<form role="form" id="formulario4" style = "display : none">
+			<form role="form" id="formulario4" style = "display:none">
 			
 				<p class="h4 text-center">Visualização Vestuário / Têxtil</p>
 				
@@ -1634,7 +1699,7 @@
 				
 			</form>
 			
-			<form role="form" id="formulario5" style = "display : none">
+			<form role="form" id="formulario5" style = "display:none">
 			
 				<p class="h4 text-center">English Fields</p>
 

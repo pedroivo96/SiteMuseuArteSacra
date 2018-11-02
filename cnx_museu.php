@@ -1,17 +1,24 @@
 <?php
     
     function getConnection(){
-        $dsn = 'mysql:host=localhost;dbname=Museu';
+        $dsn = 'mysql:host=localhost;dbname=museu';
         $user = 'root';
-        $pass = 'zxcv';
+        $pass = '';
 
         try{
-            echo "antes";
-            $pdo = new PDO($dsn, $user, $pass);
-            echo "conectou";
+            //echo "antes";
+            $pdo = new PDO($dsn, $user, $pass, array(
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
+                PDO::ATTR_PERSISTENT => false,
+                PDO::ATTR_EMULATE_PREPARES => false,
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+				)
+			);
+			
+            //echo "conectou";
             return $pdo;
         }catch(PDOException $ex){
-            echo 'Erro: '.$ex->getMessage();
+            //echo 'Erro: '.$ex->getMessage();
         }
     }
 	
