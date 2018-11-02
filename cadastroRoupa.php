@@ -22,6 +22,7 @@
 				formulario1.style.display = "block";
 				
 				buscarFichaTecnica();
+				
 			} else {
 				formulario1.style.display = "none";
 			}		
@@ -32,6 +33,9 @@
 			var formulario2 = document.getElementById("formulario2");
 			if (formulario2.style.display === "none") {
 				formulario2.style.display = "block";
+				
+				buscarFichaCatalografica();
+				
 			} else {
 				formulario2.style.display = "none";
 			}		
@@ -42,6 +46,9 @@
 			var formulario3 = document.getElementById("formulario3");
 			if (formulario3.style.display === "none") {
 				formulario3.style.display = "block";
+				
+				buscarFichaConservacao();
+				
 			} else {
 				formulario3.style.display = "none";
 			}		
@@ -52,6 +59,9 @@
 			var formulario4 = document.getElementById("formulario4");
 			if (formulario4.style.display === "none") {
 				formulario4.style.display = "block";
+				
+				buscarFichaVisualizacao();
+				
 			} else {
 				formulario4.style.display = "none";
 			}		
@@ -62,127 +72,12 @@
 			var formulario5 = document.getElementById("formulario5");
 			if (formulario5.style.display === "none") {
 				formulario5.style.display = "block";
+				
+				buscarFichaEnglishFields();
+				
 			} else {
 				formulario5.style.display = "none";
 			}		
-		}
-	
-		function chamaForm1(){
-		
-			var form1 = document.getElementById('formulario1');
-			var form2 = document.getElementById('formulario2');
-			var form3 = document.getElementById('formulario3');
-			var form4 = document.getElementById('formulario4');
-			var form5 = document.getElementById('formulario5');
-			var barraProgresso = document.getElementById('barraProgresso');
-			
-			form1.style.display = "block";
-			form2.style.display = "none";
-			form3.style.display = "none";
-			form4.style.display = "none";
-			form5.style.display = "none";
-			
-			barraProgresso.style.width = "20%";
-			barraProgresso.textContent = "20%";
-		}
-		
-		function chamaForm2(){
-		
-			salvarFichaTecnica();
-		
-			/*
-			var form1 = document.getElementById('formulario1');
-			var form2 = document.getElementById('formulario2');
-			var form3 = document.getElementById('formulario3');
-			var form4 = document.getElementById('formulario4');
-			var form5 = document.getElementById('formulario5');
-			var barraProgresso = document.getElementById('barraProgresso');
-			
-			form2.style.display = "block";
-			form1.style.display = "none";
-			form3.style.display = "none";
-			form4.style.display = "none";
-			form5.style.display = "none";
-			
-			barraProgresso.style.width = "20%";
-			barraProgresso.textContent = "20%";
-			*/
-		}
-		
-		function chamaForm3(){
-		
-			var form1 = document.getElementById('formulario1');
-			var form2 = document.getElementById('formulario2');
-			var form3 = document.getElementById('formulario3');
-			var form4 = document.getElementById('formulario4');
-			var form5 = document.getElementById('formulario5');
-			var barraProgresso = document.getElementById('barraProgresso');
-		
-			form3.style.display = "block";
-			form1.style.display = "none";
-			form2.style.display = "none";
-			form4.style.display = "none";
-			form5.style.display = "none";
-			
-			barraProgresso.style.width = "40%";
-			barraProgresso.textContent = "40%";
-		}
-		
-		function chamaForm4(){
-		
-			var form1 = document.getElementById('formulario1');
-			var form2 = document.getElementById('formulario2');
-			var form3 = document.getElementById('formulario3');
-			var form4 = document.getElementById('formulario4');
-			var form5 = document.getElementById('formulario5');
-			var barraProgresso = document.getElementById('barraProgresso');
-			
-			form4.style.display = "block";
-			form1.style.display = "none";
-			form2.style.display = "none";
-			form3.style.display = "none";
-			form5.style.display = "none";
-			
-			barraProgresso.style.width = "60%";
-			barraProgresso.textContent = "60%";
-		}
-		
-		function chamaForm5(){
-			
-			var form1 = document.getElementById('formulario1');
-			var form2 = document.getElementById('formulario2');
-			var form3 = document.getElementById('formulario3');
-			var form4 = document.getElementById('formulario4');
-			var form5 = document.getElementById('formulario5');
-			var barraProgresso = document.getElementById('barraProgresso');
-			
-			form5.style.display = "block";
-			form1.style.display = "none";
-			form2.style.display = "none";
-			form3.style.display = "none";
-			form4.style.display = "none";
-			
-			barraProgresso.style.width = "80%";
-			barraProgresso.textContent = "80%";
-		}
-		
-		function someForms(){
-		
-			var form1 = document.getElementById('formulario1');
-			var form2 = document.getElementById('formulario2');
-			var form3 = document.getElementById('formulario3');
-			var form4 = document.getElementById('formulario4');
-			var form5 = document.getElementById('formulario5');
-			var barraProgresso = document.getElementById('barraProgresso');
-			
-			form1.style.display = "none";
-			form2.style.display = "none";
-			form3.style.display = "none";
-			form4.style.display = "none";
-			form5.style.display = "none";
-			
-			barraProgresso.style.width = "100%";
-			barraProgresso.textContent = "100%";
 		}
 		
 		function iniciaAjax(){
@@ -246,9 +141,9 @@
 								//Deu certo, então retorno possui o ID da peça
 								//Pegar o ID da peça e setar nos HIDDEN
 								
-								idPeca = document.getElementById("idpeca");
-								alert("DEU CERTO");
+								idPeca = document.getElementById("idPeca");
 								idPeca.value = retorno;
+								alert("Ficha técnica cadastrada com sucesso");
 							}
 						}
 						else{
@@ -288,7 +183,7 @@
 		
 		function salvarFichaCatalografica(){
 			
-			var idPeca                       = document.getElementById("idpeca").value;
+			var idPeca                       = document.getElementById("idPeca").value;
 			var classe                       = document.getElementById("classe").value;
 			var subClasse                    = document.getElementById("subClasse").value;
 			var tipo                         = document.getElementById("tipo").value;
@@ -318,7 +213,7 @@
 								alert("Erro!");
 								
 							}else if(retorno == "OK"){
-								
+								alert("Ficha catalográfica cadastrada com sucesso");
 							}
 						}
 						else{
@@ -354,7 +249,7 @@
 		
 		function salvarFichaConservacao(){
 			
-			var idPeca                   = document.getElementById("idpeca").value;
+			var idPeca                   = document.getElementById("idPeca").value;
 			var numeroRegistro           = document.getElementById("numeroRegistro").value;
 			var titulo                   = document.getElementById("titulo").value;
 			var classe1                  = document.getElementById("classe1").value;
@@ -384,7 +279,7 @@
 								alert("Erro!");
 								
 							}else if(retorno == "OK"){
-								
+								alert("Ficha de conservação cadastrada com sucesso");
 							}
 						}
 						else{
@@ -420,8 +315,8 @@
 		
 		function salvarFichaVisualizacao(){
 			
-			var idPeca                    = document.getElementById("idpeca").value;
-			var tipoAcervo                = document.getElementById("tipoAcervo");
+			var idPeca                    = document.getElementById("idPeca").value;
+			var tipoAcervo                = document.getElementById("tipoAcervo").value;
 			var numeroRegistro            = document.getElementById("numeroRegistro").value;
 			var numeroRegistrosAntigos    = document.getElementById("numeroRegistrosAntigos").value;
 			var sala                      = document.getElementById("sala").value;
@@ -458,7 +353,7 @@
 			var seguradora                = document.getElementById("seguradora").value;
 			var formasIncorporacao        = document.getElementById("formasIncorporacao").value;
 			var tipoDataIncorporacao      = document.getElementById("tipoDataIncorporacao").value;
-			var frequencias               = document.getElementById("frequencias");
+			var frequencias               = document.getElementById("frequencias").value;
 			var procedencias              = document.getElementById("procedencias").value;
 			var usoAcessoPecaFisica       = document.getElementById("usoAcessoPecaFisica").value;
 			var usoAcessoRepresentante    = document.getElementById("usoAcessoRepresentante").value;
@@ -487,7 +382,7 @@
 								alert("Erro!");
 								
 							}else if(retorno == "OK"){
-								
+								alert("Ficha de visualização cadastrada com sucesso");
 							}
 						}
 						else{
@@ -560,7 +455,7 @@
 		
 		function salvarFichaEnglishFields(){
 			
-			var idPeca                = document.getElementById("idpeca").value;
+			var idPeca                = document.getElementById("idPeca").value;
 			var tituloIngles          = document.getElementById("tituloIngles").value;
 			var autoriaIngles         = document.getElementById("autoriaIngles").value;
 			var colecaoIngles         = document.getElementById("colecaoIngles").value;
@@ -584,16 +479,12 @@
 						if(ajax.status == 200){
 							retorno = ajax.responseText;
 							
-							if(retorno == ""){
+							if(retorno == "ERRO"){
 								//Deu erro
 								alert("Erro!");
 								
-							}else if(retorno != ""){
-								//Deu certo, então retorno possui o ID da peça
-								//Pegar o ID da peça e setar nos HIDDEN
-								
-								idPeca = document.getElementById("idpeca");
-								idPeca.value = retorno;
+							}else if(retorno == "OK"){
+								alert("Ficha de english fields cadastrada com sucesso");
 							}
 						}
 						else{
@@ -859,13 +750,6 @@
 			
 			textArea.style.height = alturaConteudo+"px";
 		}
-		
-		$("#nomePeca").on('input', function() {
-			var scroll_height = $("#message-box").get(0).scrollHeight;
-
-			$("#nomePeca").css('height', scroll_height + 'px');
-		});
-		
 	</script>
 
   </head>
@@ -895,7 +779,7 @@
 			
 			</br>
 			
-			<hidden id="idpeca" name="idpeca"/>
+			<input type="hidden" id="idPeca" name="idPeca">
 			
 			<button type="button" class="btn btn-info btn-block mb-2" onclick="formulario1();">Ficha técnica</button>
 			
@@ -903,8 +787,6 @@
 			<form role="form" action="">
 			
 				<p class="h4 text-center">Ficha Técnica</p>
-				
-				<hidden id="idpeca" name="idpeca"/>
 			
 				<div class="form-group">
 					 
@@ -1065,8 +947,6 @@
 			<form role="form" style = "display:block">
 			
 				<p class="h4 text-center">Ficha Catalográfica</p>
-				
-				<hidden id="idpeca" name="idpeca"/>
 			
 				<div class="form-group">
 					 
@@ -1181,7 +1061,7 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-					<button type="button" class="btn btn-primary flex-fill">
+					<button type="button" class="btn btn-primary flex-fill" onclick="salvarFichaCatalografica();">
 						Submeter
 					</button>
 				</div>
@@ -1311,7 +1191,7 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-					<button type="button" class="btn btn-primary flex-fill">
+					<button type="button" class="btn btn-primary flex-fill" onclick="salvarFichaConservacao();">
 						Submeter
 					</button>
 				</div>
@@ -1325,8 +1205,6 @@
 			<form role="form">
 			
 				<p class="h4 text-center">Visualização Vestuário / Têxtil</p>
-				
-				<hidden id="idpeca" name="idpeca"/>
 			
 				<div class="form-group">
 					 
@@ -1745,7 +1623,7 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-					<button type="button" class="btn btn-primary flex-fill">
+					<button type="button" class="btn btn-primary flex-fill" onclick="salvarFichaVisualizacao();">
 						Submeter
 					</button>
 				</div>
@@ -1866,7 +1744,7 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-					<button type="button" class="btn btn-primary flex-fill">
+					<button type="button" class="btn btn-primary flex-fill" onclick="salvarFichaEnglishFields()">
 						Submeter
 					</button>
 				</div>

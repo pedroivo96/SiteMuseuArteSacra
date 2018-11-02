@@ -48,9 +48,58 @@
 		$stmt->bindParam(':usuario'                 , $_POST['usuario']);
 			
 		if($stmt->execute()){
-            return $idPeca;
+			
+			$sql1 = 'INSERT INTO ficha_tecnica (idPeca) VALUES (:idPeca)';
+			$stmt1 = $conn->prepare($sql1);
+			$stmt1->bindParam(':idPeca', $idPeca);
+			
+			if($stmt1->execute()){
+				
+				$sql2 = 'INSERT INTO ficha_catalografica (idPeca) VALUES (:idPeca)';
+				$stmt2 = $conn->prepare($sql2);
+				$stmt2->bindParam(':idPeca', $idPeca);
+				
+				if($stmt2->execute()){
+					
+					$sql3 = 'INSERT INTO ficha_conservacao (idPeca) VALUES (:idPeca)';
+					$stmt3 = $conn->prepare($sql3);
+					$stmt3->bindParam(':idPeca', $idPeca);
+				
+					if($stmt3->execute()){
+						
+						$sql4 = 'INSERT INTO visualizacao (idPeca) VALUES (:idPeca)';
+						$stmt4 = $conn->prepare($sql4);
+						$stmt4->bindParam(':idPeca', $idPeca);
+				
+						if($stmt4->execute()){
+							
+							$sql5 = 'INSERT INTO english_fields (idPeca) VALUES (:idPeca)';
+							$stmt5 = $conn->prepare($sql5);
+							$stmt5->bindParam(':idPeca', $idPeca);
+				
+							if($stmt5->execute()){
+								echo $idPeca;
+							}
+							else{
+								echo "";
+							}
+						}
+						else{
+							echo "";
+						}	
+					}
+					else{
+						echo "";
+					}
+				}
+				else{
+					echo "";
+				}
+			}else{
+				echo "";
+			}
         }else{
-            return "";
+            echo "";
         }
     }
 
@@ -58,37 +107,21 @@
 
         $idPeca = inserirPeca($conn);
 
-        $sql = 'INSERT INTO ficha_tecnica (idPeca,
-                                           localizacao,
-                                           termoDoacao,
-                                           fabricanteAutor,
-                                           dataPeca,
-                                           localAquisicao,
-                                           tecido,
-                                           composicao,
-                                           bordado,
-                                           tipologia,
-                                           pintura,
-                                           tecnica,
-                                           dimensoes,
-				                           metodoProducao,
-                                           countImgsDesenhoTecnico,
-                                           countImgsFotografia) VALUES(:idPeca,
-                                                                       :localizacao,
-                                                                       :termoDoacao,
-                                                                       :fabricanteAutor,
-                                                                       :dataPeca,
-                                                                       :localAquisicao,
-                                                                       :tecido,
-                                                                       :composicao,
-                                                                       :bordado,
-                                                                       :tipologia,
-                                                                       :pintura,
-                                                                       :tecnica,
-                                                                       :dimensoes,
-				                                                       :metodoProducao,
-                                                                       :countImgsDesenhoTecnico,
-                                                                       :countImgsFotografia)';
+        $sql = 'UPDATE ficha_tecnica SET localizacao = :localizacao,
+                                         termoDoacao = :termoDoacao,
+                                         fabricanteAutor = :fabricanteAutor,
+                                         dataPeca = :dataPeca,
+                                         localAquisicao = :localAquisicao,
+                                         tecido = :tecido,
+                                         composicao = :composicao,
+                                         bordado = :bordado,
+                                         tipologia = :tipologia,
+                                         pintura = :pintura,
+                                         tecnica = :tecnica,
+                                         dimensoes = :dimensoes,
+				                         metodoProducao = :metodoProducao,
+                                         countImgsDesenhoTecnico = :countImgsDesenhoTecnico,
+                                         countImgsFotografia = :countImgsFotografia WHERE idPeca = :idPeca ';
 			
 		$stmt = $conn->prepare($sql);
         $stmt->bindParam(':idPeca'                    , $idPeca);
@@ -117,39 +150,24 @@
 
     function inserirFichaCatalografica($conn){
        
-        $sql = 'INSERT INTO ficha_catalografica (
-            idPeca,
-            classe,
-            subClasse,
-            tipo,
-            historicoUso,
-            possiveisUsos,
-            dataAquisicao,
-            tecnicaMaterial,
-            forma,
-            descricaoPeca,
-            dimensoes,
-            descricaoPecasComplementares,
-            observacoes,
-            descricaoDetalhes,
-            countImgsDetalhes) VALUES(:idPeca,
-                                        :classe,
-                                        :subClasse,
-                                        :tipo,
-                                        :historicoUso,
-                                        :possiveisUsos,
-                                        :dataAquisicao,
-                                        :tecnicaMaterial,
-                                        :forma,
-                                        :descricaoPeca,
-                                        :dimensoes1,
-                                        :descricaoPecasComplementares,
-                                        :observacoes,
-                                        :descricaoDetalhes,
-                                        :countImgsDetalhes)';
+        $sql = 'UPDATE ficha_catalografica SET
+				classe = :classe,
+				subClasse = :subClasse,
+				tipo = :tipo,
+				historicoUso = :historicoUso,
+				possiveisUsos = :possiveisUsos,
+				dataAquisicao = :dataAquisicao,
+				tecnicaMaterial = :tecnicaMaterial,
+				forma = :forma,
+				descricaoPeca = :descricaoPeca,
+				dimensoes = :dimensoes1,
+				descricaoPecasComplementares = :descricaoPecasComplementares,
+				observacoes = :observacoes,
+				descricaoDetalhes = :descricaoDetalhes,
+				countImgsDetalhes = :countImgsDetalhes WHERE idPeca = :idPeca';
 
 		$stmt = $conn->prepare($sql);
-        $stmt->bindParam(':idPeca'                     , $_POST['idPeca']);
+        $stmt->bindParam(':idPeca'                      , $_POST['idPeca']);
 		$stmt->bindParam(':classe'                      , $_POST['classe']);
 		$stmt->bindParam(':subClasse'                   , $_POST['subClasse']);
 		$stmt->bindParam(':tipo'                        , $_POST['tipo']);
@@ -174,44 +192,27 @@
 
     function inserirFichaConservacao($conn){
        
-        $sql = 'INSERT INTO ficha_conservacao (
-            idPeca,
-            numeroRegistro,
-            titulo,
-            classe,
-            denominacao,
-            estadoGeralConservacao,
-            dadosVerificados,
-            procedimentosHigiene,
-            reparosRealizados,
-            acondicionamento,
-            restauracaoConservacao,
-            procedimentosConservacao,
-            observacoes,
-            dataPeca,
-            responsavelPreenchimento
-        ) VALUES(
-            :idPeca,
-            :numeroRegistro,
-            :titulo,
-            :classe1,
-            :denominacao,
-            :estadoGeralConservacao,
-            :dadosVerificados,
-            :procedimentosHigiene,
-            :reparosRealizados,
-            :acondicionamento,
-            :restauracaoConservacao,
-            :procedimentosConservacao,
-            :observacoes2,
-            :data1,
-            :responsavelPreenchimento)';
+        $sql = 'UPDATE ficha_conservacao SET
+				numeroRegistro = :numeroRegistro,
+				titulo = :titulo,
+				classe = :classe,
+				denominacao = :denominacao,
+				estadoGeralConservacao = :estadoGeralConservacao,
+				dadosVerificados = :dadosVerificados,
+				procedimentosHigiene = :procedimentosHigiene,
+				reparosRealizados = :reparosRealizados,
+				acondicionamento = :acondicionamento,
+				restauracaoConservacao = :restauracaoConservacao,
+				procedimentosConservacao = :procedimentosConservacao,
+				observacoes = :observacoes,
+				dataPeca = :dataPeca,
+				responsavelPreenchimento = :responsavelPreenchimento WHERE idPeca = :idPeca';
 		
 		$stmt = $conn->prepare($sql);
-        $stmt->bindParam(':idPeca'                 , $_POST['idPeca']);
+        $stmt->bindParam(':idPeca'                  , $_POST['idPeca']);
 		$stmt->bindParam(':numeroRegistro'          , $_POST['numeroRegistro']);
 		$stmt->bindParam(':titulo'                  , $_POST['titulo']);
-		$stmt->bindParam(':classe1'                 , $_POST['classe1']);
+		$stmt->bindParam(':classe'                  , $_POST['classe1']);
 		$stmt->bindParam(':denominacao'             , $_POST['denominacao']);
 		$stmt->bindParam(':estadoGeralConservacao'  , $_POST['estadoGeralConservacao']);
 		$stmt->bindParam(':dadosVerificados'        , $_POST['dadosVerificados']);
@@ -220,8 +221,8 @@
 		$stmt->bindParam(':acondicionamento'        , $_POST['acondicionamento']);
 		$stmt->bindParam(':restauracaoConservacao'  , $_POST['restauracaoConservacao']);
 		$stmt->bindParam(':procedimentosConservacao', $_POST['procedimentosConservacao']);
-		$stmt->bindParam(':observacoes2'            , $_POST['observacoes2']);
-		$stmt->bindParam(':data1'                   , $_POST['data1']);
+		$stmt->bindParam(':observacoes'             , $_POST['observacoes2']);
+		$stmt->bindParam(':dataPeca'                , $_POST['data1']);
 		$stmt->bindParam(':responsavelPreenchimento', $_POST['responsavelPreenchimento']);
 
         if($stmt->execute()){
@@ -233,44 +234,33 @@
 
     function inserirVisualizacao($conn){
         
-        $sql = 'INSERT INTO visualizacao (
-            idPeca                   , tipoAcervo            , numeroRegistro,
-            numeroRegistrosAntigos   , sala                  , estante,
-            prateleira               , embalagem             , classe,
-            denominacao              , tipo                  , titulo,
-            autoria                  , colecao               , tipoDataProducao,
-            dataProducao             , localProducao         , historicoPeca,
-            eventosAssociados        , largura               , altura,
-            profundidade             , circunferencia        , tecnica,
-            material                 , etiquetaComposicao    , descricaoConteudo,
-            pecasComplementares      , descricaoPecasComp    , pecasRelacionadas,
-            descritores              , descritoresGeograficos, documentosRelacionados,
-            notasObservacoes         , valorPeca             , seguradora ,
-            valorSeguro              , formasIncorporacao    , tipoDataIncorporacao,
-            frequencias              , procedencias          , usoAcessoPecaFisica,
-            usoAcessoRepresentante   , historicoCirculacao   , direitos,
-            catalogador              , dataInicialCatalogacao, dataFinalCatalogacao,
-            fontesPesquisaReferencias, linkVisao             , metaKeywords,
-            metaDescription          , metaTitle
-        ) VALUES(
-            :idPeca                   ,:tipoAcervo           ,:numeroRegistro,
-			:numeroRegistrosAntigos   ,:sala                  ,:estante,
-            :prateleira               ,:embalagem             ,:classe,
-            :denominacao1             ,:tipo1                 ,:titulo1,
-            :autoria                  ,:colecao               ,:tipoDataProducao,
-            :dataProducao             ,:localProducao         ,:historicoPeca,
-            :eventosAssociados        ,:largura               ,:altura,
-            :profundidade             ,:circunferencia        ,:tecnica1,
-            :material                 ,:etiquetaComposicao    ,:descricaoConteudo,
-            :pecasComplementares      ,:descricaoPecasComp    ,:pecasRelacionadas,
-            :descritores              ,:descritoresGeograficos,:documentosRelacionados,
-            :notasObservacoes         ,:valorPeca             ,:seguradora,
-            :valorSeguro              ,:formasIncorporacao    ,:tipoDataIncorporacao,
-            :frequencias              ,:procedencias          ,:usoAcessoPecaFisica,
-            :usoAcessoRepresentante   ,:historicoCirculacao   ,:direitos,
-            :catalogador              ,:dataInicialCatalogacao,:dataFinalCatalogacao,
-            :fontesPesquisaReferencias,:linkVisao             ,:metaKeywords,
-            :metaDescription          ,:metaTitle)';
+        $sql = 'UPDATE visualizacao SET
+                tipoAcervo = :tipoAcervo                               , numeroRegistro = :numeroRegistro,
+                numeroRegistrosAntigos = :numeroRegistrosAntigos       , sala = :sala                      , estante = :estante,
+                prateleira = :prateleira                               , embalagem = :embalagem,
+			    classe = :classe                                       , denominacao = :denominacao,
+				tipo = :tipo                                           , titulo = :titulo,
+				autoria = :autoria                                     , colecao = :colecao,
+				tipoDataProducao = :tipoDataProducao                   , dataProducao = :dataProducao,
+				localProducao = :localProducao                         , historicoPeca = :historicoPeca ,
+				eventosAssociados = :eventosAssociados                 , largura = :largura,
+				altura = :altura                                       , profundidade = :profundidade,
+				circunferencia = :circunferencia                       , tecnica = :tecnica,
+				material = :material                                   , etiquetaComposicao = :etiquetaComposicao,
+				descricaoConteudo = :descricaoConteudo                 , pecasComplementares = :pecasComplementares,
+				descricaoPecasComp = :descricaoPecasComp               , pecasRelacionadas = :pecasRelacionadas,
+				descritores = :descritores                             , descritoresGeograficos = :descritoresGeograficos ,
+				documentosRelacionados = :documentosRelacionados       , notasObservacoes = :notasObservacoes,
+				valorPeca = :valorPeca                                 , seguradora = :seguradora,
+				valorSeguro = :valorSeguro                             , formasIncorporacao = :formasIncorporacao,
+				tipoDataIncorporacao = :tipoDataIncorporacao           , frequencias = :frequencias,
+				procedencias = :procedencias                           , usoAcessoPecaFisica = :usoAcessoPecaFisica,
+				usoAcessoRepresentante = :usoAcessoRepresentante       , historicoCirculacao = :historicoCirculacao,
+				direitos = :direitos                                   , catalogador = :catalogador,
+				dataInicialCatalogacao = :dataInicialCatalogacao       , dataFinalCatalogacao = :dataFinalCatalogacao ,
+				fontesPesquisaReferencias = :fontesPesquisaReferencias , linkVisao = :linkVisao,
+				metaKeywords = :metaKeywords                           , metaDescription = :metaDescription,
+				metaTitle = :metaTitle WHERE idPeca = :idPeca';
 		
 		$stmt = $conn->prepare($sql);
         $stmt->bindParam(':idPeca'                   , $_POST['idPeca']);
@@ -282,9 +272,9 @@
 		$stmt->bindParam(':prateleira'               , $_POST['prateleira']);
 		$stmt->bindParam(':embalagem'                , $_POST['embalagem']);
 		$stmt->bindParam(':classe'                   , $_POST['classe']);
-		$stmt->bindParam(':denominacao1'             , $_POST['denominacao1']);
-		$stmt->bindParam(':tipo1'                    , $_POST['tipo1']);
-		$stmt->bindParam(':titulo1'                  , $_POST['titulo1']);
+		$stmt->bindParam(':denominacao'              , $_POST['denominacao1']);
+		$stmt->bindParam(':tipo'                     , $_POST['tipo1']);
+		$stmt->bindParam(':titulo'                   , $_POST['titulo1']);
 		$stmt->bindParam(':autoria'                  , $_POST['autoria']);
 		$stmt->bindParam(':colecao'                  , $_POST['colecao']);
 		$stmt->bindParam(':tipoDataProducao'         , $_POST['tipoDataProducao']);
@@ -296,7 +286,7 @@
 		$stmt->bindParam(':altura'                   , $_POST['altura']);
 		$stmt->bindParam(':profundidade'             , $_POST['profundidade']);
 		$stmt->bindParam(':circunferencia'           , $_POST['circunferencia']);
-		$stmt->bindParam(':tecnica1'                 , $_POST['tecnica1']);
+		$stmt->bindParam(':tecnica'                  , $_POST['tecnica1']);
 		$stmt->bindParam(':material'                 , $_POST['material']);
 		$stmt->bindParam(':etiquetaComposicao'       , $_POST['etiquetaComposicao']);
 		$stmt->bindParam(':descricaoConteudo'        , $_POST['descricaoConteudo']);
@@ -336,39 +326,21 @@
 
     function inserirEnglishFields($conn){
         
-        $sql = 'INSERT INTO english_fields (
-            idPeca,
-            tituloIngles,
-            autoriaIngles,
-            colecaoIngles,
-            historiaIngles,
-            eventosIngles,
-            conteudoIngles,
-            pecasCompIngles,
-            descricaoPecasIngles,
-            metaKeywordsIngles,
-            metaDescriptionIngles,
-            metaTitleIngles,
-            disponibilidadePeca,
-            destacado,
-            fichaConservacao
-        ) VALUES(
-            '.$_POST['idPeca'].',
-            '.$_POST['tituloIngles'].',
-            '.$_POST['autoriaIngles'].',
-            '.$_POST['colecaoIngles'].',
-            '.$_POST['historiaIngles'].',
-            '.$_POST['eventosIngles'].',
-            '.$_POST['conteudoIngles'].',
-            '.$_POST['pecasCompIngles'].',
-            '.$_POST['descricaoPecasIngles'].',
-            '.$_POST['metaKeywordsIngles'].',
-            '.$_POST['metaDescriptionIngles'].',
-            '.$_POST['metaTitleIngles'].',
-            '.$_POST['disponibilidadePeca'].',
-            '.$_POST['destacado'].',
-            '.$_POST['fichaConservacao'].'
-        )';
+        $sql = 'UPDATE english_fields SET
+                tituloIngles = :tituloIngles,
+                autoriaIngles = :autoriaIngles,
+                colecaoIngles = :colecaoIngles,
+                historiaIngles = :historiaIngles,
+                eventosIngles = :eventosIngles,
+                conteudoIngles = :conteudoIngles,
+                pecasCompIngles = :pecasCompIngles,
+                descricaoPecasIngles = :descricaoPecasIngles,
+                metaKeywordsIngles = :metaKeywordsIngles,
+                metaDescriptionIngles = :metaDescriptionIngles,
+                metaTitleIngles = :metaTitleIngles,
+                disponibilidadePeca = :disponibilidadePeca,
+                destacado = :destacado,
+                fichaConservacao = :fichaConservacao WHERE idPeca = :idPeca';
 		
 		$stmt = $conn->prepare($sql);
         $stmt->bindParam(':idPeca'               , $_POST['idPeca']);
