@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  
+	<?php
+		session_start();
+	?>
+ 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +19,69 @@
     <link href="css/style.css" rel="stylesheet">
 	
 	<script>
+	
+		function iniciaAjax(){
+			var ajax;
+			
+			if(window.XMLHttpRequest){       //Mozilla, Safari ...
+				ajax = new XMLHttpRequest();
+			} else if(windows.ActiveXObject){ //Internet Explorer
+				ajax = new ActiveXObject("Msxml2.XMLHTTP");
+				
+				if(!ajax){
+					ajax = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+			}
+			else{
+				alert("Seu navegador não possui suporte a essa aplicação.");
+			}
+			
+			return ajax;
+		}
+	
+		function uploadImagem(file, codTabela, idPeca){
+			
+			ajax = iniciaAjax();	
+			
+			if(ajax){
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState == 4){
+						if(ajax.status == 200){
+							retorno = ajax.responseText;
+							
+							if(retorno == "1"){
+								alert("Sorry, there was an error uploading your file.");
+							}else if(retorno == "2"){
+								alert("Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.");
+							}else if(retorno == "3"){
+								alert("Please select a file to upload.");
+							}else{
+								alert(retorno);
+							}
+						}
+						else{
+							alert(ajax.statusText);
+						}
+					}
+				}
+				
+				//Monta a QueryString
+				dados = 'idPeca='+idPeca+
+				        "&codTabela="+codTabela+
+					    "&file="+file;
+						
+				var formData = new FormData();
+				formData.append('idPeca', idPeca);
+				formData.append('codTabela', codTabela);
+				formData.append('file', file);
+				
+				//Faz a requisição e envio pelo método POST
+				ajax.open('POST', 'salvarImagens.php', true);
+				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				ajax.setRequestHeader('Content-Type', 'multipart/form-data');
+				ajax.send(formData);
+			}
+		}
 	
 		function formulario1(){
 			
@@ -80,25 +148,17 @@
 			}		
 		}
 		
-		function iniciaAjax(){
-			var ajax;
+		function imagens(){
 			
-			if(window.XMLHttpRequest){       //Mozilla, Safari ...
-				ajax = new XMLHttpRequest();
-			} else if(windows.ActiveXObject){ //Internet Explorer
-				ajax = new ActiveXObject("Msxml2.XMLHTTP");
+			var imagens = document.getElementById("imagens");
+			if (imagens.style.display === "none") {
+				imagens.style.display = "block";
 				
-				if(!ajax){
-					ajax = new ActiveXObject("Microsoft.XMLHTTP");
-				}
-			}
-			else{
-				alert("Seu navegador não possui suporte a essa aplicação.");
-			}
-			
-			return ajax;
+			} else {
+				imagens.style.display = "none";
+			}		
 		}
-	
+		
 		function salvarFichaTecnica(){
 			
 			alert("entrou");
@@ -119,13 +179,13 @@
 			var tecnica                    = document.getElementById("tecnica").value;
 			var dimensoes                  = document.getElementById("dimensoes").value;
 			var metodoProducao             = document.getElementById("metodoProducao").value;
-			//var count_imgs_desenho_tecnico = document.getElementById("desenhoTecnico");
-			//var count_imgs_fotografia      = document.getElementById("fotografia");
-			var countImgsDesenhoTecnico    = 0;
-			var countImgsFotografia        = 0;
+			var fileCatcherDesenhoTecnico  = document.getElementById("desenhoTecnico");
+			var fileCatcherFotografia      = document.getElementById("fotografia");
+			var countImgsDesenhoTecnico    = fileCatcherDesenhoTecnico.files.length;
+			var countImgsFotografia        = fileCatcherFotografia.files.length;
 			var operacao                   = "ficha_tecnica";
 			
-			ajax = iniciaAjax();
+			ajax = iniciaAjax();	
 			
 			if(ajax){
 				ajax.onreadystatechange = function(){
@@ -143,6 +203,22 @@
 								
 								idPeca = document.getElementById("idPeca");
 								idPeca.value = retorno;
+								
+								document.getElementById("idPecaImagens").value = retorno;
+								
+								//Já que temos agora o idPeca, podemos submeter outras sessões
+								document.getElementById("submeter1").disabled = false;
+								document.getElementById("submeter2").disabled = false;
+								document.getElementById("submeter3").disabled = false;
+								document.getElementById("submeter4").disabled = false;
+								document.getElementById("submeter5").disabled = false;
+								
+								document.getElementById("aviso1").style.display = "none";
+								document.getElementById("aviso2").style.display = "none";
+								document.getElementById("aviso3").style.display = "none";
+								document.getElementById("aviso4").style.display = "none";
+								document.getElementById("aviso5").style.display = "none";
+								
 								alert("Ficha técnica cadastrada com sucesso");
 							}
 						}
@@ -195,7 +271,8 @@
 			var descricaoPeca                = document.getElementById("descricaoPeca").value;
 			var dimensoes1                   = document.getElementById("dimensoes1").value;
 			var descricaoPecasComplementares = document.getElementById("descricaoPecasComplementares").value;
-			var fotosDetalhes                = document.getElementById("fotosDetalhes");
+			var fileCatcherFotosDetalhes     = document.getElementById("fotosDetalhes");
+			var countImgsDetalhes            = fotosDetalhes.files.length;
 			var descricaoDetalhes            = document.getElementById("descricaoDetalhes").value;
 			var observacoes1                 = document.getElementById("observacoes1").value;
 			var operacao                     = "ficha_catalografica";
@@ -213,6 +290,11 @@
 								alert("Erro!");
 								
 							}else if(retorno == "OK"){
+								
+								//Upload das Fotos dos Detalhes
+								for (var i = 0; i < countImgsDetalhes; i++) {
+									uploadImagem(fileCatcherFotosDetalhes.files[i], 3, idPeca);
+								}	
 								alert("Ficha catalográfica cadastrada com sucesso");
 							}
 						}
@@ -750,6 +832,7 @@
 			
 			textArea.style.height = alturaConteudo+"px";
 		}
+	
 	</script>
 
   </head>
@@ -779,7 +862,22 @@
 			
 			</br>
 			
+			<?php
+				if(!empty($_SESSION['idPeca'])){
+					?>
+					<input type="hidden" id="idPeca" name="idPeca" value="<?php echo $_SESSION['idPeca']; ?>">
+					<?php
+				}
+				else{
+					?>
+					<input type="hidden" id="idPeca" name="idPeca">
+					<?php
+				}
+			?>
+			
+			<!--
 			<input type="hidden" id="idPeca" name="idPeca">
+			-->
 			
 			<button type="button" class="btn btn-info btn-block mb-2" onclick="formulario1();">Ficha técnica</button>
 			
@@ -947,6 +1045,25 @@
 			<form role="form" style = "display:block">
 			
 				<p class="h4 text-center">Ficha Catalográfica</p>
+				
+				<?php
+					if(!empty($_SESSION['idPeca'])){
+						
+					}
+					else{
+						?>
+						<div class="alert alert-warning" role="alert" id="aviso1">
+							Aviso! Você precisa ter cadastrado ao menos o nome da Peça, o número de Inventário de Museu e o número de Inventário de Projeto para cadastrar essa sessão.
+						</div>
+						<?php
+					}
+				?>
+				
+				<!--
+				<div class="alert alert-warning" role="alert">
+					Aviso! Você precisa ter cadastrado ao menos o nome da Peça, o número de Inventário de Museu e o número de Inventário de Projeto para cadastrar essa sessão.
+				</div>
+				-->
 			
 				<div class="form-group">
 					 
@@ -1038,14 +1155,6 @@
 				
 				<div class="form-group">
 					 
-					<label for="fotosDetalhes">
-						Fotos de detalhes:
-					</label>
-					<input type="file" class="form-control" id="fotosDetalhes" name="fotosDetalhes" multiple>
-				</div>
-				
-				<div class="form-group">
-					 
 					<label for="descricaoDetalhes">
 						Descrição dos detalhes:
 					</label>
@@ -1061,7 +1170,7 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-					<button type="button" class="btn btn-primary flex-fill" onclick="salvarFichaCatalografica();">
+					<button type="button"  id="submeter1" disabled="true" class="btn btn-primary flex-fill" onclick="salvarFichaCatalografica();">
 						Submeter
 					</button>
 				</div>
@@ -1076,7 +1185,24 @@
 			
 				<p class="h4 text-center">Ficha de Conservação</p>
 				
-				<hidden id="idpeca" name="idpeca"/>
+				<?php
+					if(!empty($_SESSION['idPeca'])){
+						
+					}
+					else{
+						?>
+						<div class="alert alert-warning" role="alert" id="aviso2">
+							Aviso! Você precisa ter cadastrado ao menos o nome da Peça, o número de Inventário de Museu e o número de Inventário de Projeto para cadastrar essa sessão.
+						</div>
+						<?php
+					}
+				?>
+				
+				<!--
+				<div class="alert alert-warning" role="alert">
+					Aviso! Você precisa ter cadastrado ao menos o nome da Peça, o número de Inventário de Museu e o número de Inventário de Projeto para cadastrar essa sessão.
+				</div>
+				-->
 			
 				<div class="form-group">
 					 
@@ -1191,7 +1317,7 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-					<button type="button" class="btn btn-primary flex-fill" onclick="salvarFichaConservacao();">
+					<button type="button" id="submeter2" disabled="true" class="btn btn-primary flex-fill" onclick="salvarFichaConservacao();">
 						Submeter
 					</button>
 				</div>
@@ -1205,6 +1331,25 @@
 			<form role="form">
 			
 				<p class="h4 text-center">Visualização Vestuário / Têxtil</p>
+				
+				<?php
+					if(!empty($_SESSION['idPeca'])){
+						
+					}
+					else{
+						?>
+						<div class="alert alert-warning" role="alert" id="aviso3">
+							Aviso! Você precisa ter cadastrado ao menos o nome da Peça, o número de Inventário de Museu e o número de Inventário de Projeto para cadastrar essa sessão.
+						</div>
+						<?php
+					}
+				?>
+				
+				<!--
+				<div class="alert alert-warning" role="alert">
+					Aviso! Você precisa ter cadastrado ao menos o nome da Peça, o número de Inventário de Museu e o número de Inventário de Projeto para cadastrar essa sessão.
+				</div>
+				-->
 			
 				<div class="form-group">
 					 
@@ -1623,7 +1768,7 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-					<button type="button" class="btn btn-primary flex-fill" onclick="salvarFichaVisualizacao();">
+					<button type="button" id="submeter3" disabled="true" class="btn btn-primary flex-fill" onclick="salvarFichaVisualizacao();">
 						Submeter
 					</button>
 				</div>
@@ -1637,7 +1782,25 @@
 			<form role="form">
 			
 				<p class="h4 text-center">English Fields</p>
-
+				
+				<?php
+					if(!empty($_SESSION['idPeca'])){
+						
+					}
+					else{
+						?>
+						<div class="alert alert-warning" role="alert" id="aviso4">
+							Aviso! Você precisa ter cadastrado ao menos o nome da Peça, o número de Inventário de Museu e o número de Inventário de Projeto para cadastrar essa sessão.
+						</div>
+						<?php
+					}
+				?>
+				
+				<!--
+				<div class="alert alert-warning" role="alert">
+					Aviso! Você precisa ter cadastrado ao menos o nome da Peça, o número de Inventário de Museu e o número de Inventário de Projeto para cadastrar essa sessão.
+				</div>
+				-->
 			
 				<div class="form-group">
 					 
@@ -1744,7 +1907,72 @@
 				</div>
 				
 				<div class="d-flex bd-highlight">
-					<button type="button" class="btn btn-primary flex-fill" onclick="salvarFichaEnglishFields()">
+					<button type="button" id="submeter4" disabled="true" class="btn btn-primary flex-fill" onclick="salvarFichaEnglishFields()">
+						Submeter
+					</button>
+				</div>
+				
+			</form>
+			</div>
+			
+			<button type="button" class="btn btn-info btn-block mb-2" onclick="imagens();">Imagens</button>
+		
+			
+			<div class="border mb-5 mt-2 p-3" id="imagens" style="display:block">
+			
+			<form role="form" action="salvarImagens.php" method="POST" enctype="multipart/form-data">
+			
+				<p class="h4 text-center">Imagens</p>
+				
+				<?php
+					if(isset($_SESSION['idPeca'])){
+						?>
+						<input type="text" id="idPecaImagens" name="idPeca" value="<?php echo $_SESSION['idPeca']; ?>">
+						<?php
+					}
+					else{
+						?>
+						<input type="text" id="idPecaImagens" name="idPeca">
+						
+						<div class="alert alert-warning" role="alert" id="aviso5">
+							Aviso! Você precisa ter cadastrado ao menos o nome da Peça, o número de Inventário de Museu e o número de Inventário de Projeto para cadastrar essa sessão.
+						</div>
+						<?php
+					}
+				?>
+				
+				<!--
+				<div class="alert alert-warning" role="alert">
+					Aviso! Você precisa ter cadastrado ao menos o nome da Peça, o número de Inventário de Museu e o número de Inventário de Projeto para cadastrar essa sessão.
+				</div>
+				-->
+				
+				<div class="form-group">
+					 
+					<label for="desenhoTecnico">
+						Desenho técnico (Frente e Costas):
+					</label>
+					<input type="file" class="form-control" id="desenhoTecnico" name="desenhoTecnico[]" multiple>
+				</div>
+				
+				<div class="form-group">
+					 
+					<label for="fotografia">
+						Fotografia (Frente e Costas):
+					</label>
+					<input type="file" class="form-control" id="fotografia" name="fotografia[]" multiple>
+				</div>
+				
+				<div class="form-group">
+					 
+					<label for="fotosDetalhes">
+						Fotos de detalhes:
+					</label>
+					<input type="file" class="form-control" id="fotosDetalhes" name="fotosDetalhes[]" multiple>
+				</div>
+				
+				<div class="d-flex bd-highlight mx-5">
+					<button type="submit" id="submeter5" disabled="true" class="btn btn-primary flex-fill">
 						Submeter
 					</button>
 				</div>
