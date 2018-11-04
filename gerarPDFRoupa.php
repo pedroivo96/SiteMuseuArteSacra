@@ -16,30 +16,27 @@
 		// instantiate and use the dompdf class
 		$dompdf = new Dompdf();
 		
-		$dompdf->set_base_path("./css");
-		
-		//Cria toda a estrutura do HTML
-		
-		$dompdf->loadHtml('<html lang="en">');
-		$dompdf->loadHtml('<head>');
-		$dompdf->loadHtml('<meta charset="utf-8">');
-		$dompdf->loadHtml('<meta http-equiv="X-UA-Compatible" content="IE=edge">');
-		$dompdf->loadHtml('<meta name="viewport" content="width=device-width, initial-scale=1">');
-		$dompdf->loadHtml('<title>Página roupa</title>');
-		$dompdf->loadHtml('<meta name="description" content="Source code generated using layoutit.com">');
-		$dompdf->loadHtml('<meta name="author" content="LayoutIt!">');
-		$dompdf->loadHtml('<link href="css/bootstrap.min.css" rel="stylesheet">');
-		$dompdf->loadHtml('</head>');
-		$dompdf->loadHtml('<body>');
-		$dompdf->loadHtml('<div class="container-fluid">');
-		$dompdf->loadHtml('<div class="row">');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
+		$html1 = '
+				<html>
+					<body>
+						<h1>Hello Dompdf</h1>';
+						
+		$html = '<html lang="en">
+					<head>
+						<meta charset="utf-8">
+						<meta http-equiv="X-UA-Compatible" content="IE=edge">
+						<meta name="viewport" content="width=device-width, initial-scale=1">
+
+						<title>Página roupa</title>
+
+						<meta name="description" content="Source code generated using layoutit.com">
+						<meta name="author" content="LayoutIt!">
+
+						<link href="css/bootstrap.min.css" rel="stylesheet">
+						<link href="css/style.css" rel="stylesheet">
+	
+					</head>
+					<body>';
 		
 		//Buscar na tabela Peças
 		$sql = 'SELECT * FROM pecas WHERE idPeca = :idPeca';
@@ -58,33 +55,30 @@
 				$nomePeca                = $row['nomePeca'];
 				$usuario                 = $row['usuario'];
 				
-				$dompdf->loadHtml('<p class="h4">1. Peça</p>');
-				$dompdf->loadHtml('<dl class="row">');
-				$dompdf->loadHtml('<dt class="col-sm-6">Nome da peça</dt>');
-				$dompdf->loadHtml('<dd class="col-sm-6"><?php echo $nomePeca; ?></dd>');
-				$dompdf->loadHtml('<dt class="col-sm-6">Número de inventário(museu)</dt>');
-				$dompdf->loadHtml('<dd class="col-sm-6"><?php echo $numeroInventarioMuseu; ?></dd>');
-				$dompdf->loadHtml('<dt class="col-sm-6">Número de inventário(projeto)</dt>');
-				$dompdf->loadHtml('<dd class="col-sm-6"><?php echo $numeroInventarioProjeto; ?></dd>');
-				$dompdf->loadHtml('<dt class="col-sm-6">Cadastrada por</dt>');
-				$dompdf->loadHtml('<dd class="col-sm-6"><?php echo $usuario; ?></dd>');
+				$html = $html.'<p>1. Peça</p>';
+				$html = $html.'<dl>';
+				$html = $html.'<dt>Nome da peça</dt>';
+				$html = $html.'<dd>'.$nomePeca.'</dd>';
+				$html = $html.'<img  class="img-fluid" src="./img/a-origem- totem.png">';
+				/*
+				$dompdf->loadHtml('<p>1. Peça</p>');
+				$dompdf->loadHtml('<dl>');
+				$dompdf->loadHtml('<dt>Nome da peça</dt>');
+				$dompdf->loadHtml('<dd>'.$nomePeca.'</dd>');
+				$dompdf->loadHtml('<dt>Número de inventário(museu)</dt>');
+				$dompdf->loadHtml('<dd>'.$numeroInventarioMuseu.'</dd>');
+				$dompdf->loadHtml('<dt>Número de inventário(projeto)</dt>');
+				$dompdf->loadHtml('<dd>'.$numeroInventarioProjeto.'</dd>');
+				$dompdf->loadHtml('<dt>Cadastrada por</dt>');
+				$dompdf->loadHtml('<dd>'.$usuario.'</dd>');
 				$dompdf->loadHtml('</dl>');
+				*/
 			}
 		}
 		
-		//Fecha a estrutura do HTML
-		/*
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		$dompdf->loadHtml('');
-		*/
+		$html = $html.'</body></html>';
+		
+		$dompdf->loadHtml($html);
 
 		// (Optional) Setup the paper size and orientation
 		$dompdf->setPaper('A4', 'portrait');
