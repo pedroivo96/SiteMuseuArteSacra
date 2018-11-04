@@ -3,36 +3,36 @@
 
     if(!empty($_POST)){
 
-        $idpeca   = $_POST['idpeca'];
+        $idPeca   = $_POST['idPeca'];
 		$ficha    = $_POST['ficha'];
         $conn     = getConnection();
         
         switch($operacao){
             case 'fichaTecnica':
-                inserirFichaTecnica($conn);
+                inserirFichaTecnica($conn, $idPeca);
                 break;
             case 'fichaCatalografica':
-                inserirFichaCatalografica($conn);
+                inserirFichaCatalografica($conn, $idPeca);
                 break;
             case 'fichaConservacao':
-                inserirFichaConservacao($conn);
+                inserirFichaConservacao($conn, $idPeca);
                 break;
             case 'fichaVisualizacao':
-                inserirVisualizacao($conn);
+                inserirVisualizacao($conn, $idPeca);
                 break;
             case 'fichaEnglish':
-                inserirEnglishFields($conn);
+                inserirEnglishFields($conn, $idPeca);
                 break;
         }
 
         $conn = null;
     }
 	
-	function buscarFichaTecnica($conn, $idpeca){
+	function buscarFichaTecnica($conn, $idPeca){
 		
-		$sql = 'SELECT * FROM ficha_tecnica WHERE id_peca = :id_peca';
+		$sql = 'SELECT * FROM ficha_tecnica WHERE idPeca = :idPeca';
 		$stmt = $conn->prepare($sql);
-		$stmt->bindValue(':id_peca', $idpeca);
+		$stmt->bindValue(':idPeca', $idPeca);
 		$stmt->execute();
 		$count = $stmt->rowCount();
 
@@ -51,11 +51,11 @@
 				
 				//Define os filhos do nodo raiz
 				$nodoRaiz->appendChild('status'         , "OK");
-				$nodoRaiz->appendChild('id_peca'        , $row['id_peca']);
+				$nodoRaiz->appendChild('idPeca'         , $row['idPeca']);
 				$nodoRaiz->appendChild('localizacao'    , $row['localizacao']);
 				$nodoRaiz->appendChild('termoDoacao'    , $row['termoDoacao']);
 				$nodoRaiz->appendChild('fabricanteAutor', $row['fabricanteAutor']);
-				$nodoRaiz->appendChild('data_peca'      , $row['data_peca']);
+				$nodoRaiz->appendChild('dataPeca'       , $row['dataPeca']);
 				$nodoRaiz->appendChild('localAquisicao' , $row['localAquisicao']);
 				$nodoRaiz->appendChild('tecido'         , $row['tecido']);
 				$nodoRaiz->appendChild('composicao'     , $row['composicao']);
@@ -64,9 +64,9 @@
 				$nodoRaiz->appendChild('pintura'        , $row['pintura']);
 				$nodoRaiz->appendChild('tecnica'        , $row['tecnica']);
 				$nodoRaiz->appendChild('dimensoes'      , $row['dimensoes']);
-				$nodoRaiz->appendChild('metodo_producao', $row['metodo_producao']);
-				$nodoRaiz->appendChild('desenhoTecnico' , $row['count_imgs_desenho_tecnico']);
-				$nodoRaiz->appendChild('fotografia'     , $row['count_imgs_fotografia']);
+				$nodoRaiz->appendChild('metodoProducao' , $row['metodoProducao']);
+				$nodoRaiz->appendChild('desenhoTecnico' , $row['countImgsDesenhoTecnico']);
+				$nodoRaiz->appendChild('fotografia'     , $row['countImgsFotografia']);
 				
 				//Retorna o resultado ao navegador
 				header("Content-type: application/xml");
@@ -91,11 +91,11 @@
 		}
 	}
 	
-	function buscarFichaCatalografica($conn, $idpeca){
+	function buscarFichaCatalografica($conn, $idPeca){
 		
-		$sql = 'SELECT * FROM ficha_catalografica WHERE id_peca = :id_peca';
+		$sql = 'SELECT * FROM ficha_catalografica WHERE idPeca = :idPeca';
 		$stmt = $conn->prepare($sql);
-		$stmt->bindValue(':id_peca', $idpeca);
+		$stmt->bindValue(':idPeca', $idPeca);
 		$stmt->execute();
 		$count = $stmt->rowCount();
 
@@ -114,7 +114,7 @@
 				
 				//Define os filhos do nodo raiz
 				$nodoRaiz->appendChild('status'                      , "OK");
-				$nodoRaiz->appendChild('id_peca'                     , $row['id_peca']);
+				$nodoRaiz->appendChild('idPeca'                      , $row['idPeca']);
 				$nodoRaiz->appendChild('classe'                      , $row['classe']);
 				$nodoRaiz->appendChild('subClasse'                   , $row['subClasse']);
 				$nodoRaiz->appendChild('tipo'                        , $row['tipo']);
@@ -128,7 +128,7 @@
 				$nodoRaiz->appendChild('descricaoPecasComplementares', $row['descricaoPecasComplementares']);
 				$nodoRaiz->appendChild('observacoes'                 , $row['observacoes']);
 				$nodoRaiz->appendChild('descricaoDetalhes'           , $row['descricaoDetalhes']);
-				$nodoRaiz->appendChild('count_imgs_detalhes'         , $row['count_imgs_detalhes']);
+				$nodoRaiz->appendChild('countImgsDetalhes'           , $row['countImgsDetalhes']);
 				
 				//Retorna o resultado ao navegador
 				header("Content-type: application/xml");
@@ -152,11 +152,11 @@
 		}
 	}
 	
-	function buscarFichaConservacao($conn, $idpeca){
+	function buscarFichaConservacao($conn, $idPeca){
 		
-		$sql = 'SELECT * FROM ficha_conservacao WHERE id_peca = :id_peca';
+		$sql = 'SELECT * FROM ficha_conservacao WHERE idPeca = :idPeca';
 		$stmt = $conn->prepare($sql);
-		$stmt->bindValue(':id_peca', $idpeca);
+		$stmt->bindValue(':idPeca', $idPeca);
 		$stmt->execute();
 		$count = $stmt->rowCount();
 
@@ -175,7 +175,7 @@
 				
 				//Define os filhos do nodo raiz
 				$nodoRaiz->appendChild('status'                  , "OK");
-				$nodoRaiz->appendChild('id_peca'                 , $row['id_peca']);
+				$nodoRaiz->appendChild('idPeca'                  , $row['idPeca']);
 				$nodoRaiz->appendChild('numeroRegistro'          , $row['numeroRegistro']);
 				$nodoRaiz->appendChild('titulo'                  , $row['titulo']);
 				$nodoRaiz->appendChild('classe'                  , $row['classe']);
@@ -188,7 +188,7 @@
 				$nodoRaiz->appendChild('restauracaoConservacao'  , $row['restauracaoConservacao']);
 				$nodoRaiz->appendChild('procedimentosConservacao', $row['procedimentosConservacao']);
 				$nodoRaiz->appendChild('observacoes'             , $row['observacoes']);
-				$nodoRaiz->appendChild('data_peca'               , $row['data_peca']);
+				$nodoRaiz->appendChild('dataPeca'                , $row['dataPeca']);
 				$nodoRaiz->appendChild('responsavelPreenchimento', $row['responsavelPreenchimento']);
 				
 				//Retorna o resultado ao navegador
@@ -213,11 +213,11 @@
 		}
 	}
 	
-	function buscarFichaVisualizacao($conn, $idpeca){
+	function buscarFichaVisualizacao($conn, $idPeca){
 		
-		$sql = 'SELECT * FROM visualizacao WHERE id_peca = :id_peca';
+		$sql = 'SELECT * FROM visualizacao WHERE idPeca = :idPeca';
 		$stmt = $conn->prepare($sql);
-		$stmt->bindValue(':id_peca', $idpeca);
+		$stmt->bindValue(':idPeca', $idPeca);
 		$stmt->execute();
 		$count = $stmt->rowCount();
 
@@ -236,7 +236,7 @@
 				
 				//Define os filhos do nodo raiz
 				$nodoRaiz->appendChild('status'                     , "OK");
-				$nodoRaiz->appendChild('id_peca'                 	, $row['id_peca']);
+				$nodoRaiz->appendChild('idPeca'                 	, $row['idPeca']);
 				$nodoRaiz->appendChild('tipoAcervo'          		, $row['tipoAcervo']);
 				$nodoRaiz->appendChild('numeroRegistro'             , $row['numeroRegistro']);
 				$nodoRaiz->appendChild('numeroRegistrosAntigos'     , $row['numeroRegistrosAntigos']);
@@ -312,11 +312,11 @@
 		}
 	}
 	
-	function buscarFichaEnglish($conn, $idpeca){
+	function buscarFichaEnglish($conn, $idPeca){
 		
-		$sql = 'SELECT * FROM english_fields WHERE id_peca = :id_peca';
+		$sql = 'SELECT * FROM english_fields WHERE idPeca = :idPeca';
 		$stmt = $conn->prepare($sql);
-		$stmt->bindValue(':id_peca', $idpeca);
+		$stmt->bindValue(':idPeca', $idPeca);
 		$stmt->execute();
 		$count = $stmt->rowCount();
 
@@ -335,7 +335,7 @@
 				
 				//Define os filhos do nodo raiz
 				$nodoRaiz->appendChild('status'               , "OK");
-				$nodoRaiz->appendChild('id_peca'              , $row['id_peca']);
+				$nodoRaiz->appendChild('idPeca'               , $row['idPeca']);
 				$nodoRaiz->appendChild('tituloIngles'         , $row['tituloIngles']);
 				$nodoRaiz->appendChild('autoriaIngles'        , $row['autoriaIngles']);
 				$nodoRaiz->appendChild('colecaoIngles'        , $row['colecaoIngles']);

@@ -39,50 +39,6 @@
 			return ajax;
 		}
 	
-		function uploadImagem(file, codTabela, idPeca){
-			
-			ajax = iniciaAjax();	
-			
-			if(ajax){
-				ajax.onreadystatechange = function(){
-					if(ajax.readyState == 4){
-						if(ajax.status == 200){
-							retorno = ajax.responseText;
-							
-							if(retorno == "1"){
-								alert("Sorry, there was an error uploading your file.");
-							}else if(retorno == "2"){
-								alert("Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.");
-							}else if(retorno == "3"){
-								alert("Please select a file to upload.");
-							}else{
-								alert(retorno);
-							}
-						}
-						else{
-							alert(ajax.statusText);
-						}
-					}
-				}
-				
-				//Monta a QueryString
-				dados = 'idPeca='+idPeca+
-				        "&codTabela="+codTabela+
-					    "&file="+file;
-						
-				var formData = new FormData();
-				formData.append('idPeca', idPeca);
-				formData.append('codTabela', codTabela);
-				formData.append('file', file);
-				
-				//Faz a requisição e envio pelo método POST
-				ajax.open('POST', 'salvarImagens.php', true);
-				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-				ajax.setRequestHeader('Content-Type', 'multipart/form-data');
-				ajax.send(formData);
-			}
-		}
-	
 		function formulario1(){
 			
 			var formulario1 = document.getElementById("formulario1");
@@ -161,7 +117,7 @@
 		
 		function salvarFichaTecnica(){
 			
-			alert("entrou");
+			//alert("entrou");
 			
 			var nomePeca                   = document.getElementById("nomePeca").value;
 			var numeroInventarioMuseu      = document.getElementById("numeroInventarioMuseu").value;
@@ -213,6 +169,11 @@
 								document.getElementById("submeter4").disabled = false;
 								document.getElementById("submeter5").disabled = false;
 								
+								//E pode também finalizar o cadastro
+								document.getElementById("finalizarCadastro").disabled = false;
+								document.getElementById("idPeca1").value = retorno;
+								
+								//Os avisos somem
 								document.getElementById("aviso1").style.display = "none";
 								document.getElementById("aviso2").style.display = "none";
 								document.getElementById("aviso3").style.display = "none";
@@ -551,6 +512,7 @@
 			var metaTitleIngles       = document.getElementById("metaTitleIngles").value;
 			var disponibilidadePeca   = document.getElementById("disponibilidadePeca").value;
 			var fichaConservacao      = document.getElementById("fichaConservacao").value;
+			var destacado             = document.getElementById("destacado").value;
 			var operacao              = "english_fields";
 			
 			ajax = iniciaAjax();
@@ -590,6 +552,7 @@
 					   "&metaTitleIngles="+metaTitleIngles+
 					   "&disponibilidadePeca="+disponibilidadePeca+
 					   "&fichaConservacao="+fichaConservacao+
+					   "&destacado="+destacado+
 					   "&operacao="+operacao;
 				
 				//Faz a requisição e envio pelo método POST
@@ -687,15 +650,47 @@
 				ajax.onreadystatechange = function(){
 					if(ajax.readyState == 4){
 						if(ajax.status == 200){
-							retorno = ajax.responseText;
+							retorno = ajax.responseXML;
 							
-							if(retorno == ""){
-								//Deu erro
-								alert("Erro!");
+							status = retorno.getElementsByTagName('status').item(0).firstChild.data;
+							
+							if(status == "OK"){
 								
-							}else if(retorno != ""){
-								//Deu certo, então retorno possui o ID da peça
-								//Pegar o ID da peça e setar nos HIDDEN
+								var classe                       = retorno.getElementsByTagName('classe').item(0).firstChild.data;
+								var subClasse                    = retorno.getElementsByTagName('subClasse').item(0).firstChild.data;
+								var tipo                         = retorno.getElementsByTagName('tipo').item(0).firstChild.data;
+								var historicoUso                 = retorno.getElementsByTagName('historicoUso').item(0).firstChild.data;
+								var possiveisUsos                = retorno.getElementsByTagName('possiveisUsos').item(0).firstChild.data;
+								var dataAquisicao                = retorno.getElementsByTagName('dataAquisicao').item(0).firstChild.data;
+								var tecnicaMaterial              = retorno.getElementsByTagName('tecnicaMaterial').item(0).firstChild.data;
+								var forma                        = retorno.getElementsByTagName('forma').item(0).firstChild.data;
+								var descricaoPeca                = retorno.getElementsByTagName('descricaoPeca').item(0).firstChild.data;
+								var dimensoes                    = retorno.getElementsByTagName('dimensoes').item(0).firstChild.data;
+								var descricaoPecasComplementares = retorno.getElementsByTagName('descricaoPecasComplementares').item(0).firstChild.data;
+								var observacoes                  = retorno.getElementsByTagName('observacoes').item(0).firstChild.data;
+								var descricaoDetalhes            = retorno.getElementsByTagName('descricaoDetalhes').item(0).firstChild.data;
+								var countImgsDetalhes            = retorno.getElementsByTagName('countImgsDetalhes').item(0).firstChild.data;
+								
+								document.getElementById("classe").value                       = classe;
+								document.getElementById("subClasse").value                    = subClasse;
+								document.getElementById("tipo").value                         = tipo;
+								document.getElementById("historicoUso").value                 = historicoUso;
+								document.getElementById("possiveisUsos").value                = possiveisUsos;
+								document.getElementById("dataAquisicao").value                = dataAquisicao;
+								document.getElementById("tecnicaMaterial").value              = tecnicaMaterial;
+								document.getElementById("forma").value                        = forma;
+								document.getElementById("descricaoPeca").value                = descricaoPeca;
+								document.getElementById("dimensoes1").value                   = dimensoes1;
+								document.getElementById("descricaoPecasComplementares").value = descricaoPecasComplementares;
+								document.getElementById("observacoes1").value                 = observacoes;
+								document.getElementById("descricaoDetalhes").value            = descricaoDetalhes;
+								document.getElementById("countImgsDetalhes").value            = countImgsDetalhes;
+								
+								
+							}else if(status != "EMPTY"){
+								
+								//Sem peça vinculada a tal Ficha
+								alert("Vazio!");
 							}
 						}
 						else{
@@ -724,15 +719,48 @@
 				ajax.onreadystatechange = function(){
 					if(ajax.readyState == 4){
 						if(ajax.status == 200){
-							retorno = ajax.responseText;
+							retorno = ajax.responseXML;
 							
-							if(retorno == ""){
-								//Deu erro
-								alert("Erro!");
+							status = retorno.getElementsByTagName('status').item(0).firstChild.data;
+							
+							if(status == "OK"){
 								
-							}else if(retorno != ""){
-								//Deu certo, então retorno possui o ID da peça
-								//Pegar o ID da peça e setar nos HIDDEN
+								var idPeca                   = retorno.getElementsByTagName('idPeca').item(0).firstChild.data;
+								var numeroRegistro           = retorno.getElementsByTagName('numeroRegistro').item(0).firstChild.data;
+								var titulo                   = retorno.getElementsByTagName('titulo').item(0).firstChild.data;
+								var classe                   = retorno.getElementsByTagName('classe').item(0).firstChild.data;
+								var denominacao              = retorno.getElementsByTagName('denominacao').item(0).firstChild.data;
+								var estadoGeralConservacao   = retorno.getElementsByTagName('estadoGeralConservacao').item(0).firstChild.data;
+								var dadosVerificados         = retorno.getElementsByTagName('dadosVerificados').item(0).firstChild.data;
+								var procedimentosHigiene     = retorno.getElementsByTagName('procedimentosHigiene').item(0).firstChild.data;
+								var reparosRealizados        = retorno.getElementsByTagName('reparosRealizados').item(0).firstChild.data;
+								var acondicionamento         = retorno.getElementsByTagName('acondicionamento').item(0).firstChild.data;
+								var restauracaoConservacao   = retorno.getElementsByTagName('restauracaoConservacao').item(0).firstChild.data;
+								var procedimentosConservacao = retorno.getElementsByTagName('procedimentosConservacao').item(0).firstChild.data;
+								var observacoes              = retorno.getElementsByTagName('observacoes').item(0).firstChild.data;
+								var dataPeca                 = retorno.getElementsByTagName('dataPeca').item(0).firstChild.data;
+								var responsavelPreenchimento = retorno.getElementsByTagName('responsavelPreenchimento').item(0).firstChild.data;
+								
+								document.getElementById("idPeca").value                   = idPeca;
+								document.getElementById("numeroRegistro").value           = numeroRegistro;
+								document.getElementById("titulo").value                   = titulo;
+								document.getElementById("classe1").value                   = classe;
+								document.getElementById("denominacao").value              = denominacao;
+								document.getElementById("estadoGeralConservacao").value   = estadoGeralConservacao;
+								document.getElementById("dadosVerificados").value         = dadosVerificados;
+								document.getElementById("procedimentosHigiene").value     = procedimentosHigiene;
+								document.getElementById("reparosRealizados").value        = reparosRealizados;
+								document.getElementById("acondicionamento").value         = acondicionamento;
+								document.getElementById("restauracaoConservacao").value   = restauracaoConservacao;
+								document.getElementById("procedimentosConservacao").value = procedimentosConservacao;
+								document.getElementById("observacoes2").value             = observacoes;
+								document.getElementById("data1").value                    = dataPeca;
+								document.getElementById("responsavelPreenchimento").value = responsavelPreenchimento;
+								
+							}else if(status != "EMPTY"){
+								
+								//Sem peça vinculada a tal Ficha
+								alert("Vazio!");
 							}
 						}
 						else{
@@ -761,15 +789,125 @@
 				ajax.onreadystatechange = function(){
 					if(ajax.readyState == 4){
 						if(ajax.status == 200){
-							retorno = ajax.responseText;
+							retorno = ajax.responseXML;
 							
-							if(retorno == ""){
-								//Deu erro
-								alert("Erro!");
+							status = retorno.getElementsByTagName('status').item(0).firstChild.data;
+							
+							if(status == "OK"){
 								
-							}else if(retorno != ""){
-								//Deu certo, então retorno possui o ID da peça
-								//Pegar o ID da peça e setar nos HIDDEN
+								var idPeca                    = retorno.getElementsByTagName('idPeca').item(0).firstChild.data;
+								var tipoAcervo                = retorno.getElementsByTagName('tipoAcervo').item(0).firstChild.data;
+								var numeroRegistro            = retorno.getElementsByTagName('numeroRegistro').item(0).firstChild.data;
+								var numeroRegistrosAntigos    = retorno.getElementsByTagName('numeroRegistrosAntigos').item(0).firstChild.data;
+								var sala                      = retorno.getElementsByTagName('sala').item(0).firstChild.data;
+								var estante                   = retorno.getElementsByTagName('estante').item(0).firstChild.data;
+								var prateleira                = retorno.getElementsByTagName('prateleira').item(0).firstChild.data;
+								var embalagem                 = retorno.getElementsByTagName('embalagem').item(0).firstChild.data;
+								var classe                    = retorno.getElementsByTagName('classe').item(0).firstChild.data;
+								var denominacao               = retorno.getElementsByTagName('denominacao').item(0).firstChild.data;
+								var tipo                      = retorno.getElementsByTagName('tipo').item(0).firstChild.data;
+								var titulo                    = retorno.getElementsByTagName('titulo').item(0).firstChild.data;
+								var autoria                   = retorno.getElementsByTagName('autoria').item(0).firstChild.data;
+								var colecao                   = retorno.getElementsByTagName('colecao').item(0).firstChild.data;
+								var tipoDataProducao          = retorno.getElementsByTagName('tipoDataProducao').item(0).firstChild.data;
+								var dataProducao              = retorno.getElementsByTagName('dataProducao').item(0).firstChild.data;
+								var localProducao             = retorno.getElementsByTagName('localProducao').item(0).firstChild.data;
+								var historicoPeca             = retorno.getElementsByTagName('historicoPeca').item(0).firstChild.data;
+								var eventosAssociados         = retorno.getElementsByTagName('eventosAssociados').item(0).firstChild.data;
+								var largura                   = retorno.getElementsByTagName('largura').item(0).firstChild.data;
+								var altura                    = retorno.getElementsByTagName('altura').item(0).firstChild.data;
+								var profundidade              = retorno.getElementsByTagName('profundidade').item(0).firstChild.data;
+								var circunferencia            = retorno.getElementsByTagName('circunferencia').item(0).firstChild.data;
+								var tecnica                   = retorno.getElementsByTagName('tecnica').item(0).firstChild.data;
+								var material                  = retorno.getElementsByTagName('material').item(0).firstChild.data;
+								var etiquetaComposicao        = retorno.getElementsByTagName('etiquetaComposicao').item(0).firstChild.data;
+								var descricaoConteudo         = retorno.getElementsByTagName('descricaoConteudo').item(0).firstChild.data;
+								var pecasComplementares       = retorno.getElementsByTagName('pecasComplementares').item(0).firstChild.data;
+								var descricaoPecasComp        = retorno.getElementsByTagName('descricaoPecasComp').item(0).firstChild.data;
+								var pecasRelacionadas         = retorno.getElementsByTagName('pecasRelacionadas').item(0).firstChild.data;
+								var descritores               = retorno.getElementsByTagName('descritores').item(0).firstChild.data;
+								var descritoresGeograficos    = retorno.getElementsByTagName('descritoresGeograficos').item(0).firstChild.data;
+								var documentosRelacionados    = retorno.getElementsByTagName('documentosRelacionados').item(0).firstChild.data;
+								var notasObservacoes          = retorno.getElementsByTagName('notasObservacoes').item(0).firstChild.data;
+								var valorPeca                 = retorno.getElementsByTagName('valorPeca').item(0).firstChild.data;
+								var seguradora                = retorno.getElementsByTagName('seguradora').item(0).firstChild.data;
+								var valorSeguro               = retorno.getElementsByTagName('valorSeguro').item(0).firstChild.data;
+								var formasIncorporacao        = retorno.getElementsByTagName('formasIncorporacao').item(0).firstChild.data;
+								var tipoDataIncorporacao      = retorno.getElementsByTagName('tipoDataIncorporacao').item(0).firstChild.data;
+								var frequencias               = retorno.getElementsByTagName('frequencias').item(0).firstChild.data;
+								var procedencias              = retorno.getElementsByTagName('procedencias').item(0).firstChild.data;
+								var usoAcessoPecaFisica       = retorno.getElementsByTagName('usoAcessoPecaFisica').item(0).firstChild.data;
+								var usoAcessoRepresentante    = retorno.getElementsByTagName('usoAcessoRepresentante').item(0).firstChild.data;
+								var historicoCirculacao       = retorno.getElementsByTagName('historicoCirculacao').item(0).firstChild.data;
+								var direitos                  = retorno.getElementsByTagName('direitos').item(0).firstChild.data;
+								var catalogador               = retorno.getElementsByTagName('catalogador').item(0).firstChild.data;
+								var dataInicialCatalogacao    = retorno.getElementsByTagName('dataInicialCatalogacao').item(0).firstChild.data;
+								var dataFinalCatalogacao      = retorno.getElementsByTagName('dataFinalCatalogacao').item(0).firstChild.data;
+								var fontesPesquisaReferencias = retorno.getElementsByTagName('fontesPesquisaReferencias').item(0).firstChild.data;
+								var linkVisao                 = retorno.getElementsByTagName('linkVisao').item(0).firstChild.data;
+								var metaKeywords              = retorno.getElementsByTagName('metaKeywords').item(0).firstChild.data;
+								var metaDescription           = retorno.getElementsByTagName('metaDescription').item(0).firstChild.data;
+								var metaTitle                 = retorno.getElementsByTagName('metaTitle').item(0).firstChild.data;
+								
+								
+								document.getElementById("idPeca").value                    = idPeca;
+								document.getElementById("tipoAcervo").value                = tipoAcervo;
+								document.getElementById("numeroRegistro").value            = numeroRegistro;
+								document.getElementById("numeroRegistrosAntigos").value    = numeroRegistrosAntigos;
+								document.getElementById("sala").value                      = sala;
+								document.getElementById("estante").value                   = estante;
+								document.getElementById("prateleira").value                = prateleira;
+								document.getElementById("embalagem").value                 = embalagem;
+								document.getElementById("classe2").value                   = classe;
+								document.getElementById("denominacao1").value              = denominacao;
+								document.getElementById("tipo1").value                     = tipo;
+								document.getElementById("titulo1").value                   = titulo;
+								document.getElementById("autoria").value                   = autoria;
+								document.getElementById("colecao").value                   = colecao;
+								document.getElementById("tipoDataProducao").value          = tipoDataProducao;
+								document.getElementById("dataProducao").value              = dataProducao;
+								document.getElementById("localProducao").value             = localProducao;
+								document.getElementById("historicoPeca").value             = historicoPeca;
+								document.getElementById("eventosAssociados").value         = eventosAssociados;
+								document.getElementById("largura").value                   = largura;
+								document.getElementById("altura").value                    = altura;
+								document.getElementById("profundidade").value              = profundidade;
+								document.getElementById("circunferencia").value            = circunferencia;
+								document.getElementById("tecnica1").value                  = tecnica;
+								document.getElementById("material").value                  = material;
+								document.getElementById("etiquetaComposicao").value        = etiquetaComposicao;
+								document.getElementById("descricaoConteudo").value         = descricaoConteudo;
+								document.getElementById("pecasComplementares").value       = pecasComplementares;
+								document.getElementById("descricaoPecasComp").value        = descricaoPecasComp;
+								document.getElementById("pecasRelacionadas").value         = pecasRelacionadas;
+								document.getElementById("descritores").value               = descritores;
+								document.getElementById("descritoresGeograficos").value    = descritoresGeograficos;
+								document.getElementById("documentosRelacionados").value    = documentosRelacionados;
+								document.getElementById("notasObservacoes").value          = notasObservacoes;
+								document.getElementById("valorPeca").value                 = valorPeca;
+								document.getElementById("seguradora").value                = seguradora;
+								document.getElementById("valorSeguro").value               = valorSeguro;
+								document.getElementById("formasIncorporacao").value        = formasIncorporacao;
+								document.getElementById("tipoDataIncorporacao").value      = tipoDataIncorporacao;
+								document.getElementById("frequencias").value               = frequencias;
+								document.getElementById("procedencias").value              = procedencias;
+								document.getElementById("usoAcessoPecaFisica").value       = usoAcessoPecaFisica;
+								document.getElementById("usoAcessoRepresentante").value    = usoAcessoRepresentante;
+								document.getElementById("historicoCirculacao").value       = historicoCirculacao;
+								document.getElementById("direitos").value                  = direitos;
+								document.getElementById("catalogador").value               = catalogador;
+								document.getElementById("dataInicialCatalogacao").value    = dataInicialCatalogacao;
+								document.getElementById("dataFinalCatalogacao").value      = dataFinalCatalogacao;
+								document.getElementById("fontesPesquisaReferencias").value = fontesPesquisaReferencias;
+								document.getElementById("linkVisao").value                 = linkVisao;
+								document.getElementById("metaKeywords").value              = metaKeywords;
+								document.getElementById("metaDescription").value           = metaDescription;
+								document.getElementById("idPeca").value                    = metaTitle;
+								
+							}else if(status != "EMPTY"){
+								
+								//Sem peça vinculada a tal Ficha
+								alert("Vazio!");
 							}
 						}
 						else{
@@ -798,15 +936,49 @@
 				ajax.onreadystatechange = function(){
 					if(ajax.readyState == 4){
 						if(ajax.status == 200){
-							retorno = ajax.responseText;
+							retorno = ajax.responseXML;
 							
-							if(retorno == ""){
-								//Deu erro
-								alert("Erro!");
+							status = retorno.getElementsByTagName('status').item(0).firstChild.data;
+							
+							if(status == "OK"){
 								
-							}else if(retorno != ""){
-								//Deu certo, então retorno possui o ID da peça
-								//Pegar o ID da peça e setar nos HIDDEN
+								var idPeca                = retorno.getElementsByTagName('idPeca').item(0).firstChild.data;
+								var tituloIngles          = retorno.getElementsByTagName('tituloIngles').item(0).firstChild.data;
+								var autoriaIngles         = retorno.getElementsByTagName('autoriaIngles').item(0).firstChild.data;
+								var colecaoIngles         = retorno.getElementsByTagName('colecaoIngles').item(0).firstChild.data;
+								var historiaIngles        = retorno.getElementsByTagName('historiaIngles').item(0).firstChild.data;
+								var eventosIngles         = retorno.getElementsByTagName('eventosIngles').item(0).firstChild.data;
+								var conteudoIngles        = retorno.getElementsByTagName('conteudoIngles').item(0).firstChild.data;
+								var pecasCompIngles       = retorno.getElementsByTagName('pecasCompIngles').item(0).firstChild.data;
+								var descricaoPecasIngles  = retorno.getElementsByTagName('descricaoPecasIngles').item(0).firstChild.data;
+								var metaKeywordsIngles    = retorno.getElementsByTagName('metaKeywordsIngles').item(0).firstChild.data;
+								var metaDescriptionIngles = retorno.getElementsByTagName('metaDescriptionIngles').item(0).firstChild.data;
+								var metaTitleIngles       = retorno.getElementsByTagName('metaTitleIngles').item(0).firstChild.data;
+								var disponibilidadePeca   = retorno.getElementsByTagName('disponibilidadePeca').item(0).firstChild.data;
+								var destacado             = retorno.getElementsByTagName('destacado').item(0).firstChild.data;
+								var fichaConservacao      = retorno.getElementsByTagName('fichaConservacao').item(0).firstChild.data;
+								
+								document.getElementById("idPeca").value                = idPeca;
+								document.getElementById("tituloIngles").value          = tituloIngles;
+								document.getElementById("autoriaIngles").value         = autoriaIngles;
+								document.getElementById("colecaoIngles").value         = colecaoIngles;
+								document.getElementById("historiaIngles").value        = historiaIngles;
+								document.getElementById("eventosIngles").value         = eventosIngles;
+								document.getElementById("conteudoIngles").value        = conteudoIngles;
+								document.getElementById("pecasCompIngles").value       = pecasCompIngles;
+								document.getElementById("descricaoPecasIngles").value  = descricaoPecasIngles;
+								document.getElementById("metaKeywordsIngles").value    = metaKeywordsIngles;
+								document.getElementById("metaDescriptionIngles").value = metaDescriptionIngles;
+								document.getElementById("metaTitleIngles").value       = metaTitleIngles;
+								document.getElementById("disponibilidadePeca").value   = disponibilidadePeca;
+								document.getElementById("destacado").value             = destacado;
+								document.getElementById("fichaConservacao").value      = fichaConservacao;
+								
+								
+							}else if(status != "EMPTY"){
+								
+								//Sem peça vinculada a tal Ficha
+								alert("Vazio!");
 							}
 						}
 						else{
@@ -1906,6 +2078,14 @@
 					<input type="text" class="form-control" id="fichaConservacao" name="fichaConservacao">
 				</div>
 				
+				<div class="form-group">
+					 
+					<label for="destacado">
+						Destacado:
+					</label>
+					<input type="text" class="form-control" id="destacado" name="destacado">
+				</div>
+				
 				<div class="d-flex bd-highlight">
 					<button type="button" id="submeter4" disabled="true" class="btn btn-primary flex-fill" onclick="salvarFichaEnglishFields()">
 						Submeter
@@ -1919,7 +2099,6 @@
 		
 			
 			<div class="border mb-5 mt-2 p-3" id="imagens" style="display:block">
-			
 			<form role="form" action="salvarImagens.php" method="POST" enctype="multipart/form-data">
 			
 				<p class="h4 text-center">Imagens</p>
@@ -1979,6 +2158,15 @@
 				
 			</form>
 			</div>
+			
+			<form role="form" action="paginaRoupa.php" method="POST">
+			
+				<input type="hidden" id="idPeca1" name="idPeca">
+			
+				<button type="button" id="finalizarCadastro" onclick="finalizarCadastro();" class="btn btn-success btn-block" disabled>
+					Finalizar cadastro
+				</button>
+			</form>
 			
 		</div>
 		
