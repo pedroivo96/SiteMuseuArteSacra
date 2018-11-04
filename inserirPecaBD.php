@@ -79,6 +79,7 @@
 				
 							if($stmt5->execute()){
 								echo $idPeca;
+								return $idPeca;
 							}
 							else{
 								echo "";
@@ -119,9 +120,7 @@
                                          pintura = :pintura,
                                          tecnica = :tecnica,
                                          dimensoes = :dimensoes,
-				                         metodoProducao = :metodoProducao,
-                                         countImgsDesenhoTecnico = :countImgsDesenhoTecnico,
-                                         countImgsFotografia = :countImgsFotografia WHERE idPeca = :idPeca ';
+				                         metodoProducao = :metodoProducao WHERE idPeca = :idPeca ';
 			
 		$stmt = $conn->prepare($sql);
         $stmt->bindParam(':idPeca'                    , $idPeca);
@@ -138,8 +137,6 @@
 		$stmt->bindParam(':tecnica'                   , $_POST['tecnica']);
 		$stmt->bindParam(':dimensoes'                 , $_POST['dimensoes']);
 		$stmt->bindParam(':metodoProducao'            , $_POST['metodoProducao']);
-		$stmt->bindParam(':countImgsDesenhoTecnico'   , $_POST['countImgsDesenhoTecnico']);
-		$stmt->bindParam(':countImgsFotografia'       , $_POST['countImgsFotografia']);
 		
 		if($stmt->execute()){
             return $idPeca;
@@ -181,7 +178,7 @@
 		$stmt->bindParam(':descricaoPecasComplementares', $_POST['descricaoPecasComplementares']);
 		$stmt->bindParam(':observacoes'                 , $_POST['observacoes']);
 		$stmt->bindParam(':descricaoDetalhes'           , $_POST['descricaoDetalhes']);
-		$stmt->bindParam(':countImgsDetalhes'         , $_POST['countImgsdetalhes']);
+		$stmt->bindParam(':countImgsDetalhes'           , $_POST['countImgsdetalhes']);
 		
 		if($stmt->execute()){
             echo "OK";

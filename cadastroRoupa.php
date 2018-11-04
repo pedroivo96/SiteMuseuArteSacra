@@ -206,8 +206,6 @@
 					   "&tecnica="+tecnica+
 					   "&dimensoes="+dimensoes+
 					   "&metodoProducao="+metodoProducao+
-					   "&countImgsDesenhoTecnico="+countImgsDesenhoTecnico+
-					   "&countImgsFotografia="+countImgsFotografia+
 					   "&usuario="+"PEDRO"+
 					   "&operacao="+operacao;
 				
@@ -280,7 +278,7 @@
 					   "&descricaoPecasComplementares="+descricaoPecasComplementares+
 					   "&fotosDetalhes="+fotosDetalhes+
 					   "&descricaoDetalhes="+descricaoDetalhes+
-					   "&observacoes1="+observacoes1+
+					   "&observacoes="+observacoes1+
 					   "&operacao="+operacao;
 				
 				//Faz a requisição e envio pelo método POST
@@ -2163,7 +2161,7 @@
 			
 				<input type="hidden" id="idPeca1" name="idPeca">
 			
-				<button type="button" id="finalizarCadastro" onclick="finalizarCadastro();" class="btn btn-success btn-block" disabled>
+				<button type="submit" id="finalizarCadastro" class="btn btn-success btn-block" disabled>
 					Finalizar cadastro
 				</button>
 			</form>
