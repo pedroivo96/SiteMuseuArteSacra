@@ -84,9 +84,9 @@
 	
 	<div class="row">
 	
-		<div class="col-md-2">
+		<div class="col-md-1">
 		</div>
-		<div class="col-md-6 px-5">
+		<div class="col-md-7 px-5">
 
 			<?php
 				include './cnx_museu.php';
@@ -97,7 +97,7 @@
 		
 					$idPeca = $_POST['idPeca'];
 		
-					echo $idPeca;
+					//echo $idPeca;
 					
 					//Buscar na tabela Peças
 					$sql = 'SELECT * FROM pecas WHERE idPeca = :idPeca';
@@ -107,7 +107,9 @@
 					$count = $stmt->rowCount();
 
 					?>
-					<p class="h4">1. Peça</p>
+					<div class="d-flex justify-content-center border mb-3 bg-light">
+						<p class="h4">1. Peça</p>
+					</div>
 					<?php
 					
 					if($count > 0){
@@ -146,7 +148,9 @@
 					$count1 = $stmt1->rowCount();
 
 					?>
-					<p class="h4">2. Ficha técnica</p>
+					<div class="d-flex justify-content-center border mb-3 bg-light">
+						<p class="h4">2. Ficha técnica</p>
+					</div>
 					<?php
 					
 					if($count1 > 0){
@@ -216,6 +220,78 @@
 						}
 					}
 					
+					?>
+					<p class="h5">Desenhos técnicos</p>
+					<div class="row">
+					
+					<?php
+					$sqlA = 'SELECT * FROM desenhos_tecnicos WHERE idPeca = :idPeca';
+					$stmtA = $conn->prepare($sqlA);
+					$stmtA->bindValue(':idPeca', $idPeca);
+					$stmtA->execute();
+					$countA = $stmtA->rowCount();
+					
+					if($countA > 0){
+						
+						$resultA = $stmtA->fetchAll();
+						
+						foreach($resultA as $rowA){
+							$nomeImagem = $rowA['nomeImagem'];
+							?>
+							<div class="col-sm-4 mb-3">
+								<img src="<?php echo $nomeImagem; ?>" class="img-fluid" alt="Responsive image">
+							</div>
+							<?php
+						}
+					}
+					else{
+						?>
+						
+						<div class="alert alert-warning w-100 center" role="alert">
+							Não há desenhos técnicos cadastrados associados a esta peça.
+						</div>
+						
+						<?php
+					}
+					?>
+					
+					</div>
+					
+					<p class="h5">Fotografia</p>
+					<div class="row">
+					
+					<?php
+					$sqlB = 'SELECT * FROM fotografia WHERE idPeca = :idPeca';
+					$stmtB = $conn->prepare($sqlB);
+					$stmtB->bindValue(':idPeca', $idPeca);
+					$stmtB->execute();
+					$countB = $stmtB->rowCount();
+					
+					if($countB > 0){
+						
+						$resultB = $stmtB->fetchAll();
+						
+						foreach($resultB as $rowB){
+							$nomeImagem = $rowB['nomeImagem'];
+							?>
+							<div class="col-sm-4 mb-3">
+								<img src="<?php echo $nomeImagem; ?>" class="img-fluid" alt="Responsive image">
+							</div>
+							<?php
+						}
+					}
+					else{
+						?>
+						<div class="alert alert-warning" role="alert">
+							Não há fotografias cadastradas associadas a esta peça.
+						</div>
+						<?php
+					}
+					?>
+					
+					</div>
+					<?php
+					
 					//Buscar na tabela Ficha Catalográfica (Buscar as imagens também)
 					$sql2 = 'SELECT * FROM ficha_catalografica WHERE idPeca = :idPeca';
 					$stmt2 = $conn->prepare($sql2);
@@ -224,7 +300,9 @@
 					$count2 = $stmt2->rowCount();
 
 					?>
-					<p class="h4">3. Ficha catalográfica</p>
+					<div class="d-flex justify-content-center border mb-3 bg-light">
+						<p class="h4">3. Ficha catalográfica</p>
+					</div>
 					<?php
 					
 					if($count2 > 0){
@@ -293,6 +371,43 @@
 						}
 					}
 					
+					?>
+					
+					<p class="h5">Fotos de detalhes</p>
+					<div class="row">
+					
+					<?php
+					$sqlC = 'SELECT * FROM fotos_detalhes WHERE idPeca = :idPeca';
+					$stmtC = $conn->prepare($sqlC);
+					$stmtC->bindValue(':idPeca', $idPeca);
+					$stmtC->execute();
+					$countC = $stmtC->rowCount();
+					
+					if($countC > 0){
+						
+						$resultC = $stmtC->fetchAll();
+						
+						foreach($resultB as $rowB){
+							$nomeImagem = $rowC['nomeImagem'];
+							?>
+							<div class="col-sm-4 mb-3">
+								<img src="<?php echo $nomeImagem; ?>" class="img-fluid" alt="Responsive image">
+							</div>
+							<?php
+						}
+					}
+					else{
+						?>
+						<div class="alert alert-warning" role="alert">
+							Não há fotos de detalhes cadastradas associadas a esta peça.
+						</div>
+						<?php
+					}
+					?>
+					
+					</div>
+					<?php
+					
 					//Buscar na tabela Ficha de Conservação
 					$sql3 = 'SELECT * FROM ficha_conservacao WHERE idPeca = :idPeca';
 					$stmt3 = $conn->prepare($sql3);
@@ -301,7 +416,9 @@
 					$count3 = $stmt3->rowCount();
 
 					?>
-					<p class="h4">4. Ficha de conservação</p>
+					<div class="d-flex justify-content-center border mb-3 bg-light">
+						<p class="h4">4. Ficha de conservação</p>
+					</div>
 					<?php
 					
 					if($count3 > 0){
@@ -381,7 +498,9 @@
 					$count4 = $stmt4->rowCount();
 
 					?>
-					<p class="h4">5. Ficha de visualização</p>
+					<div class="d-flex justify-content-center border mb-3 bg-light">
+						<p class="h4">5. Ficha de visualização</p>
+					</div>
 					<?php
 					
 					if($count4 > 0){
@@ -614,7 +733,9 @@
 					$count5 = $stmt5->rowCount();
 
 					?>
-					<p class="h4">6. English fields</p>
+					<div class="d-flex justify-content-center border mb-3 bg-light">
+						<p class="h4">6. English fields</p>
+					</div>
 					<?php
 					
 					if($count5 > 0){

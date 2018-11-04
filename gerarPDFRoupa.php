@@ -76,6 +76,7 @@
 			}
 		}
 		
+		//Fecha o documento HTML
 		$html = $html.'</body></html>';
 		
 		$dompdf->loadHtml($html);
