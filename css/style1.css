@@ -1,0 +1,49 @@
+p{
+	background-color: #C0C0C0;
+	text-align: center;
+	font-size: x-large;
+	padding-bottom:1%;
+	padding-top:1%;
+}
+
+table{
+	width:100%;
+	border: 1px solid;
+	padding:1%;
+	border-collapse: collapse;
+}
+
+tr{
+	border: 1px solid black;
+}
+
+th{
+	padding:1%;
+}
+
+td{
+	padding-bottom:1%;
+	padding:1%;
+	text-align: center;
+}
+
+.img-fluid {
+	width: auto;
+	height: auto;
+}
+
+
+.div30{
+	width: 30%;
+	margin-right:3%;
+	height:30%;
+}
+
+.bg-warning{
+	background-color: #F0E68C;
+	padding:1%;
+}
+
+.text-align-center{
+	text-align:center;
+}
