@@ -25,6 +25,8 @@ td{
 	padding-bottom:1%;
 	padding:1%;
 	text-align: center;
+	white-space:pre-wrap; 
+	word-wrap:break-word;
 }
 
 .img-fluid {
@@ -35,7 +37,8 @@ td{
 
 .div30{
 	width: 30%;
-	margin-right:3%;
+	margin-right:1.5%;
+	margin-left:1.5%;
 	height:30%;
 }
 
