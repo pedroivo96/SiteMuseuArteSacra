@@ -10,9 +10,9 @@
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 	
-	<link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+	<link href="css3/bootstrap.css" rel="stylesheet">
+    <link href="css3/bootstrap.min.css" rel="stylesheet">
+    <link href="css3/style.css" rel="stylesheet">
 	
   </head>
   <body class="bg-dark">
