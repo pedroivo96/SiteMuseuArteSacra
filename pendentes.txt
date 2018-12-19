@@ -1,23 +1,17 @@
 ﻿
--diminuir campo de pesquisa (OK Adicionado um Include pra facilitar possíveis e futuras alterações )
-
--melhorar rodape (OK Adicionada uma divisor superior)
-
--colocar dois pontos nas labels dos formularios(OK)
-
--separar codigo tela login e usar include (lembrar de converter a pag pra .php)
-
-	<?php include './tela_login.php'; ?>
-	
--colocar atribuito name="" nos campos do form cadastro peça ou substituir os ids (OK)
-	
--tirar campos cadastro peça: (OK)
-
-	'observaçoes' duplicado na ficha catalografica
-	'destacado' e 'publica documento' no english fields
-	
--colocar campos como multiline no cadastro peça
-
--prototipo pagina usuario
-
--habilitar botao login quando preencher campos
+-tirar amostras de peças do index, deixar soh a pesquisa e login
+-cabeçalho pras paginas (ao menos o nome)
+-melhorar rodape e incluir nas outras paginas
+-ajeitar pag usuario (layout, redirecionamentos ...)
+-nao cadastrar peças duas vezes
+-fixar tamanho imagem resultado pesquisa
+-expandir img ao clicar
+-criar pdf em outra aba
+-erro inserçao imgs (nao tem idPeça)
+-ficha visualizaçao e english fields nao salva os dados soh cria a linha
+-data ficha catalografica padrao americano (ficha conservaçao)
+-entrada de 'Data' na ficha tecnica
+-entrada de 'Data final de catalogaçao' e 'Data inicial de catalogaçao' em vestuario/textil
+-retirar campo imgs da ficha tecnica
+-opçao de visualizar a peça da cadastrada ao finalizar e gerar pdf (opçao de redirecionar pra pagina da roupa)
+-logout usuario
