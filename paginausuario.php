@@ -17,6 +17,8 @@
   <body>
 
     <div class="container-fluid">
+    
+    <?php echo $_COOKIE['username']; ?>
 	
 	<div class="row">
 		<?php include './campoPesquisa.html'; ?>

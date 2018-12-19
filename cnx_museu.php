@@ -1,9 +1,9 @@
 <?php
     
     function getConnection(){
-        $dsn = 'mysql:host=localhost;dbname=museu';
+        $dsn = 'mysql:host=localhost;dbname=Museu';
         $user = 'root';
-        $pass = '';
+        $pass = 'zxcv';
 
         try{
             //echo "antes";

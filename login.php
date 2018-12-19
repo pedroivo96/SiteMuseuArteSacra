@@ -18,7 +18,7 @@
 
         if($count > 0){
             setcookie("username", $username);
-            //header("Location:index.php");
+            header("Location:paginausuario.php");
             echo '<div class="alert alert-success">
                 <strong>Successo!</strong> Usuário '.$_COOKIE["username"].' logado.
                 </div>';
