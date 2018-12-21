@@ -94,11 +94,6 @@
 				
 				var ha_erro = 0;
 				
-				if(campo_nome_usuario.value == "" || campo_email.value == "" || campo_senha.value == "" || campo_senha_novamente.value == ""){
-					//erro3 = Nenhum dos campos pode estar vazio
-					document.getElementById("erro3").className = "alert alert-warning w-100 d-block";
-					ha_erro = 1;
-				}
 				if(campo_senha.value != campo_senha_novamente.value){
 					//erro2 = As senhas não coincidem
 					document.getElementById("erro2").className = "alert alert-warning w-100 d-block";
@@ -141,6 +136,47 @@
 			}
 			else{
 				campo_senha_novamente.type = "password";
+			}
+		}
+		
+		function avaliarCampos(){
+			
+			campo_email           = document.getElementById("email");
+			campo_nome_usuario    = document.getElementById("nome_usuario");
+			campo_senha           = document.getElementById("senha");
+			campo_senha_novamente = document.getElementById("senha_novamente");
+			botao_cadastro        = document.getElementById("botao_cadastro");
+			
+			//Casos um dos campos esteja vazio, desativa o botão de Cadastro
+			if(campo_email.value == "" || campo_nome_usuario.value == "" || campo_senha.value == "" || campo_senha_novamente.value == ""){
+				
+				botao_cadastro.disabled = true;
+				
+				//erro3 = Alguns dos campos está vazio
+				document.getElementById("erro3").className = "alert alert-warning w-100 d-block";
+			}
+			
+			//Caso todos os campos estejam preenchidos
+			if(campo_email.value != "" && campo_nome_usuario.value != "" && campo_senha.value != "" && campo_senha_novamente.value != ""){
+			
+				//erro3 = Alguns dos campos está vazio
+				document.getElementById("erro3").className = "alert alert-warning w-100 d-none";
+			
+				//Caso senha e senha_novamente sejam diferentes
+				if(campo_senha.value != campo_senha_novamente.value){
+						
+					//erro2 =  As senhas não coincidem
+					document.getElementById("erro2").className = "alert alert-warning w-100 d-block";
+				}
+				//Caso senha e senha_novamente sejam iguais, os avisos somem e o botão Cadastro é ativado
+				else{
+						
+					//erro2 =  As senhas não coincidem
+					document.getElementById("erro2").className = "alert alert-warning w-100 d-none";
+						
+					botao_cadastro.disabled = false;
+				}
+				
 			}
 		}
 	
@@ -194,7 +230,7 @@
 				
 				<div class="row">
 					<div class="col-md-12">
-						<div class="alert alert-warning w-100 d-none" align="center" role="alert" id="erro3">
+						<div class="alert alert-warning w-100 d-block" align="center" role="alert" id="erro3">
 							Algum dos campos está vazio.
 						</div>
 					</div>
@@ -205,13 +241,13 @@
 				<form>
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input type="email" class="form-control" id="email">
+						<input type="email" class="form-control" id="email" onkeyup="avaliarCampos()">
 
 					</div>
 					
 					<div class="form-group">
 						<label for="nome_usuario">Nome de usuário</label>
-						<input type="text" class="form-control" id="nome_usuario">
+						<input type="text" class="form-control" id="nome_usuario" onkeyup="avaliarCampos()">
 					</div>
 					
 					
@@ -220,7 +256,7 @@
 						
 						<div class="row">
 							<div class="col-md-10">
-								<input type="password" class="form-control" id="senha">
+								<input type="password" class="form-control" id="senha" onkeyup="avaliarCampos()">
 							</div>
 							
 							<div class="col-md-2">
@@ -235,7 +271,7 @@
 						
 						<div class="row">
 							<div class="col-md-10">
-								<input type="password" class="form-control" id="senha_novamente">
+								<input type="password" class="form-control" id="senha_novamente" onkeyup="avaliarCampos()">
 							</div>
 							
 							<div class="col-md-2">
@@ -244,7 +280,9 @@
 						</div>
 					</div>
 					
-					<button type="button" class="btn btn-success w-100" onclick="cadastrarUsuario()">Cadastrar</button>
+					<button type="button" class="btn btn-success w-100" onclick="cadastrarUsuario()"  id="botao_cadastro" disabled>
+						Cadastrar
+					</button>
 				</form>
 				
 			</div>
