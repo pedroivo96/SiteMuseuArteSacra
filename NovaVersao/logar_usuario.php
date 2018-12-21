@@ -24,7 +24,7 @@
 			echo "OK";
 			
         }else{
-            echo "Erro";
+            echo "ERRO";
         }
     }else{
         //header("Location: ");

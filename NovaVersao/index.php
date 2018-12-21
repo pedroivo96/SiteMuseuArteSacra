@@ -66,9 +66,9 @@
 						if(ajax.status == 200){
 							retorno = ajax.responseText;
 							
-							if(retorno == "Erro"){
+							if(retorno == "ERRO"){
 								
-								alert("ERRO");
+								document.getElementById("erro").className = "alert alert-warning w-100 d-block";
 								
 							}else if(retorno == "OK"){
 								
@@ -116,7 +116,7 @@
 			</div>
 			
 			<div class="col-md-4">
-				<div class="alert alert-warning w-100" align="center" role="alert">
+				<div class="alert alert-warning w-100 d-none" align="center" role="alert" id="erro">
 					Usuário não cadastrado
 				</div>
 			</div>
@@ -133,7 +133,7 @@
 			</div>
 		
 			<div class="col-md-4">
-				<form class="mt-1">
+				<form class="mt-5">
 					<div class="form-group">
 						<label for="nome_usuario">Nome de usuário</label>
 						<input type="text" class="form-control" id="nome_usuario" onkeyup="checar();">
@@ -144,9 +144,11 @@
 						<input type="password" class="form-control" id="senha" onkeyup="checar();">
 					</div>
 					
-					<button type="button" id="botao_login" class="btn btn-success w-100 mb-1" onclick="processa()" disabled>Submit</button>
+					<button type="button" id="botao_login" class="btn btn-success w-100 mb-1" onclick="processa()" disabled>
+						Login
+					</button>
 					
-					<button type="button" class="btn btn-light w-100">Ainda não é cadastrado ?</button>
+					<button type="button" class="btn btn-light w-100" onclick="location.href = 'cadastro_usuario.php';">Ainda não é cadastrado ?</button>
 				</form>
 			</div>
 			
