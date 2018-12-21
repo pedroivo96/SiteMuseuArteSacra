@@ -584,8 +584,6 @@
 		//$mpdf->writeHTML($css, 1); 
 		$mpdf->writeHTML($html, 0); 
 		$mpdf->Output('pecaRoupa.pdf', 'I');
-		
-		echo "OK";
         
     }
 ?>

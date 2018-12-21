@@ -78,6 +78,10 @@
 
     <div class="container-fluid">
 	
+	<?php
+		include './cabecalho.html';
+	?>
+	
 	<div class="row">
 		<?php include './campoPesquisa.html'; ?>
 	</div>
@@ -117,10 +121,11 @@
 						$result = $stmt->fetchAll();
 						
 						foreach($result as $row){
-							$numeroInventarioMuseu   = !isset($_COOKIE['username'] ? "Confidencial" : $row['numeroInventarioMuseu'];
-							$numeroInventarioProjeto = !isset($_COOKIE['username'] ? "Confidencial" : $row['numeroInventarioProjeto'];
+							
+							$numeroInventarioMuseu   = !isset($_COOKIE['username']) ? "Confidencial" : $row['numeroInventarioMuseu'];
+							$numeroInventarioProjeto = !isset($_COOKIE['username']) ? "Confidencial" : $row['numeroInventarioProjeto'];
 							$nomePeca                = $row['nomePeca'];
-							$usuario                 = !isset($_COOKIE['username'] ? "Confidencial" : $row['usuario'];
+							$usuario                 = !isset($_COOKIE['username']) ? "Confidencial" : $row['usuario'];
 							
 							?>
 							<dl class="row">
@@ -159,9 +164,9 @@
 						
 						foreach($result1 as $row1){
 							
-							$localizacao             = !isset($_COOKIE['username'] ? "Confidencial" : $row1['localizacao'];
+							$localizacao             = !isset($_COOKIE['username']) ? "Confidencial" : $row1['localizacao'];
 							$termoDoacao             = $row1['termoDoacao'];
-							$fabricanteAutor         = !isset($_COOKIE['username'] ? "Confidencial" : $row1['fabricanteAutor'];
+							$fabricanteAutor         = !isset($_COOKIE['username']) ? "Confidencial" : $row1['fabricanteAutor'];
 							$dataPeca                = $row1['dataPeca'];
 							$localAquisicao          = $row1['localAquisicao'];
 							$tecido                  = $row1['tecido'];
@@ -322,7 +327,7 @@
 							$descricaoPeca                = $row2['descricaoPeca'];
 							$dimensoes                    = $row2['dimensoes'];
 							$descricaoPecasComplementares = $row2['descricaoPecasComplementares'];
-							$observacoes                  = !isset($_COOKIE['username'] ? "Confidencial" : $row2['observacoes'];
+							$observacoes                  = !isset($_COOKIE['username']) ? "Confidencial" : $row2['observacoes'];
 							$descricaoDetalhes            = $row2['descricaoDetalhes'];
 							$countImgsDetalhes            = $row2['countImgsDetalhes'];
 							
@@ -427,20 +432,20 @@
 						
 						foreach($result3 as $row3){
 							
-							$numeroRegistro           = !isset($_COOKIE['username'] ? "Confidencial" : $row3['numeroRegistro'];
-							$titulo                   = !isset($_COOKIE['username'] ? "Confidencial" : $row3['titulo'];
-							$classe                   = !isset($_COOKIE['username'] ? "Confidencial" : $row3['classe'];
-							$denominacao              = !isset($_COOKIE['username'] ? "Confidencial" : $row3['denominacao'];
-							$estadoGeralConservacao   = !isset($_COOKIE['username'] ? "Confidencial" : $row3['estadoGeralConservacao'];
-							$dadosVerificados         = !isset($_COOKIE['username'] ? "Confidencial" : $row3['dadosVerificados'];
-							$procedimentosHigiene     = !isset($_COOKIE['username'] ? "Confidencial" : $row3['procedimentosHigiene'];
-							$reparosRealizados        = !isset($_COOKIE['username'] ? "Confidencial" : $row3['reparosRealizados'];
-							$acondicionamento         = !isset($_COOKIE['username'] ? "Confidencial" : $row3['acondicionamento'];
-							$restauracaoConservacao   = !isset($_COOKIE['username'] ? "Confidencial" : $row3['restauracaoConservacao'];
-							$procedimentosConservacao = !isset($_COOKIE['username'] ? "Confidencial" : $row3['procedimentosConservacao'];
-							$observacoes              = !isset($_COOKIE['username'] ? "Confidencial" : $row3['observacoes'];
-							$dataPeca                 = !isset($_COOKIE['username'] ? "Confidencial" : $row3['dataPeca'];
-							$responsavelPreenchimento = !isset($_COOKIE['username'] ? "Confidencial" : $row3['responsavelPreenchimento'];
+							$numeroRegistro           = !isset($_COOKIE['username']) ? "Confidencial" : $row3['numeroRegistro'];
+							$titulo                   = !isset($_COOKIE['username']) ? "Confidencial" : $row3['titulo'];
+							$classe                   = !isset($_COOKIE['username']) ? "Confidencial" : $row3['classe'];
+							$denominacao              = !isset($_COOKIE['username']) ? "Confidencial" : $row3['denominacao'];
+							$estadoGeralConservacao   = !isset($_COOKIE['username']) ? "Confidencial" : $row3['estadoGeralConservacao'];
+							$dadosVerificados         = !isset($_COOKIE['username']) ? "Confidencial" : $row3['dadosVerificados'];
+							$procedimentosHigiene     = !isset($_COOKIE['username']) ? "Confidencial" : $row3['procedimentosHigiene'];
+							$reparosRealizados        = !isset($_COOKIE['username']) ? "Confidencial" : $row3['reparosRealizados'];
+							$acondicionamento         = !isset($_COOKIE['username']) ? "Confidencial" : $row3['acondicionamento'];
+							$restauracaoConservacao   = !isset($_COOKIE['username']) ? "Confidencial" : $row3['restauracaoConservacao'];
+							$procedimentosConservacao = !isset($_COOKIE['username']) ? "Confidencial" : $row3['procedimentosConservacao'];
+							$observacoes              = !isset($_COOKIE['username']) ? "Confidencial" : $row3['observacoes'];
+							$dataPeca                 = !isset($_COOKIE['username']) ? "Confidencial" : $row3['dataPeca'];
+							$responsavelPreenchimento = !isset($_COOKIE['username']) ? "Confidencial" : $row3['responsavelPreenchimento'];
 							
 							?>
 							<dl class="row">
@@ -509,58 +514,58 @@
 						
 						foreach($result4 as $row4){ 
 						
-							$tipoAcervo                = !isset($_COOKIE['username'] ? "Confidencial" : $row4['tipoAcervo'];
-							$numeroRegistro            = !isset($_COOKIE['username'] ? "Confidencial" : $row4['numeroRegistro'];
-							$numeroRegistrosAntigos    = !isset($_COOKIE['username'] ? "Confidencial" : $row4['numeroRegistrosAntigos'];
-							$sala                      = !isset($_COOKIE['username'] ? "Confidencial" : $row4['sala'];
-							$estante                   = !isset($_COOKIE['username'] ? "Confidencial" : $row4['estante'];
-							$prateleira                = !isset($_COOKIE['username'] ? "Confidencial" : $row4['prateleira'];
-							$embalagem                 = !isset($_COOKIE['username'] ? "Confidencial" : $row4['embalagem'];
-							$classe                    = !isset($_COOKIE['username'] ? "Confidencial" : $row4['classe'];
-							$denominacao               = !isset($_COOKIE['username'] ? "Confidencial" : $row4['denominacao'];
-							$tipo                      = !isset($_COOKIE['username'] ? "Confidencial" : $row4['tipo'];
-							$titulo                    = !isset($_COOKIE['username'] ? "Confidencial" : $row4['titulo'];
-							$autoria                   = !isset($_COOKIE['username'] ? "Confidencial" : $row4['autoria'];
-							$colecao                   = !isset($_COOKIE['username'] ? "Confidencial" : $row4['colecao'];
-							$tipoDataProducao          = !isset($_COOKIE['username'] ? "Confidencial" : $row4['tipoDataProducao'];
-							$dataProducao              = !isset($_COOKIE['username'] ? "Confidencial" : $row4['dataProducao'];
-							$localProducao             = !isset($_COOKIE['username'] ? "Confidencial" : $row4['localProducao'];
-							$historicoPeca             = !isset($_COOKIE['username'] ? "Confidencial" : $row4['historicoPeca'];
-							$eventosAssociados         = !isset($_COOKIE['username'] ? "Confidencial" : $row4['eventosAssociados'];
-							$largura                   = !isset($_COOKIE['username'] ? "Confidencial" : $row4['largura'];
-							$altura                    = !isset($_COOKIE['username'] ? "Confidencial" : $row4['altura'];
-							$profundidade              = !isset($_COOKIE['username'] ? "Confidencial" : $row4['profundidade'];
-							$circunferencia            = !isset($_COOKIE['username'] ? "Confidencial" : $row4['circunferencia'];
-							$tecnica                   = !isset($_COOKIE['username'] ? "Confidencial" : $row4['tecnica'];
-							$material                  = !isset($_COOKIE['username'] ? "Confidencial" : $row4['material'];
-							$etiquetaComposicao        = !isset($_COOKIE['username'] ? "Confidencial" : $row4['etiquetaComposicao'];
-							$descricaoConteudo         = !isset($_COOKIE['username'] ? "Confidencial" : $row4['descricaoConteudo'];
-							$pecasComplementares       = !isset($_COOKIE['username'] ? "Confidencial" : $row4['pecasComplementares'];
-							$descricaoPecasComp        = !isset($_COOKIE['username'] ? "Confidencial" : $row4['descricaoPecasComp'];
-							$pecasRelacionadas         = !isset($_COOKIE['username'] ? "Confidencial" : $row4['pecasRelacionadas'];
-							$descritores               = !isset($_COOKIE['username'] ? "Confidencial" : $row4['descritores'];
-							$descritoresGeograficos    = !isset($_COOKIE['username'] ? "Confidencial" : $row4['descritoresGeograficos'];
-							$documentosRelacionados    = !isset($_COOKIE['username'] ? "Confidencial" : $row4['documentosRelacionados'];
-							$notasObservacoes          = !isset($_COOKIE['username'] ? "Confidencial" : $row4['notasObservacoes'];
-							$valorPeca                 = !isset($_COOKIE['username'] ? "Confidencial" : $row4['valorPeca'];
-							$seguradora                = !isset($_COOKIE['username'] ? "Confidencial" : $row4['seguradora'];
-							$valorSeguro               = !isset($_COOKIE['username'] ? "Confidencial" : $row4['valorSeguro'];
-							$formasIncorporacao        = !isset($_COOKIE['username'] ? "Confidencial" : $row4['formasIncorporacao'];
-							$tipoDataIncorporacao      = !isset($_COOKIE['username'] ? "Confidencial" : $row4['tipoDataIncorporacao'];
-							$frequencias               = !isset($_COOKIE['username'] ? "Confidencial" : $row4['frequencias'];
-							$procedencias              = !isset($_COOKIE['username'] ? "Confidencial" : $row4['procedencias'];
-							$usoAcessoPecaFisica       = !isset($_COOKIE['username'] ? "Confidencial" : $row4['usoAcessoPecaFisica'];
-							$usoAcessoRepresentante    = !isset($_COOKIE['username'] ? "Confidencial" : $row4['usoAcessoRepresentante'];
-							$historicoCirculacao       = !isset($_COOKIE['username'] ? "Confidencial" : $row4['historicoCirculacao'];
-							$direitos                  = !isset($_COOKIE['username'] ? "Confidencial" : $row4['direitos'];
-							$catalogador               = !isset($_COOKIE['username'] ? "Confidencial" : $row4['catalogador'];
-							$dataInicialCatalogacao    = !isset($_COOKIE['username'] ? "Confidencial" : $row4['dataInicialCatalogacao'];
-							$dataFinalCatalogacao      = !isset($_COOKIE['username'] ? "Confidencial" : $row4['dataFinalCatalogacao'];
-							$fontesPesquisaReferencias = !isset($_COOKIE['username'] ? "Confidencial" : $row4['fontesPesquisaReferencias'];
-							$linkVisao                 = !isset($_COOKIE['username'] ? "Confidencial" : $row4['linkVisao'];
-							$metaKeywords              = !isset($_COOKIE['username'] ? "Confidencial" : $row4['metaKeywords'];
-							$metaDescription           = !isset($_COOKIE['username'] ? "Confidencial" : $row4['metaDescription'];
-							$metaTitle                 = !isset($_COOKIE['username'] ? "Confidencial" : $row4['metaTitle'];
+							$tipoAcervo                = !isset($_COOKIE['username']) ? "Confidencial" : $row4['tipoAcervo'];
+							$numeroRegistro            = !isset($_COOKIE['username']) ? "Confidencial" : $row4['numeroRegistro'];
+							$numeroRegistrosAntigos    = !isset($_COOKIE['username']) ? "Confidencial" : $row4['numeroRegistrosAntigos'];
+							$sala                      = !isset($_COOKIE['username']) ? "Confidencial" : $row4['sala'];
+							$estante                   = !isset($_COOKIE['username']) ? "Confidencial" : $row4['estante'];
+							$prateleira                = !isset($_COOKIE['username']) ? "Confidencial" : $row4['prateleira'];
+							$embalagem                 = !isset($_COOKIE['username']) ? "Confidencial" : $row4['embalagem'];
+							$classe                    = !isset($_COOKIE['username']) ? "Confidencial" : $row4['classe'];
+							$denominacao               = !isset($_COOKIE['username']) ? "Confidencial" : $row4['denominacao'];
+							$tipo                      = !isset($_COOKIE['username']) ? "Confidencial" : $row4['tipo'];
+							$titulo                    = !isset($_COOKIE['username']) ? "Confidencial" : $row4['titulo'];
+							$autoria                   = !isset($_COOKIE['username']) ? "Confidencial" : $row4['autoria'];
+							$colecao                   = !isset($_COOKIE['username']) ? "Confidencial" : $row4['colecao'];
+							$tipoDataProducao          = !isset($_COOKIE['username']) ? "Confidencial" : $row4['tipoDataProducao'];
+							$dataProducao              = !isset($_COOKIE['username']) ? "Confidencial" : $row4['dataProducao'];
+							$localProducao             = !isset($_COOKIE['username']) ? "Confidencial" : $row4['localProducao'];
+							$historicoPeca             = !isset($_COOKIE['username']) ? "Confidencial" : $row4['historicoPeca'];
+							$eventosAssociados         = !isset($_COOKIE['username']) ? "Confidencial" : $row4['eventosAssociados'];
+							$largura                   = !isset($_COOKIE['username']) ? "Confidencial" : $row4['largura'];
+							$altura                    = !isset($_COOKIE['username']) ? "Confidencial" : $row4['altura'];
+							$profundidade              = !isset($_COOKIE['username']) ? "Confidencial" : $row4['profundidade'];
+							$circunferencia            = !isset($_COOKIE['username']) ? "Confidencial" : $row4['circunferencia'];
+							$tecnica                   = !isset($_COOKIE['username']) ? "Confidencial" : $row4['tecnica'];
+							$material                  = !isset($_COOKIE['username']) ? "Confidencial" : $row4['material'];
+							$etiquetaComposicao        = !isset($_COOKIE['username']) ? "Confidencial" : $row4['etiquetaComposicao'];
+							$descricaoConteudo         = !isset($_COOKIE['username']) ? "Confidencial" : $row4['descricaoConteudo'];
+							$pecasComplementares       = !isset($_COOKIE['username']) ? "Confidencial" : $row4['pecasComplementares'];
+							$descricaoPecasComp        = !isset($_COOKIE['username']) ? "Confidencial" : $row4['descricaoPecasComp'];
+							$pecasRelacionadas         = !isset($_COOKIE['username']) ? "Confidencial" : $row4['pecasRelacionadas'];
+							$descritores               = !isset($_COOKIE['username']) ? "Confidencial" : $row4['descritores'];
+							$descritoresGeograficos    = !isset($_COOKIE['username']) ? "Confidencial" : $row4['descritoresGeograficos'];
+							$documentosRelacionados    = !isset($_COOKIE['username']) ? "Confidencial" : $row4['documentosRelacionados'];
+							$notasObservacoes          = !isset($_COOKIE['username']) ? "Confidencial" : $row4['notasObservacoes'];
+							$valorPeca                 = !isset($_COOKIE['username']) ? "Confidencial" : $row4['valorPeca'];
+							$seguradora                = !isset($_COOKIE['username']) ? "Confidencial" : $row4['seguradora'];
+							$valorSeguro               = !isset($_COOKIE['username']) ? "Confidencial" : $row4['valorSeguro'];
+							$formasIncorporacao        = !isset($_COOKIE['username']) ? "Confidencial" : $row4['formasIncorporacao'];
+							$tipoDataIncorporacao      = !isset($_COOKIE['username']) ? "Confidencial" : $row4['tipoDataIncorporacao'];
+							$frequencias               = !isset($_COOKIE['username']) ? "Confidencial" : $row4['frequencias'];
+							$procedencias              = !isset($_COOKIE['username']) ? "Confidencial" : $row4['procedencias'];
+							$usoAcessoPecaFisica       = !isset($_COOKIE['username']) ? "Confidencial" : $row4['usoAcessoPecaFisica'];
+							$usoAcessoRepresentante    = !isset($_COOKIE['username']) ? "Confidencial" : $row4['usoAcessoRepresentante'];
+							$historicoCirculacao       = !isset($_COOKIE['username']) ? "Confidencial" : $row4['historicoCirculacao'];
+							$direitos                  = !isset($_COOKIE['username']) ? "Confidencial" : $row4['direitos'];
+							$catalogador               = !isset($_COOKIE['username']) ? "Confidencial" : $row4['catalogador'];
+							$dataInicialCatalogacao    = !isset($_COOKIE['username']) ? "Confidencial" : $row4['dataInicialCatalogacao'];
+							$dataFinalCatalogacao      = !isset($_COOKIE['username']) ? "Confidencial" : $row4['dataFinalCatalogacao'];
+							$fontesPesquisaReferencias = !isset($_COOKIE['username']) ? "Confidencial" : $row4['fontesPesquisaReferencias'];
+							$linkVisao                 = !isset($_COOKIE['username']) ? "Confidencial" : $row4['linkVisao'];
+							$metaKeywords              = !isset($_COOKIE['username']) ? "Confidencial" : $row4['metaKeywords'];
+							$metaDescription           = !isset($_COOKIE['username']) ? "Confidencial" : $row4['metaDescription'];
+							$metaTitle                 = !isset($_COOKIE['username']) ? "Confidencial" : $row4['metaTitle'];
 							
 							?>
 							<dl class="row">
@@ -815,27 +820,15 @@
 		
 		<div class="col-md-3" align="center">
 		
-			<div class="btn-group btn-group-vertical btn-block" role="group">
-				 
-				<button class="btn btn-primary mb-1" type="button">
-					Cadastrar Nova Peça
-				</button> 
-				<button class="btn btn-primary mb-1" type="button">
-					Configurações de Conta
-				</button> 
-				<button class="btn btn-primary mb-1" type="button">
-					Sair
-				</button>
-				
-				<form method="POST" action="gerarPDFRoupa.php" class="btn btn-primary">
-					<input type="hidden" id="idPeca" name="idPeca" value="<?php echo $_POST['idPeca']; ?>">
+			<?php include './menuUsuario.html'; ?>
+			
+			<form method="POST" action="gerarPDFRoupa.php" class="btn btn-primary w-100" target="_blank">
+				<input type="hidden" id="idPeca" name="idPeca" value="<?php echo $_POST['idPeca']; ?>">
 					
-					<button class="btn btn-primary" type="submit">
-						Gerar PDF
-					</button> 
-				</form>
-				
-			</div>
+				<button class="btn btn-primary" type="submit">
+					Gerar PDF
+				</button> 
+			</form>
 			
 		</div>
 		

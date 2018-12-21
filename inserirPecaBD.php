@@ -30,8 +30,17 @@
     function inserirPeca($conn){
 
         $idPeca = $_POST['numeroInventarioMuseu'].'/'.$_POST['numeroInventarioProjeto'];
+		
+		$sql0 = 'SELECT * FROM pecas WHERE idPeca = :idPeca';
+        $stmt0 = $conn->prepare($sql0);
+        $stmt0->bindValue(':idPeca', $idPeca);
+        $stmt0->execute();
+        $count0 = $stmt0->rowCount();
 
-        $sql = 'INSERT INTO pecas (numeroInventarioMuseu,
+        if($count0 > 0){
+            echo "ERRO";	
+        }else{
+			$sql = 'INSERT INTO pecas (numeroInventarioMuseu,
                                    numeroInventarioProjeto,
                                    nomePeca,
                                    idPeca,
@@ -40,68 +49,69 @@
 													:nomePeca,
 													:idPeca,
 													:usuario)';
-		$stmt = $conn->prepare($sql);
-        $stmt->bindParam(':numeroInventarioMuseu'   , $_POST['numeroInventarioMuseu']);
-		$stmt->bindParam(':numeroInventarioProjeto' , $_POST['numeroInventarioProjeto']);
-		$stmt->bindParam(':nomePeca'                , $_POST['nomePeca']);
-		$stmt->bindParam(':idPeca'                  , $idPeca);
-		$stmt->bindParam(':usuario'                 , $_POST['usuario']);
+			$stmt = $conn->prepare($sql);
+			$stmt->bindParam(':numeroInventarioMuseu'   , $_POST['numeroInventarioMuseu']);
+			$stmt->bindParam(':numeroInventarioProjeto' , $_POST['numeroInventarioProjeto']);
+			$stmt->bindParam(':nomePeca'                , $_POST['nomePeca']);
+			$stmt->bindParam(':idPeca'                  , $idPeca);
+			$stmt->bindParam(':usuario'                 , $_POST['usuario']);
 			
-		if($stmt->execute()){
+			if($stmt->execute()){
 			
-			$sql1 = 'INSERT INTO ficha_tecnica (idPeca) VALUES (:idPeca)';
-			$stmt1 = $conn->prepare($sql1);
-			$stmt1->bindParam(':idPeca', $idPeca);
+				$sql1 = 'INSERT INTO ficha_tecnica (idPeca) VALUES (:idPeca)';
+				$stmt1 = $conn->prepare($sql1);
+				$stmt1->bindParam(':idPeca', $idPeca);
 			
-			if($stmt1->execute()){
+				if($stmt1->execute()){
 				
-				$sql2 = 'INSERT INTO ficha_catalografica (idPeca) VALUES (:idPeca)';
-				$stmt2 = $conn->prepare($sql2);
-				$stmt2->bindParam(':idPeca', $idPeca);
-				
-				if($stmt2->execute()){
+					$sql2 = 'INSERT INTO ficha_catalografica (idPeca) VALUES (:idPeca)';
+					$stmt2 = $conn->prepare($sql2);
+					$stmt2->bindParam(':idPeca', $idPeca);
 					
-					$sql3 = 'INSERT INTO ficha_conservacao (idPeca) VALUES (:idPeca)';
-					$stmt3 = $conn->prepare($sql3);
-					$stmt3->bindParam(':idPeca', $idPeca);
+					if($stmt2->execute()){
+					
+						$sql3 = 'INSERT INTO ficha_conservacao (idPeca) VALUES (:idPeca)';
+						$stmt3 = $conn->prepare($sql3);
+						$stmt3->bindParam(':idPeca', $idPeca);
 				
-					if($stmt3->execute()){
+						if($stmt3->execute()){
 						
-						$sql4 = 'INSERT INTO visualizacao (idPeca) VALUES (:idPeca)';
-						$stmt4 = $conn->prepare($sql4);
-						$stmt4->bindParam(':idPeca', $idPeca);
+							$sql4 = 'INSERT INTO visualizacao (idPeca) VALUES (:idPeca)';
+							$stmt4 = $conn->prepare($sql4);
+							$stmt4->bindParam(':idPeca', $idPeca);
 				
-						if($stmt4->execute()){
+							if($stmt4->execute()){
 							
-							$sql5 = 'INSERT INTO english_fields (idPeca) VALUES (:idPeca)';
-							$stmt5 = $conn->prepare($sql5);
-							$stmt5->bindParam(':idPeca', $idPeca);
+								$sql5 = 'INSERT INTO english_fields (idPeca) VALUES (:idPeca)';
+								$stmt5 = $conn->prepare($sql5);
+								$stmt5->bindParam(':idPeca', $idPeca);
 				
-							if($stmt5->execute()){
-								echo $idPeca;
-								return $idPeca;
+								if($stmt5->execute()){
+									echo $idPeca;
+									
+								}
+								else{
+									echo "";
+								}
 							}
 							else{
 								echo "";
-							}
+							}	
 						}
 						else{
 							echo "";
-						}	
+						}
 					}
 					else{
 						echo "";
 					}
-				}
-				else{
+				}else{
 					echo "";
 				}
 			}else{
 				echo "";
 			}
-        }else{
-            echo "";
-        }
+		}
     }
 
     function inserirFichaTecnica($conn){

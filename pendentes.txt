@@ -1,17 +1,17 @@
 ﻿
--tirar amostras de peças do index, deixar soh a pesquisa e login
--cabeçalho pras paginas (ao menos o nome)
+-tirar amostras de peças do index, deixar soh a pesquisa e login---------------------------------------------------FEITO
+-cabeçalho pras paginas (ao menos o nome) -------------------------------------------------------------------------FEITO
 -melhorar rodape e incluir nas outras paginas
 -ajeitar pag usuario (layout, redirecionamentos ...)
--nao cadastrar peças duas vezes
+-nao cadastrar peças duas vezes -----------------------------------------------------------------------------------FEITO
 -fixar tamanho imagem resultado pesquisa
 -expandir img ao clicar
--criar pdf em outra aba
+-criar pdf em outra aba--------------------------------------------------------------------------------------------FEITO
 -erro inserçao imgs (nao tem idPeça)
 -ficha visualizaçao e english fields nao salva os dados soh cria a linha
--data ficha catalografica padrao americano (ficha conservaçao)
--entrada de 'Data' na ficha tecnica
--entrada de 'Data final de catalogaçao' e 'Data inicial de catalogaçao' em vestuario/textil
--retirar campo imgs da ficha tecnica
+-data ficha catalografica padrao americano (ficha conservaçao) ----------------------------------------------------FEITO
+-entrada de 'Data' na ficha tecnica -------------------------------------------------------------------------------FEITO
+-entrada de 'Data final de catalogaçao' e 'Data inicial de catalogaçao' em vestuario/textil -----------------------FEITO
+-retirar campo imgs da ficha tecnica ------------------------------------------------------------------------------FEITO
 -opçao de visualizar a peça da cadastrada ao finalizar e gerar pdf (opçao de redirecionar pra pagina da roupa)
--logout usuario
+-logout usuario ---------------------------------------------------------------------------------------------------FEITO

@@ -5,11 +5,11 @@
     if(!empty($_POST)){
 
         $username = $_POST['username'];
-        $senha = $_POST['senha'];
+        $senha    = $_POST['senha'];
 
         $conn = getConnection();
 
-        $sql = 'SELECT * FROM Usuarios WHERE username = :username AND senha = :senha';
+        $sql = 'SELECT * FROM usuarios WHERE username = :username AND senha = :senha';
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':username', $username);
         $stmt->bindValue(':senha', $senha);
@@ -18,14 +18,9 @@
 
         if($count > 0){
             setcookie("username", $username);
-            header("Location:paginausuario.php");
-            echo '<div class="alert alert-success">
-                <strong>Successo!</strong> Usuário '.$_COOKIE["username"].' logado.
-                </div>';
+            echo "OK";
         }else{
-            echo '<div class="alert alert-danger">
-                <strong>Erro no login!</strong> Usuário não cadastrado.
-                </div>';
+            echo "Erro1";
         }
     }else{
         //header("Location: ");

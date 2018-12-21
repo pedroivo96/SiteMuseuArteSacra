@@ -117,8 +117,6 @@
 		
 		function salvarFichaTecnica(){
 			
-			//alert("entrou");
-			
 			var nomePeca                   = document.getElementById("nomePeca").value;
 			var numeroInventarioMuseu      = document.getElementById("numeroInventarioMuseu").value;
 			var numeroInventarioProjeto    = document.getElementById("numeroInventarioProjeto").value;
@@ -140,6 +138,7 @@
 			var countImgsDesenhoTecnico    = fileCatcherDesenhoTecnico.files.length;
 			var countImgsFotografia        = fileCatcherFotografia.files.length;
 			var operacao                   = "ficha_tecnica";
+			var username                   = document.getElementById("username").value;
 			
 			ajax = iniciaAjax();	
 			
@@ -156,6 +155,8 @@
 							}else{
 								//Deu certo, então retorno possui o ID da peça
 								//Pegar o ID da peça e setar nos HIDDEN
+								
+								alert("Ficha técnica cadastrada com sucesso");
 								
 								idPeca = document.getElementById("idPeca");
 								idPeca.value = retorno;
@@ -180,7 +181,6 @@
 								document.getElementById("aviso4").style.display = "none";
 								document.getElementById("aviso5").style.display = "none";
 								
-								alert("Ficha técnica cadastrada com sucesso");
 							}
 						}
 						else{
@@ -206,7 +206,7 @@
 					   "&tecnica="+tecnica+
 					   "&dimensoes="+dimensoes+
 					   "&metodoProducao="+metodoProducao+
-					   "&usuario="+"PEDRO"+
+					   "&usuario="+username+
 					   "&operacao="+operacao;
 				
 				//Faz a requisição e envio pelo método POST
@@ -682,7 +682,6 @@
 								document.getElementById("descricaoPecasComplementares").value = descricaoPecasComplementares;
 								document.getElementById("observacoes1").value                 = observacoes;
 								document.getElementById("descricaoDetalhes").value            = descricaoDetalhes;
-								document.getElementById("countImgsDetalhes").value            = countImgsDetalhes;
 								
 								
 							}else if(status != "EMPTY"){
@@ -1010,6 +1009,10 @@
 
     <div class="container-fluid">
 	
+	<?php
+		include './cabecalho.html';
+	?>
+	
 	<div class="row">
 		<?php include './campoPesquisa.html'; ?>
 	</div>
@@ -1044,6 +1047,8 @@
 					<?php
 				}
 			?>
+			
+			<input type="hidden" id="username" name="username" value="<?php echo $_COOKIE["username"]; ?>">
 			
 			<!--
 			<input type="hidden" id="idPeca" name="idPeca">
@@ -1109,7 +1114,7 @@
 					<label for="data">
 						Data:
 					</label>
-					<input type="text" class="form-control" id="data" name="data">
+					<input type="date" class="form-control" id="data" name="data">
 				</div>
 				
 				<div class="form-group">
@@ -1183,22 +1188,6 @@
 					 </label>
 					 <input type="text" class="form-control" id="metodoProducao" name="metodoProducao">
 				 </div>
-				
-				<div class="form-group">
-					 
-					<label for="desenhoTecnico">
-						Desenho técnico (Frente e Costas):
-					</label>
-					<input type="file" class="form-control" id="desenhoTecnico" name="desenhoTecnico" multiple>
-				</div>
-				
-				<div class="form-group">
-					 
-					<label for="fotografia">
-						Fotografia (Frente e Costas):
-					</label>
-					<input type="file" class="form-control" id="fotografia" name="fotografia" multiple>
-				</div>
 				
 				<div class="d-flex bd-highlight mx-5">
 					<button type="button" class="btn btn-primary flex-fill" onclick="salvarFichaTecnica();">
@@ -1638,7 +1627,7 @@
 					<label for="dataProducao">
 						Data de produção:
 					</label>
-					<input type="text" class="form-control" id="dataProducao" name="dataProducao">
+					<input type="date" class="form-control" id="dataProducao" name="dataProducao">
 				</div>
 				
 				<div class="form-group">
@@ -1886,7 +1875,7 @@
 					<label for="dataInicialCatalogacao">
 						Data inicial de catalogação:
 					</label>
-					<input type="text" class="form-control" id="dataInicialCatalogacao" name="dataInicialCatalogacao">
+					<input type="date" class="form-control" id="dataInicialCatalogacao" name="dataInicialCatalogacao">
 				</div>
 				
 				<div class="form-group">
@@ -1894,7 +1883,7 @@
 					<label for="dataFinalCatalogacao">
 						Data final de catalogação:
 					</label>
-					<input type="text" class="form-control" id="dataFinalCatalogacao" name="dataFinalCatalogacao">
+					<input type="date" class="form-control" id="dataFinalCatalogacao" name="dataFinalCatalogacao">
 				</div>
 				
 				<div class="form-group">
@@ -2161,7 +2150,7 @@
 			
 				<input type="hidden" id="idPeca1" name="idPeca">
 			
-				<button type="submit" id="finalizarCadastro" class="btn btn-success btn-block" disabled>
+				<button type="submit" id="finalizarCadastro" class="btn btn-success btn-block">
 					Finalizar cadastro
 				</button>
 			</form>

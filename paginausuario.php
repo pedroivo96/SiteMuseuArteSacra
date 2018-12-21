@@ -18,87 +18,108 @@
 
     <div class="container-fluid">
     
-    <?php echo $_COOKIE['username']; ?>
+    <?php 
+		echo $_COOKIE['username'];
+		include './cnx_museu.php';
+	?>
+	
+	<?php
+		include './cabecalho.html';
+	?>
 	
 	<div class="row">
 		<?php include './campoPesquisa.html'; ?>
 	</div>
-	<div class="row">
+	<div class="row px-4">
 	
-		<div class="col-md-9">
-		
-			<div class="row">
-			
-				<div class="col-md-4">
-					<div class="card">
-						<img class="card-img-top" alt="Bootstrap Thumbnail First" src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg">
-						<div class="card-block">
-							<h5 class="card-title">
-								Card title
-							</h5>
-							<p class="card-text">
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-							<p>
-								<a class="btn btn-primary" href="#">Action</a> 
-							</p>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="card">
-						<img class="card-img-top" alt="Bootstrap Thumbnail Second" src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg">
-						<div class="card-block">
-							<h5 class="card-title">
-								Card title
-							</h5>
-							<p class="card-text">
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-							<p>
-								<a class="btn btn-primary" href="#">Action</a> 
-							</p>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="card">
-						<img class="card-img-top" alt="Bootstrap Thumbnail Third" src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg">
-						<div class="card-block">
-							<h5 class="card-title">
-								Card title
-							</h5>
-							<p class="card-text">
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-							<p>
-								<a class="btn btn-primary" href="#">Action</a> 
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
 		<div class="col-md-3">
 		
 			<div class="btn-group btn-group-vertical btn-block" role="group">
 				 
-				<button class="btn btn-primary mb-1" type="button">
+				<button class="btn btn-primary mb-1" type="button" onclick="location.href = 'cadastroRoupa.php';">
 					Cadastrar Nova Peça
 				</button> 
 				<button class="btn btn-primary mb-1" type="button">
 					Configurações de Conta
 				</button> 
-				<button class="btn btn-primary" type="button">
+				<button class="btn btn-danger" type="button" onclick="location.href = 'sair.php';">
 					Sair
 				</button> 
 				
 			</div>
 			
 		</div>
+	
+		<div class="col-md-8">
+		
+			<div class="row">
+			
+				<?php
+					$conn = getConnection();
+		
+					$sql = 'SELECT idPeca, nomePeca  FROM pecas WHERE usuario = :usuario';
+					$stmt = $conn->prepare($sql);
+					$stmt->bindValue(':usuario', $_COOKIE['username']);
+					$stmt->execute();
+					$count = $stmt->rowCount();
+		
+					if($count > 0){
+						$result = $stmt->fetchAll();
+			
+						foreach($result as $row){
+							?>
+							<div class="col-sm-4 mb-3">
+								
+									<div class="card">
+									
+										<?php
+										$sql1 = 'SELECT nomeImagem FROM fotografia WHERE idPeca = :idPeca';
+										$stmt1 = $conn->prepare($sql1);
+										$stmt1->bindValue(':idPeca', $row['idPeca']);
+										$stmt1->execute();
+										$count1 = $stmt1->rowCount();
+		
+										if($count1 > 0){
+											$result1 = $stmt1->fetchAll();
+			
+											foreach($result1 as $row1){
+												?>
+												<img class="card-img-top" alt="Bootstrap Thumbnail First" src="<?php echo $row1['nomeImagem']; ?>">
+												<?php
+											}
+										}
+										
+										?>
+									
+										<div class="card-block">
+											<h5 class="card-title">
+												<?php echo $row['nomePeca']; ?>
+											</h5>
+											<p>
+												<a class="btn btn-primary" href="#">Action</a> 
+											</p>
+										</div>
+									</div>
+								
+							</div>
+							
+							<?php
+						}
+					}
+					else{
+						?>
+						<div class="alert alert-warning w-100 text-center" role="alert">
+							<b>Você não cadastrou nenhuma peça.</b>
+						</div>
+						<?php
+					}
+				
+				?>
+			
+			</div>
+		</div>
+		
+		<div class="col-md-1"></div>
 		
 	</div>
 	<div class="row">

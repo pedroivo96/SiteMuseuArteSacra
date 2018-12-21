@@ -15,6 +15,7 @@
 		
 		salvarFotosDetalhes($conn, $idPeca);
 		
+		session_start();
 		$_SESSION['idPeca'] = $idPeca;
 		header("Location: cadastroRoupa.php");
 	}

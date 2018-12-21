@@ -16,51 +16,62 @@
 	<script>
 	
 		function check_pass() {
-			if (document.getElementById('senha').value ==
-				document.getElementById('senhaNovamente').value) {
-				document.getElementById('submit').disabled = false;
-				document.getElementById('senhaNaoIguais').style.display = "none";
-			} else {
-				document.getElementById('submit').disabled = true;
+		
+			var senha          = document.getElementById('senha1').value;
+			var senhanovamente = document.getElementById('senhaNovamente1').value;
+			
+			if(senha.length == 0 || senhanovamente.length == 0){
 				document.getElementById('senhaNaoIguais').style.display = "block";
 			}
-			
-			var senha = document.getElementById('senha').value;
-			
-			if(senha.length < 6 || senha.length > 25){
-				document.getElementById('tamanhoSenha').style.display = "block";
-			}
 			else{
-				document.getElementById('tamanhoSenha').style.display = "none";
+				if (document.getElementById('senha1').value ==
+					document.getElementById('senhaNovamente1').value) {
+						
+					document.getElementById('submit1').disabled = false;
+					document.getElementById('senhaNaoIguais').style.display = "none";
+				} else {
+					
+					document.getElementById('submit1').disabled = true;
+					document.getElementById('senhaNaoIguais').style.display = "block";
+				}
 			}
 		}
 	
 	</script>
 
   </head>
-  <body class="bg-dark">
+  <body>
 
 		<?php
 			include './cadastroUser.php';
 		?>
 
     <div class="container-fluid">
+	
+	<?php
+		include './cabecalho.html';
+	?>
+	
 	<div class="row">
 		<?php include './campoPesquisa.html'; ?>
 	</div>
 	<div class="row">
-		<div class="col-md-9">
-		
+	
+		<div class="col-md-3">
+			<?php include './telaLogin.html'; ?>
+		</div>
+	
+		<div class="col-md-7">
 		
 			<form role="form" class="mx-auto" style="width: 500px;" action="cadastroUsuario.php" method="POST">
 			
-				<h3 class="text-info">
+				<h3 class="text-primary">
 					Cadastro de Usuário
 				</h3>
 			
 				<div class="form-group">
 					 
-					<label for="email" class="text-white">
+					<label for="email">
 						Endereço de Email
 					</label>
 					<input type="email" class="form-control" id="email" name="email">
@@ -68,7 +79,7 @@
 				
 				<div class="form-group">
 					 
-					<label for="nomeUsuario" class="text-white">
+					<label for="nomeUsuario">
 						Nome de Usuário
 					</label>
 					<input type="text" class="form-control" id="nomeUsuario" name="username">
@@ -76,15 +87,15 @@
 
 				<div class="form-group">
 					 
-					<label for="senha" class="text-white">
+					<label for="senha">
 						Senha
 					</label>
-					<input type="password" class="form-control" id="senha" name="senha" onkeyup="check_pass();" >
+					<input type="password" class="form-control" id="senha1" name="senha" onkeyup="check_pass()" >
 				</div>
 				
 				<label for="senhaNovamente" class="text-danger" id="senhaNaoIguais">
 					As senhas não conferem
-				</label>
+				</label><br/>
 				
 				<label for="senhaNovamente" class="text-danger" id="tamanhoSenha">
 					A senha deve ter entre 6 e 25 caracteres
@@ -92,14 +103,14 @@
 				
 				<div class="form-group">
 				
-					 
-					<label for="senhaNovamente" class="text-white">
+					<label for="senhaNovamente">
 						Digite a senha novamente
 					</label>
-					<input type="password" class="form-control" id="senhaNovamente" onkeyup="check_pass();">
+					<input type="password" class="form-control" id="senhaNovamente1" onkeyup="check_pass()">
 				</div>
 				
-				<label for="senhaNovamente" class="text-white">
+				<!--
+				<label for="senhaNovamente">
 						Escolha uma pergunta de segurança
 				</label>
 					
@@ -119,16 +130,17 @@
 				
 				<div class="form-group">
 					 
-					<label for="resposta" class="text-white">
+					<label for="resposta">
 						Digite a resposta da pergunta escolhida
 					</label>
 					<input type="text" class="form-control" id="resposta" onkeyup="check_pass();">
 				</div>
+				-->
 				
 			
 				<div class="btn-group btn-group-vertical btn-block" role="group">
 				 
-					<button class="btn btn-primary" type="submit" id="submit" disabled>
+					<button class="btn btn-primary" type="submit" id="submit1" disabled>
 						Cadastro
 					</button> 
 				
@@ -139,9 +151,10 @@
 			
 		</div>
 		
-		<div class="col-md-3">
-			<?php include './telaLogin.html'; ?>
+		<div class="col-md-2">
+		
 		</div>
+		
 	</div>
 	<div class="row">
 		<?php include './rodape.html'; ?>
