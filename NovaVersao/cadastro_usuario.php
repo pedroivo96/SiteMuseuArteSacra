@@ -118,24 +118,30 @@
 		function mostrarOcultarSenha(){
 			
 			var campo_senha = document.getElementById("senha");
+			var botao_ver_senha = document.getElementById("ver_senha");
 			
 			if(campo_senha.type == "password"){
 				campo_senha.type = "text";
+				botao_ver_senha.src = "icons/icons8-invisible-32.png";
 			}
 			else{
 				campo_senha.type = "password";
+				botao_ver_senha.src = "icons/icons8-eye-32.png";
 			}
 		}
 		
 		function mostrarOcultarSenhaNovamente(){
 			
 			var campo_senha_novamente = document.getElementById("senha_novamente");
+			var botao_ver_senha_novamente = document.getElementById("ver_senha_novamente");
 			
 			if(campo_senha_novamente.type == "password"){
 				campo_senha_novamente.type = "text";
+				botao_ver_senha_novamente.src = "icons/icons8-invisible-32.png";
 			}
 			else{
 				campo_senha_novamente.type = "password";
+				botao_ver_senha_novamente.src = "icons/icons8-eye-32.png";
 			}
 		}
 		
@@ -260,7 +266,7 @@
 							</div>
 							
 							<div class="col-md-2">
-								<img src="icons/icons8-eye-32.png" class="btn btn-success img-fluid w-100 h-100" onclick="mostrarOcultarSenha()">
+								<img src="icons/icons8-eye-32.png" class="btn btn-success img-fluid w-100 h-100" onclick="mostrarOcultarSenha()" id="ver_senha">
 							</div>
 						</div>
 					</div>
@@ -275,7 +281,7 @@
 							</div>
 							
 							<div class="col-md-2">
-								<img src="icons/icons8-invisible-32.png" class="btn btn-success img-fluid w-100 h-100" onclick="mostrarOcultarSenhaNovamente()">
+								<img src="icons/icons8-eye-32.png" class="btn btn-success img-fluid w-100 h-100" onclick="mostrarOcultarSenhaNovamente()" id="ver_senha_novamente">
 							</div>
 						</div>
 					</div>

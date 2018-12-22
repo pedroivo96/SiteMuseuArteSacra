@@ -4,6 +4,7 @@
   
 	<?php
 		session_start(); 
+		include './conexao_museu.php';
  
 		// Verifica se existe os dados da sessão de login 
 		if(!isset($_SESSION["nome_usuario"])) { 
@@ -67,12 +68,66 @@
 		
 			<!-- ÁREA PRINCIPAL -->
 			
-			<div class="col-md-4">
+			<div class="col-md-3">
 			
-				<button type="button" class="btn btn-success w-100">Cadastrar nova peça</button>
+				<button type="button" class="btn btn-success w-100 mb-1" onclick="location.href = 'cadastro_peca.php';">
+					Cadastrar nova peça
+				</button>
+				
+				<button type="button" class="btn btn-success w-100 mb-1">
+					Configurações de conta
+				</button>
+				
+				<button type="button" class="btn btn-danger w-100 mb-1">Sair</button>
 			</div>
 			
-			<div class="col-md-8">
+			<div class="col-md-9">
+				
+				<p class="h2 w-100 text-center">Minhas peças</p>
+				
+				<?php
+				
+				$conn = getConnection();
+				
+				$sql = 'SELECT * FROM pecas WHERE nome_usuario = :nome_usuario';
+				$stmt = $conn->prepare($sql);
+				$stmt->bindValue(':nome_usuario', $_SESSION["nome_usuario"]);
+				$stmt->execute();
+				$count = $stmt->rowCount();
+		
+				if($count > 0){
+					$result = $stmt->fetchAll();
+			
+					foreach($result as $row){
+						?>
+						<div class="col-sm-4 mb-3">
+							<div class="card border-secondary">
+							
+								<div class="card-header">
+												
+									<label for="nomecompleto">Nome da peça:</label>
+									<h5 class="card-title" id="nomecompleto" name="nomecompleto">
+										<?php echo $row['nome_peca']; ?>
+									</h5>
+								</div>
+								
+								<div class="card-body">
+								
+								</div>
+							</div>
+						</div>
+						<?php
+					}
+				}
+				else{
+					?>
+					<div class="alert alert-warning w-100" role="alert">
+						Você não tem peças cadastradas.
+					</div>
+					<?php
+				}
+				
+				?>
 			
 			</div>
 			
