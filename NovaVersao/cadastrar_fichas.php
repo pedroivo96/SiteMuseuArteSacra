@@ -194,7 +194,7 @@
 				WHERE id_peca = :id_peca ';
 										   
 		$stmt = $conn->prepare($sql);
-		$stmt->bindParam(':id_peca'                       , $_POST['idPeca']);
+		$stmt->bindParam(':id_peca'                       , $_POST['id_peca']);
 		$stmt->bindParam(':classe'                        , $_POST['classe']);
 		$stmt->bindParam(':sub_classe'                    , $_POST['sub_classe']);
 		$stmt->bindParam(':tipo'                          , $_POST['tipo']);
@@ -210,7 +210,7 @@
 		$stmt->bindParam(':descricao_detalhes'            , $_POST['descricao_detalhes']);
 		
 		if($stmt->execute()){
-			echo $_POST['idPeca'];
+			echo $_POST['id_peca'];
 		}else{
 			echo "ERRO";
 		}
@@ -234,7 +234,7 @@
 				observacoes = :observacoes,
 				data = :data,
 				responsavel_preenchimento = :responsavel_preenchimento 
-				WHERE id_peca = :id_peca ';
+				WHERE id_peca = :id_peca';
 										   
 		$stmt = $conn->prepare($sql);
 		$stmt->bindParam(':id_peca'                  , $_POST['id_peca']);
@@ -254,7 +254,7 @@
 		$stmt->bindParam(':responsavel_preenchimento', $_POST['responsavel_preenchimento']);
 		
 		if($stmt->execute()){
-			echo $id_peca;
+			echo $_POST['id_peca'];
 		}else{
 			echo "ERRO";
 		}
@@ -327,9 +327,9 @@
 		$stmt->bindParam(':prateleira'                 , $_POST['prateleira']);
 		$stmt->bindParam(':embalagem'                  , $_POST['embalagem']);
 		$stmt->bindParam(':classe'                     , $_POST['classe']);
-		$stmt->bindParam(':denominacao'                , $_POST['denominacao1']);
-		$stmt->bindParam(':tipo'                       , $_POST['tipo1']);
-		$stmt->bindParam(':titulo'                     , $_POST['titulo1']);
+		$stmt->bindParam(':denominacao'                , $_POST['denominacao']);
+		$stmt->bindParam(':tipo'                       , $_POST['tipo']);
+		$stmt->bindParam(':titulo'                     , $_POST['titulo']);
 		$stmt->bindParam(':autoria'                    , $_POST['autoria']);
 		$stmt->bindParam(':colecao'                    , $_POST['colecao']);
 		$stmt->bindParam(':tipo_data_producao'         , $_POST['tipo_data_producao']);
@@ -341,7 +341,7 @@
 		$stmt->bindParam(':altura'                     , $_POST['altura']);
 		$stmt->bindParam(':profundidade'               , $_POST['profundidade']);
 		$stmt->bindParam(':circunferencia'             , $_POST['circunferencia']);
-		$stmt->bindParam(':tecnica'                    , $_POST['tecnica1']);
+		$stmt->bindParam(':tecnica'                    , $_POST['tecnica']);
 		$stmt->bindParam(':material'                   , $_POST['material']);
 		$stmt->bindParam(':etiqueta_composicao'        , $_POST['etiqueta_composicao']);
 		$stmt->bindParam(':descricao_conteudo'         , $_POST['descricao_conteudo']);
@@ -373,7 +373,7 @@
 		$stmt->bindParam(':meta_title'                 , $_POST['meta_title']);
 		
         if($stmt->execute()){
-            echo $_POST['idPeca'];
+            echo $_POST['id_peca'];
         }else{
             echo "ERRO";
         }
@@ -396,6 +396,7 @@
                 meta_title_ingles = :meta_title_ingles,
                 disponibilidade_peca = :disponibilidade_peca,
                 destacado = :destacado,
+				publica_documento = :publica_documento,
                 ficha_conservacao = :ficha_conservacao 
 				WHERE id_peca = :id_peca';
 		
@@ -414,6 +415,7 @@
 		$stmt->bindParam(':meta_title_ingles'      , $_POST['meta_title_ingles']);
 		$stmt->bindParam(':disponibilidade_peca'   , $_POST['disponibilidade_peca']);
 		$stmt->bindParam(':destacado'              , $_POST['destacado']);
+		$stmt->bindParam(':publica_documento'      , $_POST['publica_documento']);
 		$stmt->bindParam(':ficha_conservacao'      , $_POST['ficha_conservacao']);
 
         if($stmt->execute()){

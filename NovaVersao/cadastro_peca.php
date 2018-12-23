@@ -215,7 +215,7 @@
 				tecnica_material                = document.getElementById("tecnica_material").value;
 				forma                           = document.getElementById("forma").value;
 				descricao_peca                  = document.getElementById("descricao_peca").value;
-				dimensoes1                      = document.getElementById("dimensoes1").value;
+				dimensoes                       = document.getElementById("dimensoes1").value;
 				descricao_pecas_complementares  = document.getElementById("descricao_pecas_complementares").value;
 				observacoes                     = document.getElementById("observacoes").value;
 				descricao_detalhes              = document.getElementById("descricao_detalhes").value;
@@ -232,7 +232,7 @@
 						"&tecnica_material="+tecnica_material+
 						"&forma="+forma+
 						"&descricao_peca="+descricao_peca+
-						"&dimensoes="+dimensoes1+
+						"&dimensoes="+dimensoes+
 						"&descricao_pecas_complementares="+descricao_pecas_complementares+
 						"&observacoes="+observacoes+
 						"&descricao_detalhes="+descricao_detalhes;
@@ -275,11 +275,38 @@
 				id_peca  = document.getElementById("id_peca").value;
 				operacao = "fichas_conservacao";
 				
+				numero_registro            = document.getElementById("numero_registro").value;
+				titulo                     = document.getElementById("titulo").value;
+				classe                     = document.getElementById("classe1").value;
+				denominacao                = document.getElementById("denominacao").value;
+				estado_geral_conservacao   = document.getElementById("estado_geral_conservacao").value;
+				danos_verificados          = document.getElementById("danos_verificados").value;
+				procedimentos_higiene      = document.getElementById("procedimentos_higiene").value;
+				reparos_realizados         = document.getElementById("reparos_realizados").value;
+				acondicionamento           = document.getElementById("acondicionamento").value;
+				restauracao_conservacao    = document.getElementById("restauracao_conservacao").value;
+				procedimentos_conservacao  = document.getElementById("procedimentos_conservacao").value;
+				observacoes                = document.getElementById("observacoes1").value;
+				data                       = document.getElementById("data1").value;
+				responsavel_preenchimento  = document.getElementById("responsavel_preenchimento").value;
 				
 				//Monta a QueryString
 				dados = 'id_peca='+id_peca+
-				        "&operacao="+operacao;
-						
+				        "&operacao="+operacao+
+						"&numero_registro="+numero_registro+
+						"&titulo="+titulo+
+						"&classe="+classe+
+						"&denominacao="+denominacao+
+						"&estado_geral_conservacao="+estado_geral_conservacao+
+						"&danos_verificados="+danos_verificados+
+						"&procedimentos_higiene="+procedimentos_higiene+
+						"&reparos_realizados="+reparos_realizados+
+						"&acondicionamento="+acondicionamento+
+						"&restauracao_conservacao="+restauracao_conservacao+
+						"&procedimentos_conservacao="+procedimentos_conservacao+
+						"&observacoes="+observacoes+
+						"&data="+data+
+						"&responsavel_preenchimento="+responsavel_preenchimento;
 				
 				//Faz a requisição e envio pelo método POST
 				ajax.open('POST', 'cadastrar_fichas.php', true);
@@ -318,10 +345,114 @@
 				id_peca  = document.getElementById("id_peca").value;
 				operacao = "fichas_visualizacao";
 				
+				tipo_acervo                  = document.getElementById("tipo_acervo").value;
+				numero_registro              = document.getElementById("numero_registro").value;
+				numero_registros_antigos     = document.getElementById("numero_registros_antigos").value;
+				sala                         = document.getElementById("sala").value;
+				estante                      = document.getElementById("estante").value;
+				prateleira                   = document.getElementById("prateleira").value;
+				embalagem                    = document.getElementById("embalagem").value;
+				classe                       = document.getElementById("classe2").value;
+				denominacao                  = document.getElementById("denominacao1").value;
+				tipo                         = document.getElementById("tipo1").value;
+				titulo                       = document.getElementById("titulo1").value;
+				autoria                      = document.getElementById("autoria").value;
+				colecao                      = document.getElementById("colecao").value;
+				tipo_data_producao           = document.getElementById("tipo_data_producao").value;
+				data_producao                = document.getElementById("data_producao").value;
+				local_producao               = document.getElementById("local_producao").value;
+				historico_peca               = document.getElementById("historico_peca").value;
+				eventos_associados           = document.getElementById("eventos_associados").value;
+				largura                      = document.getElementById("largura").value;
+				altura                       = document.getElementById("altura").value;
+				profundidade                 = document.getElementById("profundidade").value;
+				circunferencia               = document.getElementById("circunferencia").value;
+				tecnica                      = document.getElementById("tecnica1").value;
+				material                     = document.getElementById("material").value;
+				etiqueta_composicao          = document.getElementById("etiqueta_composicao").value;
+				descricao_conteudo           = document.getElementById("descricao_conteudo").value;
+				pecas_complementares         = document.getElementById("pecas_complementares").value;
+				descricao_pecas_comp         = document.getElementById("descricao_pecas_comp").value;
+				pecas_relacionadas           = document.getElementById("pecas_relacionadas").value;
+				descritores                  = document.getElementById("descritores").value;
+				descritores_geograficos      = document.getElementById("descritores_geograficos").value;
+				documentos_relacionados      = document.getElementById("documentos_relacionados").value;
+				notas_observacoes            = document.getElementById("notas_observacoes").value;
+				valor_peca                   = document.getElementById("valor_peca").value;
+				seguradora                   = document.getElementById("seguradora").value;
+				valor_seguro                 = document.getElementById("valor_seguro").value;
+				formas_incorporacao          = document.getElementById("formas_incorporacao").value;
+				tipo_data_incorporacao       = document.getElementById("tipo_data_incorporacao").value;
+				frequencias                  = document.getElementById("frequencias").value;
+				procedencias                 = document.getElementById("procedencias").value;
+				uso_acesso_peca_fisica       = document.getElementById("uso_acesso_peca_fisica").value;
+				uso_acesso_representante     = document.getElementById("uso_acesso_representante").value;
+				historico_circulacao         = document.getElementById("historico_circulacao").value;
+				direitos                     = document.getElementById("direitos").value;
+				catalogador                  = document.getElementById("catalogador").value;
+				data_inicial_catalogacao     = document.getElementById("data_inicial_catalogacao").value;
+				data_final_catalogacao       = document.getElementById("data_final_catalogacao").value;
+				fontes_pesquisa_referencias  = document.getElementById("fontes_pesquisa_referencias").value;
+				link_visao                   = document.getElementById("link_visao").value;
+				meta_keywords                = document.getElementById("meta_keywords").value;
+				meta_description             = document.getElementById("meta_description").value;
+				meta_title                   = document.getElementById("meta_title").value;
 				
 				//Monta a QueryString
 				dados = 'id_peca='+id_peca+
-				        "&operacao="+operacao;
+				        "&operacao="+operacao+
+						"&tipo_acervo="+tipo_acervo+
+						"&numero_registro="+numero_registro+
+						"&numero_registros_antigos="+numero_registros_antigos+
+						"&sala="+sala+
+						"&estante="+estante+
+						"&prateleira="+prateleira+
+						"&embalagem="+embalagem+
+						"&classe="+classe+
+						"&denominacao="+denominacao+
+						"&tipo="+tipo+
+						"&titulo="+titulo+
+						"&autoria="+autoria+
+						"&colecao="+colecao+
+						"&tipo_data_producao="+tipo_data_producao+
+						"&data_producao="+data_producao+
+						"&local_producao="+local_producao+
+						"&historico_peca="+historico_peca+
+						"&eventos_associados="+eventos_associados+
+						"&largura="+largura+
+						"&altura="+altura+
+						"&profundidade="+profundidade+
+						"&circunferencia="+circunferencia+
+						"&tecnica="+tecnica+
+						"&material="+material+
+						"&etiqueta_composicao="+etiqueta_composicao+
+						"&descricao_conteudo="+descricao_conteudo+
+						"&pecas_complementares="+pecas_complementares+
+						"&descricao_pecas_comp="+descricao_pecas_comp+
+						"&pecas_relacionadas="+pecas_relacionadas+
+						"&descritores="+descritores+
+						"&descritores_geograficos="+descritores_geograficos+
+						"&documentos_relacionados="+documentos_relacionados+
+						"&notas_observacoes="+notas_observacoes+
+						"&valor_peca="+valor_peca+
+						"&seguradora="+seguradora+
+						"&valor_seguro="+valor_seguro+
+						"&formas_incorporacao="+formas_incorporacao+
+						"&tipo_data_incorporacao="+tipo_data_incorporacao+
+						"&frequencias="+frequencias+
+						"&procedencias="+procedencias+
+						"&uso_acesso_peca_fisica="+uso_acesso_peca_fisica+
+						"&uso_acesso_representante="+uso_acesso_representante+
+						"&historico_circulacao="+historico_circulacao+
+						"&direitos="+direitos+
+						"&catalogador="+catalogador+
+						"&data_inicial_catalogacao="+data_inicial_catalogacao+
+						"&data_final_catalogacao="+data_final_catalogacao+
+						"&fontes_pesquisa_referencias="+fontes_pesquisa_referencias+
+						"&link_visao="+link_visao+
+						"&meta_keywords="+meta_keywords+
+						"&meta_description="+meta_description+
+						"&meta_title="+meta_title;
 						
 				
 				//Faz a requisição e envio pelo método POST
@@ -361,10 +492,40 @@
 				id_peca  = document.getElementById("id_peca").value;
 				operacao = "fichas_english_fields";
 				
+				titulo_ingles            = document.getElementById("titulo_ingles").value;
+				autoria_ingles           = document.getElementById("autoria_ingles").value;
+				colecao_ingles           = document.getElementById("colecao_ingles").value;
+				historia_ingles          = document.getElementById("historia_ingles").value;
+				eventos_ingles           = document.getElementById("eventos_ingles").value;
+				conteudo_ingles          = document.getElementById("conteudo_ingles").value;
+				pecas_comp_ingles        = document.getElementById("pecas_comp_ingles").value;
+				descricao_pecas_ingles   = document.getElementById("descricao_pecas_ingles").value;
+				meta_keywords_ingles     = document.getElementById("meta_keywords_ingles").value;
+				meta_description_ingles  = document.getElementById("meta_description_ingles").value;
+				meta_title_ingles        = document.getElementById("meta_title_ingles").value;
+				disponibilidade_peca     = document.getElementById("disponibilidade_peca").value;
+				destacado                = document.getElementById("destacado").value;
+				publica_documento        = document.getElementById("publica_documento").value;
+				ficha_conservacao        = document.getElementById("ficha_conservacao1").value;
 				
 				//Monta a QueryString
 				dados = 'id_peca='+id_peca+
-				        "&operacao="+operacao;
+				        "&operacao="+operacao+
+						"&titulo_ingles="+titulo_ingles+
+						"&autoria_ingles="+autoria_ingles+
+						"&colecao_ingles="+colecao_ingles+
+						"&historia_ingles="+historia_ingles+
+						"&eventos_ingles="+eventos_ingles+
+						"&conteudo_ingles="+conteudo_ingles+
+						"&pecas_comp_ingles="+pecas_comp_ingles+
+						"&descricao_pecas_ingles="+descricao_pecas_ingles+
+						"&meta_keywords_ingles="+meta_keywords_ingles+
+						"&meta_description_ingles="+meta_description_ingles+
+						"&meta_title_ingles="+meta_title_ingles+
+						"&disponibilidade_peca="+disponibilidade_peca+
+						"&destacado="+destacado+
+						"&publica_documento="+publica_documento+
+						"&ficha_conservacao="+ficha_conservacao;
 						
 				
 				//Faz a requisição e envio pelo método POST
@@ -559,13 +720,13 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="descricao_pecas_complementares">Descrição das peças complementares</label>
-						<input type="text" class="form-control" id="descricao_pecas_complementares">
+						<label for="dimensoes1">Dimensões</label>
+						<input type="text" class="form-control" id="dimensoes1">
 					</div>
 					
 					<div class="form-group">
-						<label for="observacoes">Observações</label>
-						<input type="text" class="form-control" id="observacoes">
+						<label for="descricao_pecas_complementares">Descrição das peças complementares</label>
+						<input type="text" class="form-control" id="descricao_pecas_complementares">
 					</div>
 					
 					<div class="form-group">
@@ -593,74 +754,79 @@
 				</button>
 				
 				<form class="d-block mb-2" id="ficha_conservacao">
-				
+					
 					<div class="form-group">
-						<label for="classe">Classe</label>
-						<input type="text" class="form-control" id="classe">
+						<label for="numero_registro">Número de registro</label>
+						<input type="text" class="form-control" id="numero_registro">
 					</div>
 					
 					<div class="form-group">
-						<label for="sub_classe">Subclasse</label>
-						<input type="text" class="form-control" id="sub_classe">
+						<label for="titulo">Título</label>
+						<input type="text" class="form-control" id="titulo">
 					</div>
 					
 					<div class="form-group">
-						<label for="tipo">Tipo</label>
-						<input type="text" class="form-control" id="tipo">
+						<label for="classe1">Classe</label>
+						<input type="text" class="form-control" id="classe1">
 					</div>
 					
 					<div class="form-group">
-						<label for="historico_uso">Histórico de uso</label>
-						<input type="text" class="form-control" id="historico_uso">
+						<label for="denominacao">Denominação</label>
+						<input type="text" class="form-control" id="denominacao">
 					</div>
 					
 					<div class="form-group">
-						<label for="possiveis_usos">Possíveis usos</label>
-						<input type="text" class="form-control" id="possiveis_usos">
+						<label for="estado_geral_conservacao">Estado geral de conservação</label>
+						<input type="text" class="form-control" id="estado_geral_conservacao">
 					</div>
 					
 					<div class="form-group">
-						<label for="data_aquisicao">Data de aquisição</label>
-						<input type="text" class="form-control" id="data_aquisicao">
+						<label for="danos_verificados">Danos verificados</label>
+						<input type="text" class="form-control" id="danos_verificados">
 					</div>
 					
 					<div class="form-group">
-						<label for="tecnica_material">Técnica/Material</label>
-						<input type="text" class="form-control" id="tecnica_material">
+						<label for="procedimentos_higiene">Procedimentos de higienização</label>
+						<input type="text" class="form-control" id="procedimentos_higiene">
 					</div>
 					
 					<div class="form-group">
-						<label for="forma">Forma</label>
-						<input type="text" class="form-control" id="forma">
+						<label for="reparos_realizados">Reparos realizados</label>
+						<input type="text" class="form-control" id="reparos_realizados">
 					</div>
 					
 					<div class="form-group">
-						<label for="descricao_peca">Descrição da peça</label>
-						<input type="text" class="form-control" id="descricao_peca">
+						<label for="acondicionamento">Acondicionamento</label>
+						<input type="text" class="form-control" id="acondicionamento">
 					</div>
 					
 					<div class="form-group">
-						<label for="descricao_pecas_complementares">Descrição das peças complementares</label>
-						<input type="text" class="form-control" id="descricao_pecas_complementares">
+						<label for="restauracao_conservacao">Restauração ou conservação preventiva</label>
+						<input type="text" class="form-control" id="restauracao_conservacao">
 					</div>
 					
 					<div class="form-group">
-						<label for="observacoes">Observações</label>
-						<input type="text" class="form-control" id="observacoes">
+						<label for="procedimentos_conservacao">Procedimentos de conservação preventiva</label>
+						<input type="text" class="form-control" id="procedimentos_conservacao">
 					</div>
 					
 					<div class="form-group">
-						<label for="observacoes">Observações</label>
-						<input type="text" class="form-control" id="observacoes">
+						<label for="observacoes1">Observações</label>
+						<input type="text" class="form-control" id="observacoes1">
 					</div>
 					
 					<div class="form-group">
-						<label for="descricao_detalhes">Descrição dos detalhes</label>
-						<input type="text" class="form-control" id="descricao_detalhes">
+						<label for="data1">Data</label>
+						<input type="date" class="form-control" id="data1">
+					</div>
+					
+					<div class="form-group">
+						<label for="responsavel_preenchimento">Responsável pelo preenchimento</label>
+						<input type="text" class="form-control" id="responsavel_preenchimento">
 					</div>
 					
 					<div align="center">
-						<button type="button" class="btn btn-primary w-50" onclick="salvarFichaCatalografica()">
+						<button type="button" class="btn btn-primary w-50" onclick="salvarFichaConservacao()">
 							Cadastrar ficha
 						</button>
 					</div>
@@ -710,8 +876,8 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="classe">Classe</label>
-						<input type="text" class="form-control" id="classe">
+						<label for="classe2">Classe</label>
+						<input type="text" class="form-control" id="classe2">
 					</div>
 					
 					<div class="form-group">
@@ -746,7 +912,7 @@
 					
 					<div class="form-group">
 						<label for="data_producao">Data de produção</label>
-						<input type="text" class="form-control" id="data_producao">
+						<input type="date" class="form-control" id="data_producao">
 					</div>
 					
 					<div class="form-group">
@@ -901,12 +1067,12 @@
 					
 					<div class="form-group">
 						<label for="data_inicial_catalogacao">Data inicial de catalogação</label>
-						<input type="text" class="form-control" id="data_inicial_catalogacao">
+						<input type="date" class="form-control" id="data_inicial_catalogacao">
 					</div>
 					
 					<div class="form-group">
 						<label for="data_final_catalogacao">Data final de catalogação</label>
-						<input type="text" class="form-control" id="data_final_catalogacao">
+						<input type="date" class="form-control" id="data_final_catalogacao">
 					</div>
 					
 					<div class="form-group">
@@ -1021,8 +1187,8 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="ficha_conservacao">Ficha de conservação</label>
-						<input type="text" class="form-control" id="ficha_conservacao">
+						<label for="ficha_conservacao1">Ficha de conservação</label>
+						<input type="text" class="form-control" id="ficha_conservacao1">
 					</div>
 					
 					<div align="center">
