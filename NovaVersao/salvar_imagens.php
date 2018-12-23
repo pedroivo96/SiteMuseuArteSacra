@@ -9,11 +9,11 @@
 		
 		echo $id_peca;
 
-		salvardesenhos_tecnicos($conn, $id_peca);
+		salvarDesenhosTecnicos($conn, $id_peca);
 		
-		salvarfotografias($conn, $id_peca);
+		salvarFotografias($conn, $id_peca);
 		
-		salvarfotos_detalhes($conn, $id_peca);
+		salvarFotosDetalhes($conn, $id_peca);
 		
 		//session_start();
 		//$_SESSION['id_peca'] = $id_peca;
@@ -23,7 +23,7 @@
 		echo "POST VAZIO";
 	}
 	
-	function salvardesenhos_tecnicos($conn, $id_peca){
+	function salvarDesenhosTecnicos($conn, $id_peca){
 		
 		// Count # of uploaded files in array
 		$total = count($_FILES['desenhos_tecnicos']['name']);
@@ -84,7 +84,7 @@
 		}
 	}
 	
-	function salvarfotografias($conn, $id_peca){
+	function salvarFotografias($conn, $id_peca){
 		// Count # of uploaded files in array
 		$total = count($_FILES['fotografias']['name']);
 		
@@ -144,7 +144,7 @@
 		}
 	}
 	
-	function salvarfotos_detalhes($conn, $id_peca){
+	function salvarFotosDetalhes($conn, $id_peca){
 		// Count # of uploaded files in array
 		$total = count($_FILES['fotos_detalhes']['name']);
 		

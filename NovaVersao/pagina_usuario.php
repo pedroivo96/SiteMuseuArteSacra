@@ -85,6 +85,8 @@
 				
 				<p class="h2 w-100 text-center">Minhas peças</p>
 				
+				<div class="row">
+				
 				<?php
 				
 				$conn = getConnection();
@@ -112,8 +114,20 @@
 								</div>
 								
 								<div class="card-body">
+
 								
 								</div>
+
+								<form method="POST" action="pagina_peca.php">
+										
+									<input type="text" name="id_peca" value="<?php echo $row['id_peca']; ?>">
+									<input type="text" name="nome_peca" value="<?php echo $row['nome_peca']; ?>">
+
+									<button type="submit" class="btn btn-success btn-block" style="padding: 0.75rem 1.25rem;border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);">
+										Ver peça
+									</button>
+
+								</form>
 							</div>
 						</div>
 						<?php
@@ -128,13 +142,15 @@
 				}
 				
 				?>
+				
+				</div>
 			
 			</div>
 			
 		</div>
 		
 		<div class="row">
-			<?php include "./rodape.html"; ?>
+			<?php include "./rodape1.html"; ?>
 		</div>
 </div>
 
