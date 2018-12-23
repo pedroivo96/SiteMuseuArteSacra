@@ -118,6 +118,7 @@
 								id_peca = retorno;
 								
 								document.getElementById("id_peca").value = retorno;
+								document.getElementById("id_peca1").value = retorno;
 							}
 						}
 						else{
@@ -533,6 +534,32 @@
 				ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 				ajax.send(dados);
 			}
+		}
+
+		function salvarImagens(){
+
+			// Captura os dados do formulário
+			var formulario = document.getElementById('formulario_imagens');
+ 
+			// Instância o FormData passando como parâmetro o formulário
+			var formData = new FormData(formulario);
+ 
+			// Envia O FormData através da requisição AJAX
+			$.ajax({
+		   		url: "salvar_imagens.php",
+		   		type: "POST",
+		   		data: formData,
+		   		dataType: 'json',
+		   		processData: false,  
+		   		contentType: false,
+		   		success: function(retorno){
+	   				if (retorno.status == '1'){
+	   					alert(retorno.mensagem)
+	   				}else{
+	   					alert(retorno.mensagem)
+	   				}
+	   	   		}
+			});
 		}
 		
 	
@@ -1202,6 +1229,43 @@
 				
 				<!--Upload de Imagens -->
 				<button type="button" class="btn btn-success w-100 mb-1">Upload de imagens</button>
+
+				<form id="formulario_imagens">
+
+					<input type="text" id="id_peca1" name="id_peca">
+						
+					<div class="form-group">
+					 
+						<label for="desenhos_tecnicos">
+							Desenho técnico (Frente e Costas):
+						</label>
+						<input type="file" class="form-control" id="desenhos_tecnicos" name="desenhos_tecnicos[]" multiple>
+					</div>
+				
+					<div class="form-group">
+					 
+						<label for="fotografias">
+							Fotografia (Frente e Costas):
+						</label>
+						<input type="file" class="form-control" id="fotografias" name="fotografias[]" multiple>
+					</div>
+				
+					<div class="form-group">
+					 
+						<label for="fotos_detalhes">
+							Fotos de detalhes:
+						</label>
+						<input type="file" class="form-control" id="fotos_detalhes" name="fotos_detalhes[]" multiple>
+					</div>
+
+					<div align="center">
+						<button type="button" class="btn btn-primary w-50" onclick="salvarImagens()">
+							Cadastrar imagens
+						</button>
+					</div>
+
+
+				</form>
 			
 			</div>
 			
