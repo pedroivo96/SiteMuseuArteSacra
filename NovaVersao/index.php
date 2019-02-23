@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
   <head>
   
 	<?php
@@ -56,7 +56,6 @@
 			}
 		}
 	
-	
 		function processa(){
 			ajax = iniciaAjax();
 			
@@ -68,7 +67,7 @@
 							
 							if(retorno == "ERRO"){
 								
-								document.getElementById("erro").className = "alert alert-warning w-100 d-block";
+								document.getElementById("erro").className = "alert alert-warning w-100 d-block mt-4";
 								
 							}else if(retorno == "OK"){
 								
@@ -99,72 +98,78 @@
 	</script>
 
   </head>
-  <body>
+  <body class="d-flex flex-column h-100 bg-light">
 
-    <div class="container-fluid">
-	
-		<div class="row">
-			<?php include "./cabecalho.html"; ?>
-		</div>
-		
-		<?php include "./campo_pesquisa.html"?>
-		
-		<div class="row">
+	<?php include "./cabecalho.php"; ?>
+	  
+	<main role="main" class="flex-shrink-0">
+
+		<div class="container-fluid">
 			
-			<div class="col-md-4">
-			
-			</div>
-			
-			<div class="col-md-4">
-				<div class="alert alert-warning w-100 d-none" align="center" role="alert" id="erro">
-					Usuário não cadastrado
+			<div class="row mt-5">
+				
+				<div class="col-md-4">
+				
+				</div>
+				
+				<div class="col-md-4">
+					<div class="alert alert-warning w-100 d-none" align="center" role="alert" id="erro">
+						Usuário não cadastrado
+					</div>
+					
+					
+				</div>
+				
+				<div class="col-md-4">
+				
 				</div>
 			</div>
 			
-			<div class="col-md-4">
+			<div class="row mt-5 mb-5">
 			
-			</div>
-		</div>
-		
-		<div class="row">
-		
-			<div class="col-md-4">
+				<div class="col-md-4">
+				
+				</div>
 			
-			</div>
-		
-			<div class="col-md-4">
-				<form class="mt-5">
-					<div class="form-group">
-						<label for="nome_usuario">Nome de usuário</label>
-						<input type="text" class="form-control" id="nome_usuario" onkeyup="checar();">
-					</div>
-					
-					<div class="form-group">
-						<label for="senha">Senha</label>
-						<input type="password" class="form-control" id="senha" onkeyup="checar();">
-					</div>
-					
-					<button type="button" id="botao_login" class="btn btn-success w-100 mb-1" onclick="processa()" disabled>
-						Login
-					</button>
-					
-					<button type="button" class="btn btn-light w-100" onclick="location.href = 'cadastro_usuario.php';">Ainda não é cadastrado ?</button>
-				</form>
-			</div>
-			
-			<div class="col-md-4">
-			
-			</div>
-			
-		</div>
-		
-		<div class="row">
-			<?php include "./rodape.html"; ?>
-		</div>
-</div>
+				<div class="col-md-4">
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-  </body>
+					<div class="border shadow bg-white rounded">
+						<form class="mt-5 mr-5 ml-5 mb-5">
+							<div class="form-group">
+								<label class="font-weight-bold" for="nome_usuario">Nome de usuário</label>
+								<input type="text" class="form-control" id="nome_usuario" onkeyup="checar();" required autofocus>
+							</div>
+							
+							<div class="form-group">
+								<label class="font-weight-bold" for="senha">Senha</label>
+								<input type="password" class="form-control" id="senha" onkeyup="checar();" required>
+							</div>
+
+							<div class="checkbox mb-3">
+								<label>
+								<input type="checkbox" value="remember-me" checked> Lembre-se de mim
+								</label>
+							</div>
+							
+							<button type="button" id="botao_login" class="btn btn-success w-100 mb-1" onclick="processa()" disabled>
+								Login
+							</button>
+							
+							<a href="cadastro_usuario.php" class="btn btn-default w-100">Não possui cadastro?</a>
+						</form>
+					</div>
+				</div>
+				
+				<div class="col-md-4 h-100">
+				
+				</div>
+				
+			</div>
+		</div>
+
+	</main>
+
+	<?php include "./rodape.html"; ?>
+  
+</body>
 </html>
