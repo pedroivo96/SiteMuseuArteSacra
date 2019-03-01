@@ -3,7 +3,7 @@
     function getConnection(){
         $dsn = 'mysql:host=localhost;dbname=museu';
         $user = 'root';
-        $pass = '';
+        $pass = 'zxcv';
 
         try{
             //echo "antes";

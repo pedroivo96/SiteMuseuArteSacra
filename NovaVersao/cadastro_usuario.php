@@ -20,6 +20,14 @@
     <link href="css3/style.css" rel="stylesheet">
 	
 	<script>
+
+		document.onkeyup=function(e){
+			if(e.which == 13){
+				if(! document.getElementById('botao_cadastro').disabled){
+					cadastrarUsuario();
+				}
+			}
+		}
 	
 		function iniciaAjax(){
 			
@@ -122,11 +130,11 @@
 			
 			if(campo_senha.type == "password"){
 				campo_senha.type = "text";
-				botao_ver_senha.src = "icons/icons8-invisible-32.png";
+				botao_ver_senha.src = "icons/icons8-invisible-24.png";
 			}
 			else{
 				campo_senha.type = "password";
-				botao_ver_senha.src = "icons/icons8-eye-32.png";
+				botao_ver_senha.src = "icons/icons8-eye-24.png";
 			}
 		}
 		
@@ -137,11 +145,11 @@
 			
 			if(campo_senha_novamente.type == "password"){
 				campo_senha_novamente.type = "text";
-				botao_ver_senha_novamente.src = "icons/icons8-invisible-32.png";
+				botao_ver_senha_novamente.src = "icons/icons8-invisible-24.png";
 			}
 			else{
 				campo_senha_novamente.type = "password";
-				botao_ver_senha_novamente.src = "icons/icons8-eye-32.png";
+				botao_ver_senha_novamente.src = "icons/icons8-eye-24.png";
 			}
 		}
 		
@@ -189,123 +197,137 @@
 	</script>
 
   </head>
-  <body>
+  <body class="d-flex flex-column h-100 bg-light">
 
-    <div class="container-fluid">
-	
-		<div class="row">
-			<?php include "./cabecalho.html"; ?>
-		</div>
-		
-		<?php include "./campo_pesquisa.html"?>
-		
-		<div class="row">
-			
-			<div class="col-md-4">
-			
-			</div>
-			
-			<div class="col-md-4">
-			
-			</div>
-		</div>
-		
-		<div class="row mb-5">
-		
-			<div class="col-md-4">
-			
-			</div>
-		
-			<div class="col-md-4">
-			
-				<div class="row">
-					<div class="col-md-12">
-						<div class="alert alert-warning w-100 d-none" align="center" role="alert" id="erro1">
-							Nome de usuário ou Email já cadastrado.
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-12">
-						<div class="alert alert-warning w-100 d-none" align="center" role="alert" id="erro2">
-							As senhas não coincidem.
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-12">
-						<div class="alert alert-warning w-100 d-block" align="center" role="alert" id="erro3">
-							Algum dos campos está vazio.
-						</div>
-					</div>
-				</div>
-				
-				
-			
-				<form>
-					<div class="form-group">
-						<label for="email">Email</label>
-						<input type="email" class="form-control" id="email" onkeyup="avaliarCampos()">
+		<?php include "./cabecalho.php"; ?>
 
+		<main role="main" class="flex-shrink-0">
+
+				<div class="container-fluid">
+				
+				<div class="row">
+					
+					<div class="col-md-4">
+					
 					</div>
 					
-					<div class="form-group">
-						<label for="nome_usuario">Nome de usuário</label>
-						<input type="text" class="form-control" id="nome_usuario" onkeyup="avaliarCampos()">
+					<div class="col-md-4">
+					
 					</div>
+				</div>
+				
+				<div class="row mb-5">
+				
+					<div class="col-md-4">
 					
+					</div>
+				
+					<div class="col-md-4">
 					
-					<div class="form-group">
-						<label for="senha">Digite a senha</label>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="alert alert-warning w-100 d-none" align="center" role="alert" id="erro1">
+									Nome de usuário ou Email já cadastrado.
+								</div>
+							</div>
+						</div>
 						
 						<div class="row">
-							<div class="col-md-10">
-								<input type="password" class="form-control" id="senha" onkeyup="avaliarCampos()">
-							</div>
-							
-							<div class="col-md-2">
-								<img src="icons/icons8-eye-32.png" class="btn btn-success img-fluid w-100 h-100" onclick="mostrarOcultarSenha()" id="ver_senha">
+							<div class="col-md-12">
+								<div class="alert alert-warning w-100 d-none" align="center" role="alert" id="erro2">
+									As senhas não coincidem.
+								</div>
 							</div>
 						</div>
-					</div>
-					
-					
-					<div class="form-group">
-						<label for="senha_novamente">Digite a senha novamente</label>
 						
 						<div class="row">
-							<div class="col-md-10">
-								<input type="password" class="form-control" id="senha_novamente" onkeyup="avaliarCampos()">
-							</div>
-							
-							<div class="col-md-2">
-								<img src="icons/icons8-eye-32.png" class="btn btn-success img-fluid w-100 h-100" onclick="mostrarOcultarSenhaNovamente()" id="ver_senha_novamente">
+							<div class="col-md-12">
+								<div class="alert alert-warning w-100 d-block" align="center" role="alert" id="erro3">
+									Algum dos campos está vazio.
+								</div>
 							</div>
 						</div>
+						
+						<div class="border shadow bg-white rounded mt-2">
+					
+							<form class="mt-5 mr-5 ml-5 mb-5">
+								<div class="form-group">
+									<label class="font-weight-bold" for="email">Email</label>
+									<input type="email" class="form-control" id="email" onkeyup="avaliarCampos()" required autofocus>
+
+								</div>
+								
+								<div class="form-group">
+									<label class="font-weight-bold" for="nome_usuario">Nome de usuário</label>
+									<input type="text" class="form-control" id="nome_usuario" onkeyup="avaliarCampos()">
+								</div>
+								
+								
+								<div class="form-group">
+									<label class="font-weight-bold" for="senha">Digite a senha</label>
+									
+									<div class="row">
+										<div class="col-md-12">
+											<div class="input-group mb-1">
+												<input type="password" class="form-control" id="senha" onkeyup="avaliarCampos()">
+												<div class="input-group-append">
+													<img src="icons/icons8-eye-24.png" class="border btn btn-white img-fluid  h-100" onclick="mostrarOcultarSenha()" id="ver_senha">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								
+								<div class="form-group">
+									<label class="font-weight-bold" for="senha_novamente">Digite a senha novamente</label>
+									
+									<div class="row">
+
+										<div class="col-md-12">
+											<div class="input-group mb-1">
+												<input type="password" class="form-control" id="senha_novamente" onkeyup="avaliarCampos()">
+												<div class="input-group-append">
+												<img src="icons/icons8-eye-24.png" class="border btn btn-white img-fluid h-100" onclick="mostrarOcultarSenhaNovamente()" id="ver_senha_novamente">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<button type="button" class="btn btn-success w-100" onclick="cadastrarUsuario()"  id="botao_cadastro" disabled>
+									Cadastrar-se
+								</button>
+								<a href="index.php" class="btn btn-default w-100">Já possui cadastro?</a>
+							</form>
+
+						</div>
+						
 					</div>
 					
-					<button type="button" class="btn btn-success w-100" onclick="cadastrarUsuario()"  id="botao_cadastro" disabled>
-						Cadastrar
-					</button>
-				</form>
-				
-			</div>
-			
-			<div class="col-md-4">
-			
-			</div>
-			
-		</div>
-		
-		<div class="row">
-			<?php include "./rodape1.html"; ?>
-		</div>
-</div>
+					<div class="col-md-4">
+					
+					</div>
+					
+				</div>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+				<div class="row h-100">
+					<div class="col-md-4">
+					
+					</div>
+					<div class="col-md-4">
+					
+					</div>
+					<div class="col-md-4">
+					
+					</div>
+				</div>
+				
+		</div>
+
+	</main>
+
+	<?php include "./rodape.html"; ?>
+
   </body>
 </html>

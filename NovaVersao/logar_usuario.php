@@ -17,12 +17,9 @@
         $count = $stmt->rowCount();
 
         if($count > 0){
-			
 			session_start();
-			$_SESSION['nome_usuario'] = $nome_usuario;
-			
-			echo "OK";
-			
+            $_SESSION['nome_usuario'] = $nome_usuario;
+            echo "OK";
         }else{
             echo "ERRO";
         }

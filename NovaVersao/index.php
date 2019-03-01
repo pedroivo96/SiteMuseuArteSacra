@@ -4,7 +4,9 @@
   
 	<?php
 		session_start();
-		
+		if(isset($_SESSION["nome_usuario"])) { 
+				header("Location: pagina_usuario.php");
+		}
 	?>
   
     <meta charset="utf-8">
@@ -20,6 +22,14 @@
     <link href="css3/style.css" rel="stylesheet">
 	
 	<script>
+
+		document.onkeyup=function(e){
+			if(e.which == 13){
+				if(! document.getElementById('botao_login').disabled){
+					processa();
+				}
+			}
+		}
 	
 		function iniciaAjax(){
 			
@@ -71,8 +81,8 @@
 								
 							}else if(retorno == "OK"){
 								
-								alert("OK");
 								window.location = "pagina_usuario.php";
+
 							}
 						}
 						else{
@@ -134,6 +144,7 @@
 				<div class="col-md-4">
 
 					<div class="border shadow bg-white rounded">
+
 						<form class="mt-5 mr-5 ml-5 mb-5">
 							<div class="form-group">
 								<label class="font-weight-bold" for="nome_usuario">Nome de usuário</label>

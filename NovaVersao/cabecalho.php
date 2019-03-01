@@ -7,27 +7,33 @@
 	  
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<form class="form-inline my-2 my-lg-0 mr-auto">
-				<input class="form-control mr-sm-2 bg-light" type="search" placeholder="Pesquisar peça" aria-label="Pesquisar peça">
+				<input class="form-control mr-sm-2 bg-light" type="search" placeholder="Encontre uma peça" aria-label="Pesquisar peça">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
 			</form>
 		  	<ul class="navbar-nav">
 
-				<!-- add PHP aqui para aparecer quando tiver logado -->
+				<?php
+					session_start(); 
+					// Verifica se existe os dados da sessão de login 
+					if(isset($_SESSION["nome_usuario"])) { 
+				?>
 
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Usuário
+					<a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<?php echo $_SESSION["nome_usuario"]; ?>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Minhas peças</a>
+					<a class="dropdown-item" href="pagina_usuario.php">Minhas peças</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="#">Configurações de conta</a>
-					<a class="dropdown-item" href="#">Sair</a>
+					<a class="dropdown-item" href="deslogar_usuario.php">Sair</a>
 					</div>
 				</li>
 
+				<?php } ?>
+
 				<li class="nav-item">
-					<a class="nav-link" href="#">Sobre</a>
+					<a class="nav-link" href="sobre.php">Sobre</a>
 				</li>
 		 	</ul>
 		</div>
